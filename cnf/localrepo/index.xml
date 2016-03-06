@@ -3393,17 +3393,16 @@
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:171)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:143)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:404)
-	at bndtools.RefreshReposHandler$1$1.run(RefreshReposHandler.java:49)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2225)
-	at bndtools.RefreshReposHandler$1.run(RefreshReposHandler.java:41)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	at bndtools.central.Central.refreshPlugins(Central.java:429)
+	at bndtools.views.repository.RepositoriesView$7$1.runInWorkspace(RepositoriesView.java:423)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
 	at java.lang.Integer.parseInt(Integer.java:580)
 	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
-	... 15 more
+	... 14 more
  -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.buffer"/>
@@ -3457,17 +3456,16 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:171)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:143)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:404)
-	at bndtools.RefreshReposHandler$1$1.run(RefreshReposHandler.java:49)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2225)
-	at bndtools.RefreshReposHandler$1.run(RefreshReposHandler.java:41)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	at bndtools.central.Central.refreshPlugins(Central.java:429)
+	at bndtools.views.repository.RepositoriesView$7$1.runInWorkspace(RepositoriesView.java:423)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
 	at java.lang.Integer.parseInt(Integer.java:580)
 	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
-	... 15 more
+	... 14 more
  -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.common"/>
@@ -3564,17 +3562,16 @@ Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.generateIndex(LocalIndexedRepo.java:171)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.regenerateAllIndexes(LocalIndexedRepo.java:143)
 	at aQute.bnd.deployer.repository.LocalIndexedRepo.refresh(LocalIndexedRepo.java:404)
-	at bndtools.RefreshReposHandler$1$1.run(RefreshReposHandler.java:49)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
-	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2225)
-	at bndtools.RefreshReposHandler$1.run(RefreshReposHandler.java:41)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+	at bndtools.central.Central.refreshPlugins(Central.java:429)
+	at bndtools.views.repository.RepositoriesView$7$1.runInWorkspace(RepositoriesView.java:423)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:39)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 Caused by: java.lang.NumberFormatException: For input string: "[1,)"
 	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
 	at java.lang.Integer.parseInt(Integer.java:580)
 	at java.lang.Integer.parseInt(Integer.java:615)
 	at org.osgi.framework.Version.parseInt(Version.java:168)
-	... 15 more
+	... 14 more
  -->
     <capability namespace="osgi.identity">
       <attribute name="osgi.identity" value="io.netty.transport"/>

@@ -6,25 +6,31 @@ import java.util.Arrays;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.*;
-import org.osgi.service.component.annotations.Component;
-import org.restlet.*;
+import org.restlet.Request;
+import org.restlet.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import de.twenty11.skysail.server.core.restlet.*;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import de.twenty11.skysail.server.core.restlet.Wrapper;
 import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
 import io.skysail.server.app.ApplicationProvider;
-import io.skysail.server.app.notes.resources.*;
+import io.skysail.server.app.notes.resources.MyNoteResource;
+import io.skysail.server.app.notes.resources.MyNotesResource;
+import io.skysail.server.app.notes.resources.MyPostNoteResource;
+import io.skysail.server.app.notes.resources.MyPutNoteResource;
 import io.skysail.server.menus.MenuItemProvider;
-import io.skysail.server.restlet.filter.*;
+import io.skysail.server.restlet.filter.FilterResult;
+import io.skysail.server.restlet.filter.UpdateEntityFilter;
 import io.skysail.server.restlet.resources.PutEntityServerResource;
 import io.skysail.server.restlet.response.ResponseWrapper;
-import io.skysail.server.services.*;
-import io.skysail.server.uikit.webresource.RequireUiKitWebResource;
+import io.skysail.server.services.MessageQueueHandler;
+import io.skysail.server.services.MessageQueueProvider;
+import io.skysail.server.services.SkysailMessageListener;
 
 @Component(immediate = true)
-@RequireUiKitWebResource
+//@RequireUiKitWebResource
 public class NotesApplication extends NotesApplicationGen
         implements ApplicationProvider, MenuItemProvider, MessageQueueProvider {
 

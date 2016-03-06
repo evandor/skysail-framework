@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConfigMover {
 
-    public static final String CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER = "felix.fileTCoinstall.dir";
+    public static final String CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER = "felix.fileinstall.dir";
 
     @Activate
     public void activate(ComponentContext context) {
@@ -59,7 +59,7 @@ public class ConfigMover {
 
     private void copyConfigurationFiles(Bundle bundle) {
         List<String> fromPaths = getFrom(bundle);
-        log.debug("copyConfigurationFiles...");
+        log.debug("copyConfigurationFiles, found paths: {}", fromPaths);
         for (String fromPath : fromPaths) {
             log.debug("checking path {}", fromPath);
             Enumeration<String> entryPaths = bundle.getEntryPaths(fromPath);

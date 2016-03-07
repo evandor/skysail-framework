@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder.resources;
 
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
@@ -9,21 +9,22 @@ import io.skysail.api.links.Link;
 import java.util.*;
 
 import io.skysail.server.ResourceContextId;
+import io.skysail.server.designer.demo.folders.*;
 
 /**
  * generated from listResourceWithSelfReference.stg
  */
-public class FoldersResource extends ListServerResource<io.skysail.server.designer.demo.folders.folder.Folder> {
+public class FoldersResourceGen extends ListServerResource<io.skysail.server.designer.demo.folders.folder.Folder> {
 
     private FoldersApplication app;
     private FolderRepository repository;
 
-    public FoldersResource() {
-        super(FolderResource.class, FoldersFolderResource.class);
+    public FoldersResourceGen() {
+        super(FolderResourceGen.class);//, FoldersFolderResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Folders");
     }
 
-    public FoldersResource(Class<? extends FolderResource> cls) {
+    public FoldersResourceGen(Class<? extends FolderResourceGen> cls) {
         super(cls);
     }
 
@@ -35,7 +36,7 @@ public class FoldersResource extends ListServerResource<io.skysail.server.design
 
     @Override
     public List<io.skysail.server.designer.demo.folders.folder.Folder> getEntity() {
-        return (List<Folder>) repository.execute(Folder.class, "select * from " + DbClassName.of(Folder.class) + " where IN(Folders).size() = 0");
+        return (List<io.skysail.server.designer.demo.folders.folder.Folder>) repository.execute(io.skysail.server.designer.demo.folders.folder.Folder.class, "select * from " + DbClassName.of(io.skysail.server.designer.demo.folders.folder.Folder.class) + " where IN(Folders).size() = 0");
     }
 
     public List<Link> getLinks() {

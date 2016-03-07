@@ -11,6 +11,8 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 
+import io.skysail.server.designer.demo.folders.folder.resources.*;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -36,7 +38,7 @@ public class Folder implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = FoldersResource.class)
+    @ListView(link = FoldersResourceGen.class)
     private String name;
 
     public void setName(String value) {

@@ -1,5 +1,5 @@
 targetRelationResource(application, entity, relation) ::= <<
-package $application.packageName$;
+package $entity.packageName$;
 import java.util.List;
 
 import io.skysail.api.links.Link;

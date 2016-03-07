@@ -1,5 +1,5 @@
 relationResource(application, entity, relation) ::= <<
-package $application.packageName$;
+package $entity.packageName$;
 
 import java.util.List;
 
@@ -9,24 +9,27 @@ import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import $application.packageName$.*;
+import $entity.packageName$.*;
+import $entity.packageName$.resources.*;
 
 /**
  * generated from relationResource.stg
  */
 public class $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource extends ListServerResource<$relation.targetEntityModel.simpleName$> {
 
-    private $application.name$Application app;
+    private $application.name$ApplicationGen app;
     private $relation.targetEntityModel.simpleName$Repository oeRepo;
 
     public $entity.simpleName$s$relation.targetEntityModel.simpleName$sResource() {
-        super($entity.simpleName$Resource.class);//, $entity.simpleName$s$entity.simpleName$Resource.class);
+        super($entity.simpleName$ResourceGen.class);//, $entity.simpleName$s$entity.simpleName$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 
     @Override
     protected void doInit() {
         app = ($application.name$Application) getApplication();
-        oeRepo = ($relation.targetEntityModel.className$Repository) app.getRepository($relation.targetEntityModel.simpleName$.class);
+        oeRepo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.simpleName$.class);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder;
 import java.util.List;
 
 import io.skysail.api.links.Link;

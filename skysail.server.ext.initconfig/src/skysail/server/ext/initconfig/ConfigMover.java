@@ -18,6 +18,7 @@ import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.ConfigurationPolicy;
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import io.skysail.server.Constants;
 import io.skysail.server.utils.BundleUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ConfigMover {
 
     /** comma-separated list of subdirectories of config dir to be copied. */
-    private static final String CONFIG_PATH_SOURCES = "default";
+    private static final String CONFIG_PATH_SOURCES = "config/default";
     
     /** set to true, if a logback config file was discovered during copying. */ 
     private boolean logbackConfigurationExists = false;
@@ -49,9 +50,9 @@ public class ConfigMover {
     public void activate(ComponentContext context) {
         copyConfigurationFromProductJar(context);
         if (!logbackConfigurationExists) {
-            log.info("setting logging level to WARN");
-            ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
-            root.setLevel(Level.WARN);
+            log.info("setting logging level to INFO, no initial logback confi file was provided yet.");
+            Logger root = (Logger) org.slf4j.LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+            root.setLevel(Level.INFO);
         }
     }
 

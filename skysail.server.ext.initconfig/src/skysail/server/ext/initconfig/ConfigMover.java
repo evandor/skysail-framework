@@ -5,7 +5,10 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.Bundle;
@@ -14,6 +17,7 @@ import org.osgi.service.component.ComponentContext;
 import aQute.bnd.annotation.component.Activate;
 import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.ConfigurationPolicy;
+import ch.qos.logback.classic.Level;
 import io.skysail.server.Constants;
 import io.skysail.server.utils.BundleUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +27,11 @@ import lombok.extern.slf4j.Slf4j;
  * configuration files from the current product bundle (defined by the system
  * property "product.bundle") into the installations config folder (target
  * folder).
+ * 
+ * The product bundle has to contain a directory ./config/default, which contains 
+ * all the files to be copied.
  *
- * This folder will be created if it doesn't exist. Only files which don't exist
+ * The target folder will be created if it doesn't exist. Only files which don't exist
  * in the target folder will be copied.
  *
  */
@@ -32,11 +39,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConfigMover {
 
-    public static final String CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER = "felix.fileinstall.dir";
+    /** comma-separated list of subdirectories of config dir to be copied. */
+    private static final String CONFIG_PATH_SOURCES = "default";
+    
+    /** set to true, if a logback config file was discovered during copying. */ 
+    private boolean logbackConfigurationExists = false;
 
     @Activate
     public void activate(ComponentContext context) {
         copyConfigurationFromProductJar(context);
+        if (!logbackConfigurationExists) {
+            log.info("setting logging level to WARN");
+            ch.qos.logback.classic.Logger root = (ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory.getLogger(ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME);
+            root.setLevel(Level.WARN);
+        }
     }
 
     private void copyConfigurationFromProductJar(ComponentContext context) {
@@ -72,7 +88,7 @@ public class ConfigMover {
                 log.debug("will try to create directory '{}' if it not exists", copyToPath.toAbsolutePath().toString());
                 Files.createDirectories(copyToPath);
                 handleConfigFiles(bundle, entryPaths);
-            } catch (FileAlreadyExistsException faee) {
+            } catch (FileAlreadyExistsException faee) { // NOSONAR
                 log.debug("file '{}' already exists, no config files will be copied", copyToPath.toAbsolutePath().toString());
             } catch (IOException e1) {
                 log.error(e1.getMessage(), e1);
@@ -82,12 +98,8 @@ public class ConfigMover {
     }
 
     private List<String> getFrom(Bundle bundle) {
-        String configPathSources = System.getProperty(CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER);
-        if (configPathSources == null) {
-            return Collections.emptyList();
-        }
-        log.debug("checking directories '{}' in bundle {} for configurations", configPathSources.toString(), bundle.getSymbolicName());
-        return Arrays.stream(configPathSources.split(",")).map(String::trim).collect(Collectors.toList());
+        log.debug("checking directories '{}' in bundle {} for configurations", CONFIG_PATH_SOURCES, bundle.getSymbolicName());
+        return Arrays.stream(CONFIG_PATH_SOURCES.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
     private void handleConfigFiles(Bundle bundle, Enumeration<String> entryPaths) {
@@ -106,6 +118,9 @@ public class ConfigMover {
         Path targetFilePath = Paths.get("./" + sourceFileName);
         if (Files.exists(targetFilePath)) {
             log.debug("not copying '{}', as it already exists in {}", sourceFileName, targetFilePath.toString());
+            if (targetFilePath.toString().contains("logback.xml")) {
+                logbackConfigurationExists = true;
+            }
         } else {
             log.debug("about to copy configuration from product bundle to '{}'", targetFilePath.toString());
             Files.write(targetFilePath, content.getBytes());

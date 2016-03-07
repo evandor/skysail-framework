@@ -1,32 +1,52 @@
 package skysail.server.ext.initconfig.test;
 
-import java.net.URL;
-import java.util.*;
+import static org.mockito.Mockito.when;
 
-import org.junit.*;
-import org.mockito.Mockito;
-import org.osgi.framework.*;
+import java.io.File;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Vector;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.service.component.ComponentContext;
 
 import skysail.server.ext.initconfig.ConfigMover;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ConfigMoverTest {
 
+    @Spy
     private ConfigMover configMover;
+    
+    @Mock
     private ComponentContext context;
 
+    @Mock
+    private Bundle theBundle;
+    
+    @Mock
+    private BundleContext bundleContext;
+    
     @Before
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public void setUp() throws Exception {
-        configMover = new ConfigMover();
-        context = Mockito.mock(ComponentContext.class);
-        BundleContext bundleContext = Mockito.mock(BundleContext.class);
-        Mockito.when(context.getBundleContext()).thenReturn(bundleContext);
-        Bundle theBundle = Mockito.mock(Bundle.class);
-        Mockito.when(bundleContext.getBundles()).thenReturn(new Bundle[] {theBundle});
-        Mockito.when(theBundle.getSymbolicName()).thenReturn("product.bundle");
-        Mockito.when(theBundle.getResource("thepath")).thenReturn(new URL("file://theResourceUrl"));
-        Enumeration<String> entryPaths = new Vector<String>(Arrays.asList("thepath")).elements();
-        Mockito.when(theBundle.getEntryPaths("configpath")).thenReturn(entryPaths);
+        Set<String> set = new HashSet<>();
+        set.add("config/targetPath");
+        Enumeration<String> entryPaths = new Vector(set).elements();
+
+        when(context.getBundleContext()).thenReturn(bundleContext);
+        when(bundleContext.getBundles()).thenReturn(new Bundle[] { theBundle });
+        when(theBundle.getSymbolicName()).thenReturn("product.bundle");
+        when(theBundle.getResource("config/targetPath")).thenReturn(new File("./config/test.cfg").toURI().toURL());
+        when(theBundle.getEntryPaths("default")).thenReturn(entryPaths);
     }
 
     @Test
@@ -41,10 +61,9 @@ public class ConfigMoverTest {
     }
 
     @Test
-    @Ignore // to be done
     public void testMe() {
         System.setProperty(io.skysail.server.Constants.PRODUCT_BUNDLE_IDENTIFIER, "product.bundle");
-        System.setProperty(ConfigMover.CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER, "configpath");
+        //System.setProperty(ConfigMover.CONFIG_SOURCE_SYSTEM_PROPERTY_IDENTIFIER, "configpath");
         configMover.activate(context);
     }
 }

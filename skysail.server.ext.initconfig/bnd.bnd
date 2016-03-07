@@ -1,11 +1,11 @@
-Bundle-Version: 0.1.4.${tstamp}
+Bundle-Version: 0.1.5.${tstamp}
 
 Private-Package:  \
 	skysail.server.ext.initconfig
 
 Service-Component: *
 
--buildpath:  \
+-buildpath: \
 	biz.aQute.bnd.annotation;version=2.4,\
 	osgi.core;version=${osgi.version},\
 	osgi.cmpn;version=${osgi.version},\
@@ -15,5 +15,7 @@ Service-Component: *
 	junit;version=4.11,\
 	hamcrest-core;version=1.3,\
 	org.mockito.mockito-core;version=1.10,\
-	org.objenesis;version=2.1
+	org.objenesis;version=2.1,\
+	ch.qos.logback.core;version=1.1,\
+	ch.qos.logback.classic;version=1.1
 Bundle-Name: SKYSAIL :: server :: ext :: initconfig

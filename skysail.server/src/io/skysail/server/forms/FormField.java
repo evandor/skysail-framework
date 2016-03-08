@@ -14,10 +14,8 @@ import de.twenty11.skysail.server.core.restlet.MessagesUtils;
 import de.twenty11.skysail.server.um.domain.SkysailUser;
 import io.skysail.api.responses.ConstraintViolationDetails;
 import io.skysail.api.responses.ConstraintViolationsResponse;
-import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.core.FieldModel;
 import io.skysail.domain.html.*;
-import io.skysail.server.forms.helper.CellRendererHelper;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.Getter;
 import lombok.Setter;
@@ -300,9 +298,9 @@ public class FormField extends io.skysail.domain.core.FieldModel {
         return new StringBuilder(resource.getClass().getName()).append(".").append(getId()).append(".desc").toString();
     }
 
-    public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {
+   /* public String process(SkysailResponse<?> response, Map<String, Object> dataRow, String columnName, Object id) {
         return new CellRendererHelper(this, response).render(dataRow.get(columnName), id, null);
-    }
+    }*/
 
     private boolean isOfInputType(InputType inputType) {
         return this.inputType.equals(inputType);

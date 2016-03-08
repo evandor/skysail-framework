@@ -1,15 +1,19 @@
 package io.skysail.server.forms.helper;
 
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import io.skysail.api.links.Link;
-import io.skysail.api.responses.*;
+import io.skysail.api.responses.ListServerResponse;
+import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.core.FieldModel;
 import io.skysail.server.domain.jvm.ClassFieldModel;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.FormField;
+import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,16 +29,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CellRendererHelper {
 
-    @Deprecated
-    private FormField formField;
+//    @Deprecated
+//    private FormField formField;
+    
     private SkysailResponse<?> response;
     private ClassFieldModel field;
 
-    @Deprecated
+   /* @Deprecated
     public CellRendererHelper(FormField formField, SkysailResponse<?> response) {
         this.formField = formField;
         this.response = response;
-    }
+    }*/
 
     public CellRendererHelper(ClassFieldModel field, SkysailResponse<?> response) {
         this.field = field;
@@ -46,9 +51,9 @@ public class CellRendererHelper {
             return "";
         }
         String string = toString(cellData);
-        if (response instanceof ListServerResponse && field == null) {
-            return handleListView(string, formField, identifier);
-        }
+//        if (response instanceof ListServerResponse && field == null) {
+//            return handleListView(string, formField, identifier);
+//        }
         if (response instanceof ListServerResponse) {
             return handleListView(string, field, identifier, r);
         }
@@ -60,38 +65,36 @@ public class CellRendererHelper {
             string = "<a href='" + string + "' target=\"_blank\">" + truncate(f, string, true) + "</a>";
         } else if (hasListViewLink(f)) {
             string = renderListViewLink(string, f, identifier, r);
-//        } else if (hasListViewColorize(f)) {
-//            string = renderListViewColorize(string, f);
         } else {
             return truncate(f, string, false);
         }
         return string;
     }
 
-    @Deprecated
-    private String handleListView(String string, FormField ff, Object identifier) {
-        if (URL.class.equals(ff.getType())) {
-            string = "<a href='" + string + "' target=\"_blank\">" + truncate(ff, string, true) + "</a>";
-        } else if (hasListViewLink(ff)) {
-            string = renderListViewLink(string, ff, identifier);
-        } else if (hasListViewColorize(ff)) {
-            string = renderListViewColorize(string, ff);
-        } else {
-            string = truncate(ff, string, false);
-        }
-        return string;
-    }
+//    @Deprecated
+//    private String handleListView(String string, FormField ff, Object identifier) {
+//        if (URL.class.equals(ff.getType())) {
+//            string = "<a href='" + string + "' target=\"_blank\">" + truncate(ff, string, true) + "</a>";
+//        } else if (hasListViewLink(ff)) {
+//            string = renderListViewLink(string, ff, identifier);
+//        } else if (hasListViewColorize(ff)) {
+//            string = renderListViewColorize(string, ff);
+//        } else {
+//            string = truncate(ff, string, false);
+//        }
+//        return string;
+//    }
 
     private boolean hasListViewColorize(FormField ff) {
         return ff.getListViewAnnotation() != null && !ff.getListViewAnnotation().colorize().equals("");
     }
 
-    @Deprecated
-    private boolean hasListViewLink(FormField ff) {
-        return ff.getListViewAnnotation() != null
-                && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
-    }
-    
+//    @Deprecated
+//    private boolean hasListViewLink(FormField ff) {
+//        return ff.getListViewAnnotation() != null
+//                && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
+//    }
+//    
     private boolean hasListViewLink(ClassFieldModel f) {
         if (f.getListViewLink() == null) {
             return false;
@@ -100,22 +103,22 @@ public class CellRendererHelper {
     }
 
 
-    private String renderListViewColorize(String string, FormField ff) {
-        String colorize = ff.getListViewAnnotation().colorize();
-        if (ff.getType().isEnum()) {
-            @SuppressWarnings("unchecked")
-            Enum valueOf = Enum.valueOf((Class) ff.getType(), string);
-            try {
-                Method getColorMethod = valueOf.getDeclaringClass().getMethod(
-                        "get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
-                String theColor = (String) getColorMethod.invoke(valueOf);
-                string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getId()+": "+ string +"'>&nbsp;&nbsp;</span>";
-            } catch (Exception e) {
-                log.error(e.getMessage(),e);
-            }
-        }
-        return string;
-    }
+//    private String renderListViewColorize(String string, FormField ff) {
+//        String colorize = ff.getListViewAnnotation().colorize();
+//        if (ff.getType().isEnum()) {
+//            @SuppressWarnings("unchecked")
+//            Enum valueOf = Enum.valueOf((Class) ff.getType(), string);
+//            try {
+//                Method getColorMethod = valueOf.getDeclaringClass().getMethod(
+//                        "get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
+//                String theColor = (String) getColorMethod.invoke(valueOf);
+//                string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getId()+": "+ string +"'>&nbsp;&nbsp;</span>";
+//            } catch (Exception e) {
+//                log.error(e.getMessage(),e);
+//            }
+//        }
+//        return string;
+//    }
     
 
     private String renderListViewLink(String string, ClassFieldModel f, Object id, SkysailServerResource<?> r) {

@@ -211,21 +211,22 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         if (field.isPresent()) {
             newRow.put(columnName, calc((ClassFieldModel) field.get(), dataRow, columnName, id, r));
         } else { // deprecated old style
-            FormField formField = fields.get(columnName);
-            newRow.put(columnName, calc(formField, dataRow, columnName, id));
+            //FormField formField = fields.get(columnName);
+            //newRow.put(columnName, calc(formField, dataRow, columnName, id));
+            throw new UnsupportedOperationException();
         }
     }
 
-    @Deprecated
-    private String calc(FormField formField, Map<String, Object> dataRow, String columnName, Object id) {
-        if (formField != null) {
-            String processed = formField.process(response, dataRow, columnName, id);
-            processed = checkPrefix(formField, dataRow, processed, id);
-            processed = checkPostfix(formField, dataRow, processed, id);
-            return processed;
-        }
-        return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
-    }
+//    @Deprecated
+//    private String calc(FormField formField, Map<String, Object> dataRow, String columnName, Object id) {
+//        if (formField != null) {
+//            String processed = formField.process(response, dataRow, columnName, id);
+//            processed = checkPrefix(formField, dataRow, processed, id);
+//            processed = checkPostfix(formField, dataRow, processed, id);
+//            return processed;
+//        }
+//        return dataRow.get(columnName) != null ? dataRow.get(columnName).toString() : "";
+//    }
 
     private String calc(@NonNull ClassFieldModel field, Map<String, Object> dataRow, String columnName, Object id,
             R r) {
@@ -611,11 +612,13 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
 
         if (this.resource instanceof ListServerResource) {
             if (formField.getListViewAnnotation() != null && !formField.getListViewAnnotation().prefix().equals("")) {
-                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow,
-                        formField.getListViewAnnotation().prefix(), id);
-                if (prefix != null) {
-                    return prefix + "&nbsp;" + processed;
-                }
+                throw new UnsupportedOperationException();
+
+//                Object prefix = calc(fields.get(formField.getListViewAnnotation().prefix()), dataRow,
+//                        formField.getListViewAnnotation().prefix(), id);
+//                if (prefix != null) {
+//                    return prefix + "&nbsp;" + processed;
+//                }
             }
         }
         return processed;

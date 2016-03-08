@@ -2,10 +2,12 @@ package io.skysail.server.designer.demo.folders.folder;
 
 import java.util.List;
 
-import io.skysail.server.designer.demo.folders.*;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
+
+import io.skysail.server.designer.demo.folders.*;
+import io.skysail.server.designer.demo.folders.folder.*;
 
 /**
  * generated from postRelationResource.stg
@@ -13,6 +15,7 @@ import io.skysail.server.restlet.resources.PostRelationResource;
 public class PostFoldersFolderRelationResource extends PostRelationResource<io.skysail.server.designer.demo.folders.folder.Folder, io.skysail.server.designer.demo.folders.folder.Folder> {
 
     private FoldersApplicationGen app;
+    private FolderRepository FolderRepo;
     private FolderRepository FolderRepo;
 
     public PostFoldersFolderRelationResource() {

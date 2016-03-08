@@ -48,7 +48,7 @@ public class DesignerFieldModel extends FieldModel {
     public String getListViewAnnotation() {
         if (!entityModel.getRelations().isEmpty()) {
             EntityModel targetEntityModel = entityModel.getRelations().get(0).getTargetEntityModel();
-            String target = targetEntityModel.getSimpleName() +"sResource.class";
+            String target = targetEntityModel.getSimpleName() +"sResourceGen.class";
             return new StringBuilder("@ListView(link = ").append(target).append(")").toString();
         }
         if (listViewVisibility.equals(Visibility.SHOW)) {

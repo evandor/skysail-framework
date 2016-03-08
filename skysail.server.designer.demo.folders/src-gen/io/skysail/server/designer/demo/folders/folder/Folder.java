@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder;
 
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -10,6 +10,8 @@ import io.skysail.server.db.DbClassName;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
+
+import io.skysail.server.designer.demo.folders.folder.resources.*;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -36,7 +38,7 @@ public class Folder implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = FoldersResource.class)
+    @ListView(link = FoldersResourceGen.class)
     private String name;
 
     public void setName(String value) {
@@ -52,13 +54,13 @@ public class Folder implements Identifiable, Serializable {
 
     @Relation
     @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-    private List<io.skysail.server.designer.demo.folders.Folder> folders = new ArrayList<>();
+    private List<io.skysail.server.designer.demo.folders.folder.Folder> folders = new ArrayList<>();
 
-    public void setFolders(List<io.skysail.server.designer.demo.folders.Folder> value) {
+    public void setFolders(List<io.skysail.server.designer.demo.folders.folder.Folder> value) {
         this.folders = value;
     }
 
-    public List<io.skysail.server.designer.demo.folders.Folder> getFolders() {
+    public List<io.skysail.server.designer.demo.folders.folder.Folder> getFolders() {
         return folders;
     }
 

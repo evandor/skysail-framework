@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder.resources;
 
 import java.util.List;
 
@@ -6,17 +6,18 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.designer.demo.folders.*;
 
 /**
  * generated from entityResource.stg
  */
-public class FolderResource extends EntityServerResource<io.skysail.server.designer.demo.folders.Folder> {
+public class FolderResourceGen extends EntityServerResource<io.skysail.server.designer.demo.folders.folder.Folder> {
 
     private String id;
     private FoldersApplication app;
     private FolderRepository repository;
 
-    public FolderResource() {
+    public FolderResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
         addToContext(ResourceContextId.LINK_GLYPH, "search");
     }
@@ -25,7 +26,7 @@ public class FolderResource extends EntityServerResource<io.skysail.server.desig
     protected void doInit() {
         id = getAttribute("id");
         app = (FoldersApplication) getApplication();
-        repository = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
+        repository = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.folder.Folder.class);
     }
 
 
@@ -36,13 +37,13 @@ public class FolderResource extends EntityServerResource<io.skysail.server.desig
     }
 
     @Override
-    public io.skysail.server.designer.demo.folders.Folder getEntity() {
-        return (io.skysail.server.designer.demo.folders.Folder)app.getRepository().findOne(id);
+    public io.skysail.server.designer.demo.folders.folder.Folder getEntity() {
+        return (io.skysail.server.designer.demo.folders.folder.Folder)app.getRepository().findOne(id);
     }
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutFolderResource.class,PostFolderResource.class,FoldersResource.class);
+        return super.getLinks(PutFolderResourceGen.class,PostFolderResourceGen.class,FoldersResourceGen.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder.resources;
 
 import java.util.Date;
 
@@ -9,15 +9,17 @@ import io.skysail.server.restlet.resources.PostEntityServerResource;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
+import io.skysail.server.designer.demo.folders.*;
+import io.skysail.server.designer.demo.folders.folder.*;
 
 /**
  * generated from postResource.stg
  */
-public class PostFolderResource extends PostEntityServerResource<io.skysail.server.designer.demo.folders.Folder> {
+public class PostFolderResourceGen extends PostEntityServerResource<io.skysail.server.designer.demo.folders.folder.Folder> {
 
 	protected FoldersApplication app;
 
-    public PostFolderResource() {
+    public PostFolderResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new ");
     }
 
@@ -27,20 +29,20 @@ public class PostFolderResource extends PostEntityServerResource<io.skysail.serv
     }
 
     @Override
-    public io.skysail.server.designer.demo.folders.Folder createEntityTemplate() {
+    public io.skysail.server.designer.demo.folders.folder.Folder createEntityTemplate() {
         return new Folder();
     }
 
     @Override
-    public void addEntity(io.skysail.server.designer.demo.folders.Folder entity) {
+    public void addEntity(io.skysail.server.designer.demo.folders.folder.Folder entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository(io.skysail.server.designer.demo.folders.Folder.class).save(entity, app.getApplicationModel()).toString();
+        String id = app.getRepository(io.skysail.server.designer.demo.folders.folder.Folder.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
 
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(FoldersResource.class);
+        return super.redirectTo(FoldersResourceGen.class);
     }
 }

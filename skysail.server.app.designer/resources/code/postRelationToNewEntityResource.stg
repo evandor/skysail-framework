@@ -1,18 +1,20 @@
 postRelationToNewEntityResource(application, entity, relation) ::= <<
-package $application.packageName$;
+package $entity.packageName$;
 
 import java.util.List;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
+import $application.packageName$.*;
+import $entity.packageName$.*;
 
 /**
  * generated from postRelationToNewEntityResource.stg
  */
 public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource2<$relation.targetEntityModel.simpleName$> {
 
-    private $application.name$Application app;
+    private $application.name$ApplicationGen app;
     private $relation.targetEntityModel.simpleName$Repository repo;
     private String parentId;
 

@@ -1,5 +1,5 @@
 listResourceNonAggregate(application, entity) ::= <<
-package $application.packageName$;
+package $entity.packageName$.resources;
 
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
@@ -10,15 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 import io.skysail.server.ResourceContextId;
+import $application.packageName$.*;
 
 /**
  * generated from listResourceNonAggregate.stg
  */
-public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
+public class $entity.simpleName$sResourceGen extends ListServerResource<$entity.id$> {
 
     private $application.name$Application app;
 
-    public $entity.simpleName$sResource() {
+    public $entity.simpleName$sResourceGen() {
         super($entity.simpleName$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }

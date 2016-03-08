@@ -1,17 +1,19 @@
-package io.skysail.server.designer.demo.folders;
+package io.skysail.server.designer.demo.folders.folder;
 
 import java.util.List;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource2;
+import io.skysail.server.designer.demo.folders.*;
+import io.skysail.server.designer.demo.folders.folder.*;
 
 /**
  * generated from postRelationToNewEntityResource.stg
  */
 public class PostFolderToNewFolderRelationResource extends PostRelationResource2<Folder> {
 
-    private FoldersApplication app;
+    private FoldersApplicationGen app;
     private FolderRepository repo;
     private String parentId;
 
@@ -22,7 +24,7 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
     @Override
     protected void doInit() {
         app = (FoldersApplication) getApplication();
-        repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.Folder.class);
+        repo = (FolderRepository) app.getRepository(io.skysail.server.designer.demo.folders.folder.Folder.class);
         parentId = getAttribute("id");
     }
 

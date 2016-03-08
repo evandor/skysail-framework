@@ -1,5 +1,5 @@
 listResourceWithSelfReference(application, entity, listLinks) ::= <<
-package $application.packageName$;
+package $entity.packageName$.resources;
 
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
@@ -10,21 +10,22 @@ import io.skysail.api.links.Link;
 import java.util.*;
 
 import io.skysail.server.ResourceContextId;
+import $application.packageName$.*;
 
 /**
  * generated from listResourceWithSelfReference.stg
  */
-public class $entity.simpleName$sResource extends ListServerResource<$entity.id$> {
+public class $entity.simpleName$sResourceGen extends ListServerResource<$entity.id$> {
 
     private $application.name$Application app;
     private $entity.simpleName$Repository repository;
 
-    public $entity.simpleName$sResource() {
-        super($entity.simpleName$Resource.class, $entity.simpleName$s$entity.simpleName$Resource.class);
+    public $entity.simpleName$sResourceGen() {
+        super($entity.simpleName$ResourceGen.class);//, $entity.simpleName$s$entity.simpleName$Resource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }
     
-    public $entity.simpleName$sResource(Class<? extends $entity.simpleName$Resource> cls) {
+    public $entity.simpleName$sResourceGen(Class<? extends $entity.simpleName$ResourceGen> cls) {
         super(cls);
     }
 
@@ -36,7 +37,7 @@ public class $entity.simpleName$sResource extends ListServerResource<$entity.id$
     
     @Override
     public List<$entity.id$> getEntity() {
-        return (List<$entity.simpleName$>) repository.execute($entity.simpleName$.class, "select * from " + DbClassName.of($entity.simpleName$.class) + " where IN($entity.simpleName$s).size() = 0");
+        return (List<$entity.className$>) repository.execute($entity.className$.class, "select * from " + DbClassName.of($entity.className$.class) + " where IN($entity.simpleName$s).size() = 0");
     \}
 
     public List<Link> getLinks() {

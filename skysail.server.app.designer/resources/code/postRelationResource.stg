@@ -1,5 +1,5 @@
 postRelationResource(application, entity, relation) ::= <<
-package $application.packageName$;
+package $entity.packageName$;
 
 import java.util.List;
 
@@ -7,12 +7,15 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
+import $application.packageName$.*;
+import $entity.packageName$.*;
+
 /**
  * generated from postRelationResource.stg
  */
 public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.className$, $relation.targetEntityModel.className$> {
 
-    private $application.name$Application app;
+    private $application.name$ApplicationGen app;
     private $relation.targetEntityModel.simpleName$Repository $relation.targetEntityModel.simpleName$Repo;
     private $entity.simpleName$Repository $entity.simpleName$Repo;
 
@@ -22,7 +25,7 @@ public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$Rela
 
     @Override
     protected void doInit() {
-        app = ($application.name$Application) getApplication();
+        app = ($application.name$ApplicationGen) getApplication();
         $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }

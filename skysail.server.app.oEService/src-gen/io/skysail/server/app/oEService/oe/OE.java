@@ -1,4 +1,4 @@
-package io.skysail.server.app.oEService;
+package io.skysail.server.app.oEService.oe;
 
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -11,6 +11,8 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 
+import io.skysail.server.app.oEService.oe.resources.*;
+
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -18,7 +20,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings("serial")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-public class User implements Identifiable, Serializable {
+public class OE implements Identifiable, Serializable {
 
     @Id
     private String id;
@@ -36,7 +38,7 @@ public class User implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = OEsResource.class)
+    @ListView(link = OEsResourceGen.class)
     private String name;
 
     public void setName(String value) {
@@ -47,18 +49,30 @@ public class User implements Identifiable, Serializable {
         return this.name;
     }
 
+    @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = OEsResourceGen.class)
+    private Date expires;
+
+    public void setExpires(Date value) {
+        this.expires = value;
+    }
+
+    public Date getExpires() {
+        return this.expires;
+    }
+
 
     // --- relations ---
 
     @Relation
     @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-    private List<io.skysail.server.app.oEService.OE> oEs = new ArrayList<>();
+    private List<io.skysail.server.app.oEService.oe.OE> oEs = new ArrayList<>();
 
-    public void setOEs(List<io.skysail.server.app.oEService.OE> value) {
+    public void setOEs(List<io.skysail.server.app.oEService.oe.OE> value) {
         this.oEs = value;
     }
 
-    public List<io.skysail.server.app.oEService.OE> getOEs() {
+    public List<io.skysail.server.app.oEService.oe.OE> getOEs() {
         return oEs;
     }
 

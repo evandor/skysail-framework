@@ -1,4 +1,4 @@
-package io.skysail.server.app.oEService;
+package io.skysail.server.app.oEService.oe.resources;
 
 import java.util.List;
 
@@ -6,17 +6,18 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.app.oEService.*;
 
 /**
  * generated from entityResource.stg
  */
-public class OEResource extends EntityServerResource<io.skysail.server.app.oEService.OE> {
+public class OEResourceGen extends EntityServerResource<io.skysail.server.app.oEService.oe.OE> {
 
     private String id;
     private OEServiceApplication app;
     private OERepository repository;
 
-    public OEResource() {
+    public OEResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
         addToContext(ResourceContextId.LINK_GLYPH, "search");
     }
@@ -25,7 +26,7 @@ public class OEResource extends EntityServerResource<io.skysail.server.app.oESer
     protected void doInit() {
         id = getAttribute("id");
         app = (OEServiceApplication) getApplication();
-        repository = (OERepository) app.getRepository(io.skysail.server.app.oEService.OE.class);
+        repository = (OERepository) app.getRepository(io.skysail.server.app.oEService.oe.OE.class);
     }
 
 
@@ -36,13 +37,13 @@ public class OEResource extends EntityServerResource<io.skysail.server.app.oESer
     }
 
     @Override
-    public io.skysail.server.app.oEService.OE getEntity() {
-        return (io.skysail.server.app.oEService.OE)app.getRepository().findOne(id);
+    public io.skysail.server.app.oEService.oe.OE getEntity() {
+        return (io.skysail.server.app.oEService.oe.OE)app.getRepository().findOne(id);
     }
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutOEResource.class,PostOEResource.class,OEsResource.class);
+        return super.getLinks(PutOEResourceGen.class,PostOEResourceGen.class,OEsResourceGen.class);
     }
 
 }

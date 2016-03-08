@@ -6,8 +6,11 @@ import org.osgi.service.component.annotations.*;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
+/**
+ * generated from repository.stg
+ */
 @Component(immediate = true, property = "name=OEsRepository")
-public class OERepository extends GraphDbRepository<io.skysail.server.app.oEService.OE> implements DbRepository {
+public class OERepository extends GraphDbRepository<io.skysail.server.app.oEService.oe.OE> implements DbRepository {
 
     @Reference
     public void setDbService(DbService dbService) {
@@ -20,9 +23,9 @@ public class OERepository extends GraphDbRepository<io.skysail.server.app.oEServ
 
     @Activate
     public void activate() {
-        //log.debug("activating io.skysail.server.app.oEService.OE" Repository);
-        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.app.oEService.OE.class));
-        dbService.register(OE.class);
+        //log.debug("activating io.skysail.server.app.oEService.oe.OE" Repository);
+        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.app.oEService.oe.OE.class));
+        dbService.register(io.skysail.server.app.oEService.oe.OE.class);
     }
 
 }

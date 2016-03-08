@@ -1,4 +1,4 @@
-package io.skysail.server.app.oEService;
+package io.skysail.server.app.oEService.oe.resources;
 
 import java.util.Date;
 
@@ -9,15 +9,17 @@ import io.skysail.server.restlet.resources.PostEntityServerResource;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
+import io.skysail.server.app.oEService.*;
+import io.skysail.server.app.oEService.oe.*;
 
 /**
  * generated from postResource.stg
  */
-public class PostUserResource extends PostEntityServerResource<io.skysail.server.app.oEService.User> {
+public class PostOEResourceGen extends PostEntityServerResource<io.skysail.server.app.oEService.oe.OE> {
 
 	protected OEServiceApplication app;
 
-    public PostUserResource() {
+    public PostOEResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new ");
     }
 
@@ -27,20 +29,20 @@ public class PostUserResource extends PostEntityServerResource<io.skysail.server
     }
 
     @Override
-    public io.skysail.server.app.oEService.User createEntityTemplate() {
-        return new User();
+    public io.skysail.server.app.oEService.oe.OE createEntityTemplate() {
+        return new OE();
     }
 
     @Override
-    public void addEntity(io.skysail.server.app.oEService.User entity) {
+    public void addEntity(io.skysail.server.app.oEService.oe.OE entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository(io.skysail.server.app.oEService.User.class).save(entity, app.getApplicationModel()).toString();
+        String id = app.getRepository(io.skysail.server.app.oEService.oe.OE.class).save(entity, app.getApplicationModel()).toString();
         entity.setId(id);
 
     }
 
     @Override
     public String redirectTo() {
-        return super.redirectTo(UsersResource.class);
+        return super.redirectTo(OEsResourceGen.class);
     }
 }

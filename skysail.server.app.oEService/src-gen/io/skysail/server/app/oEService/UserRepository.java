@@ -6,8 +6,11 @@ import org.osgi.service.component.annotations.*;
 import io.skysail.domain.core.repos.DbRepository;
 import io.skysail.server.db.*;
 
+/**
+ * generated from repository.stg
+ */
 @Component(immediate = true, property = "name=UsersRepository")
-public class UserRepository extends GraphDbRepository<io.skysail.server.app.oEService.User> implements DbRepository {
+public class UserRepository extends GraphDbRepository<io.skysail.server.app.oEService.user.User> implements DbRepository {
 
     @Reference
     public void setDbService(DbService dbService) {
@@ -20,9 +23,9 @@ public class UserRepository extends GraphDbRepository<io.skysail.server.app.oESe
 
     @Activate
     public void activate() {
-        //log.debug("activating io.skysail.server.app.oEService.User" Repository);
-        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.app.oEService.User.class));
-        dbService.register(User.class);
+        //log.debug("activating io.skysail.server.app.oEService.user.User" Repository);
+        dbService.createWithSuperClass("V", DbClassName.of(io.skysail.server.app.oEService.user.User.class));
+        dbService.register(io.skysail.server.app.oEService.user.User.class);
     }
 
 }

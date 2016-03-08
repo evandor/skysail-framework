@@ -1,4 +1,4 @@
-package io.skysail.server.app.oEService;
+package io.skysail.server.app.oEService.oe;
 
 import java.util.List;
 
@@ -8,24 +8,27 @@ import io.skysail.server.db.DbClassName;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.app.oEService.*;
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
 
 /**
  * generated from relationResource.stg
  */
 public class OEsOEsResource extends ListServerResource<OE> {
 
-    private OEServiceApplication app;
+    private OEServiceApplicationGen app;
     private OERepository oeRepo;
 
     public OEsOEsResource() {
-        super(OEResource.class);//, OEsOEResource.class);
+        super(OEResourceGen.class);//, OEsOEResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 
     @Override
     protected void doInit() {
         app = (OEServiceApplication) getApplication();
-        oeRepo = (io.skysail.server.app.oEService.OERepository) app.getRepository(OE.class);
+        oeRepo = (OERepository) app.getRepository(OE.class);
     }
 
     @Override

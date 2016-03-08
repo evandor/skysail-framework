@@ -5,6 +5,12 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
+
 /**
  * generated from targetRelationResource.stg
  */

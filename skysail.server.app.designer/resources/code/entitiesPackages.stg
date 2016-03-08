@@ -1,0 +1,6 @@
+entitiesPackages(application) ::= <<
+$application.entityValues: { entity | 
+import $entity.packageName$.*;
+import $entity.packageName$.resources.*;
+}$
+>>

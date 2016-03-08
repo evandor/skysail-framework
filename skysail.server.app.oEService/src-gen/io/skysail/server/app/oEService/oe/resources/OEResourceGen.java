@@ -8,6 +8,12 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.app.oEService.*;
 
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
+
 /**
  * generated from entityResource.stg
  */
@@ -45,5 +51,11 @@ public class OEResourceGen extends EntityServerResource<io.skysail.server.app.oE
     public List<Link> getLinks() {
         return super.getLinks(PutOEResourceGen.class,PostOEResourceGen.class,OEsResourceGen.class);
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(OEsResourceGen.class);
+    }
+
 
 }

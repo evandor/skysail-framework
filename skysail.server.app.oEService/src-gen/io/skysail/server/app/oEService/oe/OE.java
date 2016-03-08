@@ -11,7 +11,11 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 
+import io.skysail.server.app.oEService.oe.*;
 import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 import org.apache.commons.lang3.StringUtils;
 

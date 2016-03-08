@@ -1,13 +1,21 @@
 package io.skysail.server.app.oEService.oe.resources;
 
-import java.util.List;
-
+import io.skysail.server.db.DbClassName;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.restlet.resources.ListServerResource;
 import io.skysail.api.links.Link;
+
+import java.util.*;
+
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.oEService.*;
-import io.skysail.server.app.oEService.user.resources.UsersResourceGen;
-import io.skysail.server.db.DbClassName;
-import io.skysail.server.restlet.resources.ListServerResource;
+
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 /**
  * generated from listResourceWithSelfReference.stg
@@ -18,7 +26,7 @@ public class OEsResourceGen extends ListServerResource<io.skysail.server.app.oES
     private OERepository repository;
 
     public OEsResourceGen() {
-        super(OEResourceGen.class);//, OEsOEResource.class);
+        super(OEResourceGen.class, PostOEToNewOERelationResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list OEs");
     }
 

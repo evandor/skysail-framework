@@ -11,6 +11,10 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 
+import io.skysail.server.designer.demo.transactions.transaction.*;
+import io.skysail.server.designer.demo.transactions.transaction.resources.*;
+
+
 import org.apache.commons.lang3.StringUtils;
 
 /**

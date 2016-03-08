@@ -11,6 +11,8 @@ import java.util.*;
 import io.skysail.server.ResourceContextId;
 import $application.packageName$.*;
 
+$entitiesPackages(application)$
+
 /**
  * generated from listResource.stg
  */

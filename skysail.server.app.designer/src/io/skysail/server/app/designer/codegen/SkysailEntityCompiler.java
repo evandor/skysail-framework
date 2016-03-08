@@ -124,8 +124,12 @@ public class SkysailEntityCompiler extends SkysailCompiler {
         routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s", name));
         codes.put(name, compiledCode);
         
+        if (!entityModel.hasSelfReference()) {
+            template = templateProvider.templateFor("postRelationResource");
+        } else {
+            template = templateProvider.templateFor("postSelfRelationResource");
+        }
         
-        template = templateProvider.templateFor("postRelationResource");
         compiledCode = setupPostRelationResourceForCompilation(template, entityModel, relation);
         name = compiledCode.getClassName();
         //routes.add(new RouteModel("/" + entityModel.getSimpleName() + "s/{id}/"+relation.getTargetEntityModel().getSimpleName()+"s/", name));

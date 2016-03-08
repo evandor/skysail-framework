@@ -12,6 +12,8 @@ import java.util.*;
 import io.skysail.server.ResourceContextId;
 import $application.packageName$.*;
 
+$entitiesPackages(application)$
+
 /**
  * generated from listResourceWithSelfReference.stg
  */
@@ -21,7 +23,7 @@ public class $entity.simpleName$sResourceGen extends ListServerResource<$entity.
     private $entity.simpleName$Repository repository;
 
     public $entity.simpleName$sResourceGen() {
-        super($entity.simpleName$ResourceGen.class);//, $entity.simpleName$s$entity.simpleName$Resource.class);
+        super($entity.simpleName$ResourceGen.class, Post$entity.simpleName$ToNew$entity.simpleName$RelationResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list $entity.simpleName$s");
     }
     

@@ -24,7 +24,7 @@ public class FoldersResourceGen extends ListServerResource<io.skysail.server.des
     private FolderRepository repository;
 
     public FoldersResourceGen() {
-        super(FolderResourceGen.class);//, FoldersFolderResource.class);
+        super(FolderResourceGen.class, PostFolderToNewFolderRelationResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list Folders");
     }
 

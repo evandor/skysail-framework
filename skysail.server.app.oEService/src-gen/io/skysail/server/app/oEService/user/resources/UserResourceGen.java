@@ -5,9 +5,14 @@ import java.util.List;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
-import io.skysail.server.app.oEService.*;
-import io.skysail.server.app.oEService.oe.resources.*;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.app.oEService.*;
+
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 /**
  * generated from entityResource.stg
@@ -46,5 +51,11 @@ public class UserResourceGen extends EntityServerResource<io.skysail.server.app.
     public List<Link> getLinks() {
         return super.getLinks(PutUserResourceGen.class,PostOEResourceGen.class,OEsResourceGen.class);
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(UsersResourceGen.class);
+    }
+
 
 }

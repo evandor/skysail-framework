@@ -1,8 +1,18 @@
 package io.skysail.server.app.oEService.user;
 
-import io.skysail.server.app.oEService.*;
-import io.skysail.server.app.oEService.oe.OE;
+import java.util.List;
+
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.PostRelationResource2;
+import io.skysail.server.app.oEService.*;
+
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 /**
  * generated from postRelationToNewEntityResource.stg
@@ -33,5 +43,10 @@ public class PostUserToNewOERelationResource extends PostRelationResource2<OE> {
         OE parent = repo.findOne(parentId);
         parent.getOEs().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(UsersOEsResource.class);
     }
 }

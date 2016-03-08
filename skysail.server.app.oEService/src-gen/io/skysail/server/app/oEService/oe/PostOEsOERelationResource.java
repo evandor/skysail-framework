@@ -7,16 +7,20 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
 import io.skysail.server.app.oEService.*;
+
 import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 /**
- * generated from postRelationResource.stg
+ * generated from postSelfRelationResource.stg
  */
 public class PostOEsOERelationResource extends PostRelationResource<io.skysail.server.app.oEService.oe.OE, io.skysail.server.app.oEService.oe.OE> {
 
     private OEServiceApplicationGen app;
     private OERepository OERepo;
-   // private OERepository OERepo;
 
     public PostOEsOERelationResource() {
         // addToContext(ResourceContextId.LINK_TITLE, "add");

@@ -10,8 +10,8 @@ import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
 import $application.packageName$.*;
-import $entity.packageName$.*;
-import $entity.packageName$.resources.*;
+
+$entitiesPackages(application)$
 
 /**
  * generated from relationResource.stg

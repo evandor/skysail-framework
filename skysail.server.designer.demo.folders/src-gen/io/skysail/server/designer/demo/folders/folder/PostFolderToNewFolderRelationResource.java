@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 import io.skysail.server.designer.demo.folders.*;
 
@@ -40,5 +41,10 @@ public class PostFolderToNewFolderRelationResource extends PostRelationResource2
         Folder parent = repo.findOne(parentId);
         parent.getFolders().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
+    }
+
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks(FoldersFoldersResource.class, PostFolderToNewFolderRelationResource.class);
     }
 }

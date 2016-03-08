@@ -1,14 +1,23 @@
 package io.skysail.server.app.oEService.user;
 
 import java.io.Serializable;
-import java.util.*;
-
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.*;
 
+import java.util.*;
+import io.skysail.server.db.DbClassName;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
+import io.skysail.server.forms.*;
+
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * generated from javafile.stg
@@ -33,7 +42,7 @@ public class User implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    //@ListView(link = OEsResourceGen.class)
+    @ListView(link = OEsResourceGen.class)
     private String name;
 
     public void setName(String value) {

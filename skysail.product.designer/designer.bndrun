@@ -30,6 +30,7 @@ logback.configurationFile.path = ${basedir}/config/local
 	skysail.server.app.todos;version=latest,\
 	skysail.server.app.notes;version=latest,\
     skysail.server.app.oEService;version=latest,\
+    skysail.server.designer.demo.transactions;version=latest,\
     skysail.server.app.bpmnmodeler;version=latest,\
     skysail.server.app.statusMessages;version=latest,\
     skysail.server.app.grapesjs;version=latest,\

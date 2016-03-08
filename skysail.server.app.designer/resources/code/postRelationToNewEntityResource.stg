@@ -5,9 +5,11 @@ import java.util.List;
 
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.api.links.Link;
 import io.skysail.server.restlet.resources.PostRelationResource2;
 import $application.packageName$.*;
-import $entity.packageName$.*;
+
+$entitiesPackages(application)$
 
 /**
  * generated from postRelationToNewEntityResource.stg
@@ -38,6 +40,11 @@ public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$
         $relation.targetEntityModel.simpleName$ parent = repo.findOne(parentId);
         parent.get$relation.targetEntityModel.simpleName$s().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
+    }
+    
+    @Override
+    public List<Link> getLinks() {
+        return super.getLinks($entity.simpleName$s$relation.targetEntityModel.simpleName$sResource.class, Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource.class);
     }
 }
 >>

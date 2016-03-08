@@ -9,6 +9,8 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import $application.packageName$.*;
 
+$entitiesPackages(application)$
+
 /**
  * generated from entityResource.stg
  */
@@ -46,6 +48,12 @@ public class $entity.simpleName$ResourceGen extends EntityServerResource<$entity
     public List<Link> getLinks() {
         $links$
     \}
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo($entity.simpleName$sResourceGen.class);
+    \}
+
     
 }
 >>

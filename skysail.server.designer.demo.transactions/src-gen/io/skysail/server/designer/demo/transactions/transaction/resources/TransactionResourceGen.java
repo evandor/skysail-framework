@@ -8,6 +8,10 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.designer.demo.transactions.*;
 
+import io.skysail.server.designer.demo.transactions.transaction.*;
+import io.skysail.server.designer.demo.transactions.transaction.resources.*;
+
+
 /**
  * generated from entityResource.stg
  */
@@ -45,5 +49,11 @@ public class TransactionResourceGen extends EntityServerResource<io.skysail.serv
     public List<Link> getLinks() {
         return super.getLinks(PutTransactionResourceGen.class);
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(TransactionsResourceGen.class);
+    }
+
 
 }

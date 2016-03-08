@@ -10,6 +10,10 @@ import java.util.*;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.designer.demo.transactions.*;
 
+import io.skysail.server.designer.demo.transactions.transaction.*;
+import io.skysail.server.designer.demo.transactions.transaction.resources.*;
+
+
 /**
  * generated from listResource.stg
  */

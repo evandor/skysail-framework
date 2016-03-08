@@ -2,11 +2,17 @@ package io.skysail.server.app.oEService.user;
 
 import java.util.List;
 
-import io.skysail.server.app.oEService.*;
-import io.skysail.server.app.oEService.oe.OE;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
+
+import io.skysail.server.app.oEService.*;
+
+import io.skysail.server.app.oEService.oe.*;
+import io.skysail.server.app.oEService.oe.resources.*;
+import io.skysail.server.app.oEService.user.*;
+import io.skysail.server.app.oEService.user.resources.*;
+
 
 /**
  * generated from postRelationResource.stg

@@ -7,15 +7,17 @@ import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
 
 import io.skysail.server.designer.demo.folders.*;
+
 import io.skysail.server.designer.demo.folders.folder.*;
+import io.skysail.server.designer.demo.folders.folder.resources.*;
+
 
 /**
- * generated from postRelationResource.stg
+ * generated from postSelfRelationResource.stg
  */
 public class PostFoldersFolderRelationResource extends PostRelationResource<io.skysail.server.designer.demo.folders.folder.Folder, io.skysail.server.designer.demo.folders.folder.Folder> {
 
     private FoldersApplicationGen app;
-    private FolderRepository FolderRepo;
     private FolderRepository FolderRepo;
 
     public PostFoldersFolderRelationResource() {

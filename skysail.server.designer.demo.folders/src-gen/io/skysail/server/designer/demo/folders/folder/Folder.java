@@ -11,7 +11,9 @@ import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.*;
 import io.skysail.server.forms.*;
 
+import io.skysail.server.designer.demo.folders.folder.*;
 import io.skysail.server.designer.demo.folders.folder.resources.*;
+
 
 import org.apache.commons.lang3.StringUtils;
 

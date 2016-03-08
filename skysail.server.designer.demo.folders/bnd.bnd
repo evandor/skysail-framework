@@ -43,4 +43,4 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 
 Private-Package: \
-    io.skysail.server.designer.demo.folders
+    io.skysail.server.designer.demo.folders.*

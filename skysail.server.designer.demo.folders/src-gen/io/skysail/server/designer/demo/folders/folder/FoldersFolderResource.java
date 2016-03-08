@@ -5,6 +5,10 @@ import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
+import io.skysail.server.designer.demo.folders.folder.*;
+import io.skysail.server.designer.demo.folders.folder.resources.*;
+
+
 /**
  * generated from targetRelationResource.stg
  */

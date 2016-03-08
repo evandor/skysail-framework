@@ -11,6 +11,10 @@ import java.util.*;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.designer.demo.folders.*;
 
+import io.skysail.server.designer.demo.folders.folder.*;
+import io.skysail.server.designer.demo.folders.folder.resources.*;
+
+
 /**
  * generated from listResourceWithSelfReference.stg
  */

@@ -8,6 +8,10 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
 import io.skysail.server.designer.demo.folders.*;
 
+import io.skysail.server.designer.demo.folders.folder.*;
+import io.skysail.server.designer.demo.folders.folder.resources.*;
+
+
 /**
  * generated from entityResource.stg
  */
@@ -45,5 +49,11 @@ public class FolderResourceGen extends EntityServerResource<io.skysail.server.de
     public List<Link> getLinks() {
         return super.getLinks(PutFolderResourceGen.class,PostFolderResourceGen.class,FoldersResourceGen.class);
     }
+
+    @Override
+    public String redirectTo() {
+        return super.redirectTo(FoldersResourceGen.class);
+    }
+
 
 }

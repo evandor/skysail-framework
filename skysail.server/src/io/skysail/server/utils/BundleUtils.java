@@ -1,6 +1,8 @@
 package io.skysail.server.utils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Enumeration;
 
@@ -10,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BundleUtils {
+    
+    private BundleUtils() {}
 
     public static String readResource(Bundle bundle, String path) {
         URL url = bundle.getResource(path);

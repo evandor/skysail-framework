@@ -12,10 +12,8 @@ import io.skysail.api.responses.ListServerResponse;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.domain.core.FieldModel;
 import io.skysail.server.domain.jvm.ClassFieldModel;
-import io.skysail.server.forms.FormField;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.restlet.resources.SkysailServerResource;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * For the given field definition (formField) and (skysail) response, the provided cellData object is being rendered as
@@ -26,20 +24,10 @@ import lombok.extern.slf4j.Slf4j;
  *
  *
  */
-@Slf4j
 public class CellRendererHelper {
 
-//    @Deprecated
-//    private FormField formField;
-    
     private SkysailResponse<?> response;
     private ClassFieldModel field;
-
-   /* @Deprecated
-    public CellRendererHelper(FormField formField, SkysailResponse<?> response) {
-        this.formField = formField;
-        this.response = response;
-    }*/
 
     public CellRendererHelper(ClassFieldModel field, SkysailResponse<?> response) {
         this.field = field;
@@ -51,9 +39,6 @@ public class CellRendererHelper {
             return "";
         }
         String string = toString(cellData);
-//        if (response instanceof ListServerResponse && field == null) {
-//            return handleListView(string, formField, identifier);
-//        }
         if (response instanceof ListServerResponse) {
             return handleListView(string, field, identifier, r);
         }
@@ -71,55 +56,12 @@ public class CellRendererHelper {
         return string;
     }
 
-//    @Deprecated
-//    private String handleListView(String string, FormField ff, Object identifier) {
-//        if (URL.class.equals(ff.getType())) {
-//            string = "<a href='" + string + "' target=\"_blank\">" + truncate(ff, string, true) + "</a>";
-//        } else if (hasListViewLink(ff)) {
-//            string = renderListViewLink(string, ff, identifier);
-//        } else if (hasListViewColorize(ff)) {
-//            string = renderListViewColorize(string, ff);
-//        } else {
-//            string = truncate(ff, string, false);
-//        }
-//        return string;
-//    }
-
-    private boolean hasListViewColorize(FormField ff) {
-        return ff.getListViewAnnotation() != null && !ff.getListViewAnnotation().colorize().equals("");
-    }
-
-//    @Deprecated
-//    private boolean hasListViewLink(FormField ff) {
-//        return ff.getListViewAnnotation() != null
-//                && !ff.getListViewAnnotation().link().equals(ListView.DEFAULT.class);
-//    }
-//    
     private boolean hasListViewLink(ClassFieldModel f) {
         if (f.getListViewLink() == null) {
             return false;
         }
         return !f.getListViewLink().equals(ListView.DEFAULT.class);
     }
-
-
-//    private String renderListViewColorize(String string, FormField ff) {
-//        String colorize = ff.getListViewAnnotation().colorize();
-//        if (ff.getType().isEnum()) {
-//            @SuppressWarnings("unchecked")
-//            Enum valueOf = Enum.valueOf((Class) ff.getType(), string);
-//            try {
-//                Method getColorMethod = valueOf.getDeclaringClass().getMethod(
-//                        "get" + colorize.substring(0, 1).toUpperCase() + colorize.substring(1));
-//                String theColor = (String) getColorMethod.invoke(valueOf);
-//                string = "<span class='ui-li-icon' style='border: 1px solid gray; background-color:"+theColor+"' title='"+ff.getId()+": "+ string +"'>&nbsp;&nbsp;</span>";
-//            } catch (Exception e) {
-//                log.error(e.getMessage(),e);
-//            }
-//        }
-//        return string;
-//    }
-    
 
     private String renderListViewLink(String string, ClassFieldModel f, Object id, SkysailServerResource<?> r) {
         Class<? extends SkysailServerResource<?>> linkedResource = f.getListViewLink();
@@ -131,40 +73,6 @@ public class CellRendererHelper {
             }).findFirst();
             if (findFirst.isPresent()) {
                 string = "<a href='" + findFirst.get().getUri() + "'><b>" + truncate(f, string, false) + "</b></a>";
-            }
-        }
-        return string;
-    }
-
-
-    @Deprecated
-    private String renderListViewLink(String string, FormField ff, final Object id) {
-        Class<? extends SkysailServerResource<?>> linkedResource = ff.getListViewAnnotation().link();
-        List<Link> links = ff.getResource().getLinks();
-        if (links != null && id != null) {
-            Optional<Link> findFirst = links.stream().filter(l -> {
-                String idAsString = id != null ? id.toString().replace("#", "") : "";
-                return linkedResource.equals(l.getCls()) && idAsString.equals(l.getRefId());
-            }).findFirst();
-            if (findFirst.isPresent()) {
-                string = "<a href='" + findFirst.get().getUri() + "'><b>" + truncate(ff, string, false) + "</b></a>";
-            }
-        }
-        return string;
-    }
-
-    private static String truncate(FormField ff, String string, boolean withoutHtml) {
-        if (ff.getListViewAnnotation() == null) {
-            return string;
-        }
-        if (ff.getListViewAnnotation().truncate() > 3) {
-            String oldValue = string;
-            if (string != null && string.length() > ff.getListViewAnnotation().truncate()) {
-                if (withoutHtml) {
-                    return oldValue.substring(0, ff.getListViewAnnotation().truncate() - 3) + "...";
-                }
-                return "<span title='" + oldValue + "'>"
-                        + oldValue.substring(0, ff.getListViewAnnotation().truncate() - 3) + "...</span>";
             }
         }
         return string;

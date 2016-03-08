@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ConfigMover {
 
     /** comma-separated list of subdirectories of config dir to be copied. */
-    private static final String CONFIG_PATH_SOURCES = "config/default";
+    private static final String CONFIG_PATH_SOURCES = "config";
     
     /** set to true, if a logback config file was discovered during copying. */ 
     private boolean logbackConfigurationExists = false;

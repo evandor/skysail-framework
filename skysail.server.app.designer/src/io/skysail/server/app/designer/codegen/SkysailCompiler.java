@@ -1,7 +1,6 @@
 package io.skysail.server.app.designer.codegen;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.osgi.framework.BundleContext;
@@ -40,7 +39,7 @@ public class SkysailCompiler {
         return template;
     }
 
-    protected CompiledCode collect(String className, String entityCode, String buildPathFolder) {
+    public CompiledCode collect(String className, String entityCode, String buildPathFolder) {
         CompiledCode compiledCode = null;
         try {
             compiledCode = compiler.collect(className, entityCode);

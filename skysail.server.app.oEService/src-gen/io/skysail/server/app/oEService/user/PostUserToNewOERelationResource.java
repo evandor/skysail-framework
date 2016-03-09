@@ -47,6 +47,6 @@ public class PostUserToNewOERelationResource extends PostRelationResource2<OE> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(UsersOEsResource.class);
+        return super.getLinks(UsersOEsResource.class, PostUserToNewOERelationResource.class);
     }
 }

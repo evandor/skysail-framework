@@ -1,2 +1,5 @@
-/generated/
+/bin/
 /bin_test/
+/generated/
+/src-gen/
+/bundle/

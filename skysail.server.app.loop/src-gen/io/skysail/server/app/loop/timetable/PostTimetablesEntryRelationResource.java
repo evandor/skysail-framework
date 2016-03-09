@@ -17,7 +17,7 @@ import io.skysail.server.app.loop.entry.resources.*;
 /**
  * generated from postRelationResource.stg
  */
-public class PostTimetablesEntryRelationResource extends PostRelationResource<io.skysail.server.app.loop.timetable.Timetable, > {
+public class PostTimetablesEntryRelationResource extends PostRelationResource<io.skysail.server.app.loop.timetable.Timetable, *> {
 
     private LoopApplicationGen app;
     private EntryRepository EntryRepo;

@@ -84,6 +84,7 @@ echo "-------------------------"
 
 cd $PRODUCT_DIR/bin/config
 svn export --force https://85.25.22.125/repos/skysale/skysailconfigs/$APPNAME/$STAGE/
+cp $STAGE/* .
 
 ### STARTING SERVICE #####################################################
 echo ""

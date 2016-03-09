@@ -228,6 +228,8 @@ public class ApplicationCreator {
     
     private static void createGitIgnoreFile(String root) throws IOException {
         Files.write(Paths.get(root + "/resources/.gitignore"),
+                "".getBytes());
+        Files.write(Paths.get(root + "/.gitignore"),
                 "/bin/\n/bin_test/\n/generated/\n/src-gen/\n/bundle/".getBytes());
     }
 

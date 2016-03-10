@@ -1,15 +1,12 @@
 package io.skysail.server.app.loop;
 
-import java.util.*;
+import java.util.Arrays;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 
-import io.skysail.server.app.ApplicationProvider;
+import de.twenty11.skysail.server.core.restlet.RouteBuilder;
 import io.skysail.domain.core.Repositories;
-import io.skysail.server.app.ApiVersion;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
 @Component(immediate = true)
@@ -27,6 +24,13 @@ public class LoopApplication extends LoopApplicationGen implements ApplicationPr
 
     public void unsetRepositories(Repositories repo) {
         super.setRepositories(null);
+    }
+    
+    @Override
+    protected void attach() {
+        super.attach();
+        router.attach(new RouteBuilder("/weather", io.skysail.server.app.loop.entry.resources.WeatherTestResource.class));
+        router.attach(new RouteBuilder("/cal", io.skysail.server.app.loop.entry.resources.CalTestResource.class));
     }
 
 }

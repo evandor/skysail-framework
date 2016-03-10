@@ -39,19 +39,19 @@ public class ConfigApplicationGen extends SkysailApplication implements Applicat
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/ConfigurationSets/{id}", io.skysail.server.app.config.ConfigurationSetResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets/", io.skysail.server.app.config.PostConfigurationSetResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets/{id}/", io.skysail.server.app.config.PutConfigurationSetResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets", io.skysail.server.app.config.ConfigurationSetsResource.class));
-        router.attach(new RouteBuilder("", io.skysail.server.app.config.ConfigurationSetsResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys", io.skysail.server.app.config.ConfigurationSetsConfigurationEntrysResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys/", io.skysail.server.app.config.PostConfigurationSetToNewConfigurationEntryRelationResource.class));
-        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys/{targetId}", io.skysail.server.app.config.ConfigurationSetsConfigurationEntryResource.class));
-        router.attach(new RouteBuilder("/ConfigurationEntrys/{id}", io.skysail.server.app.config.ConfigurationEntryResource.class));
-        router.attach(new RouteBuilder("/ConfigurationEntrys/", io.skysail.server.app.config.PostConfigurationEntryResource.class));
-        router.attach(new RouteBuilder("/ConfigurationEntrys/{id}/", io.skysail.server.app.config.PutConfigurationEntryResource.class));
-        router.attach(new RouteBuilder("/ConfigurationEntrys", io.skysail.server.app.config.ConfigurationEntrysResource.class));
-        router.attach(new RouteBuilder("", io.skysail.server.app.config.ConfigurationEntrysResource.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/{id}", io.skysail.server.app.config.configurationset.resources.ConfigurationSetResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/", io.skysail.server.app.config.configurationset.resources.PostConfigurationSetResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/{id}/", io.skysail.server.app.config.configurationset.resources.PutConfigurationSetResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationSets", io.skysail.server.app.config.configurationset.resources.ConfigurationSetsResourceGen.class));
+        router.attach(new RouteBuilder("", io.skysail.server.app.config.configurationset.resources.ConfigurationSetsResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys", io.skysail.server.app.config.configurationset.ConfigurationSetsConfigurationEntrysResource.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys/", io.skysail.server.app.config.configurationset.PostConfigurationSetToNewConfigurationEntryRelationResource.class));
+        router.attach(new RouteBuilder("/ConfigurationSets/{id}/ConfigurationEntrys/{targetId}", io.skysail.server.app.config.configurationset.ConfigurationSetsConfigurationEntryResource.class));
+        router.attach(new RouteBuilder("/ConfigurationEntrys/{id}", io.skysail.server.app.config.configurationentry.resources.ConfigurationEntryResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationEntrys/", io.skysail.server.app.config.configurationentry.resources.PostConfigurationEntryResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationEntrys/{id}/", io.skysail.server.app.config.configurationentry.resources.PutConfigurationEntryResourceGen.class));
+        router.attach(new RouteBuilder("/ConfigurationEntrys", io.skysail.server.app.config.configurationentry.resources.ConfigurationEntrysResourceGen.class));
+        router.attach(new RouteBuilder("", io.skysail.server.app.config.configurationentry.resources.ConfigurationEntrysResourceGen.class));
 
     }
 

@@ -9,5 +9,7 @@ public interface TemplateCompiler {
     CompiledCode apply(ST template);
 
     String routePath();
+    
+    void addAdditionalAttributes(ST template);
 
 }

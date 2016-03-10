@@ -2,6 +2,8 @@ package io.skysail.server.app.designer.codegen.templates;
 
 import java.util.Map;
 
+import org.stringtemplate.v4.ST;
+
 import io.skysail.domain.core.EntityRelation;
 import io.skysail.server.app.designer.codegen.*;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
@@ -21,6 +23,11 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
         this.entityModel = entityModel;
         this.relation = relation;
         this.codes = codes;
+    }
+    
+    @Override
+    public void addAdditionalAttributes(ST template) {
+        
     }
 
 }

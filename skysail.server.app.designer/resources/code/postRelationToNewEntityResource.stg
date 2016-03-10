@@ -17,7 +17,7 @@ $entitiesPackages(application)$
 public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource2<$relation.targetEntityModel.simpleName$> {
 
     private $application.name$ApplicationGen app;
-    private $relation.targetEntityModel.simpleName$Repository repo;
+    private $entity.simpleName$Repository repo;
     private String parentId;
 
     public Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$RelationResource() {
@@ -27,7 +27,7 @@ public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$
     @Override
     protected void doInit() {
         app = ($application.name$Application) getApplication();
-        repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
+        repo = ($entity.simpleName$Repository) app.getRepository($entity.className$.class);
         parentId = getAttribute("id");
     }
     
@@ -37,7 +37,7 @@ public class Post$entity.simpleName$ToNew$relation.targetEntityModel.simpleName$
 
     @Override
     public void addEntity($relation.targetEntityModel.simpleName$ entity) {
-        $relation.targetEntityModel.simpleName$ parent = repo.findOne(parentId);
+        $entity.simpleName$ parent = repo.findOne(parentId);
         parent.get$relation.targetEntityModel.simpleName$s().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
     }

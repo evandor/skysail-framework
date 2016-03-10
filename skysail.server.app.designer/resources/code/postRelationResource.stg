@@ -14,7 +14,7 @@ $entitiesPackages(application)$
 /**
  * generated from postRelationResource.stg
  */
-public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.className$, $relation.targetEntityModel.className$> {
+public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.className$, $relation.targetEntityModel.id$> {
 
     private $application.name$ApplicationGen app;
     private $relation.targetEntityModel.simpleName$Repository $relation.targetEntityModel.simpleName$Repo;
@@ -27,7 +27,7 @@ public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$Rela
     @Override
     protected void doInit() {
         app = ($application.name$ApplicationGen) getApplication();
-        $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
+        $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.id$.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 

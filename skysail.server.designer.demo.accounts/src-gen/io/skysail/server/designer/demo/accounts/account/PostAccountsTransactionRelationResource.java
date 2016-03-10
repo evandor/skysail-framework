@@ -17,7 +17,7 @@ import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 /**
  * generated from postRelationResource.stg
  */
-public class PostAccountsTransactionRelationResource extends PostRelationResource<io.skysail.server.designer.demo.accounts.account.Account, > {
+public class PostAccountsTransactionRelationResource extends PostRelationResource<io.skysail.server.designer.demo.accounts.account.Account, io.skysail.server.designer.demo.accounts.transaction.Transaction> {
 
     private AccountsApplicationGen app;
     private TransactionRepository TransactionRepo;
@@ -30,7 +30,7 @@ public class PostAccountsTransactionRelationResource extends PostRelationResourc
     @Override
     protected void doInit() {
         app = (AccountsApplicationGen) getApplication();
-        TransactionRepo = (TransactionRepository) app.getRepository(.class);
+        TransactionRepo = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 

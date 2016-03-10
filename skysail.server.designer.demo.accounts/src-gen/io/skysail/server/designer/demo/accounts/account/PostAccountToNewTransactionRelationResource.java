@@ -20,7 +20,7 @@ import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 public class PostAccountToNewTransactionRelationResource extends PostRelationResource2<Transaction> {
 
     private AccountsApplicationGen app;
-    private TransactionRepository repo;
+    private AccountRepository repo;
     private String parentId;
 
     public PostAccountToNewTransactionRelationResource() {
@@ -30,7 +30,7 @@ public class PostAccountToNewTransactionRelationResource extends PostRelationRes
     @Override
     protected void doInit() {
         app = (AccountsApplication) getApplication();
-        repo = (TransactionRepository) app.getRepository(.class);
+        repo = (AccountRepository) app.getRepository(io.skysail.server.designer.demo.accounts.account.Account.class);
         parentId = getAttribute("id");
     }
 
@@ -40,13 +40,13 @@ public class PostAccountToNewTransactionRelationResource extends PostRelationRes
 
     @Override
     public void addEntity(Transaction entity) {
-        Transaction parent = repo.findOne(parentId);
+        Account parent = repo.findOne(parentId);
         parent.getTransactions().add(entity);
         repo.save(parent, getApplication().getApplicationModel());
     }
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(AccountsTransactionsResource.class);
+        return super.getLinks(AccountsTransactionsResource.class, PostAccountToNewTransactionRelationResource.class);
     }
 }

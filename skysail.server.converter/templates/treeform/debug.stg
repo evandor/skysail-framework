@@ -16,7 +16,7 @@ debug(resource, source, target, messages) ::= <<
                   <div class="panel-heading" role="tab" id="headingResource">
                     <h4 class="panel-title">
                       <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResource" aria-expanded="false" aria-controls="collapseResource">
-                        Resource: $resource.classname$
+                        Resource: $resource.resourceSimpleName$
                       </a>
                     </h4>
                   </div>

@@ -7,7 +7,7 @@ debug(messages, model) ::= <<
             <div class="panel-heading" role="tab" id="headingResource">
               <h4 class="panel-title">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseResource" aria-expanded="false" aria-controls="collapseResource">
-                  Resource: $model.classname$
+                  Resource: $model.resourceSimpleName$
                 </a>
               </h4>
             </div>

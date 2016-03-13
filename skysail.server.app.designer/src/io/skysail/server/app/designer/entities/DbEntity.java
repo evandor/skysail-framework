@@ -49,7 +49,7 @@ public class DbEntity implements Identifiable, Nameable, Serializable {
     private String name;
 
     @Field(inputType = InputType.CHECKBOX)
-    private boolean rootEntity = true;
+    private boolean rootEntity = false;
 
     @JsonBackReference
     private DbApplication dbApplication;

@@ -151,7 +151,7 @@ public class StringTemplateRenderer {
     }
 
     public boolean isEdit() {
-        return "edit".equalsIgnoreCase(theme.getOption().toString());
+        return mode.equals(RenderingMode.EDIT);
     }
 
     /**

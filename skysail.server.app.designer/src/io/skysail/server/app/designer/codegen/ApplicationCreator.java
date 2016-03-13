@@ -235,7 +235,7 @@ public class ApplicationCreator {
         Files.write(Paths.get(root + "/resources/.gitignore"),
                 "".getBytes());
         Files.write(Paths.get(root + "/.gitignore"),
-                "/bin/\n/bin_test/\n/generated/\n/src-gen/\n/bundle/".getBytes());
+                "/bin/\n/bin_test/\n/generated/\n/bundle/".getBytes());
     }
 
     private void copy(Path path, String filename) {

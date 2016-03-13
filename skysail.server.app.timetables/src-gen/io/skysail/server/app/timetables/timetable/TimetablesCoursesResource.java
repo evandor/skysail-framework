@@ -4,16 +4,11 @@ import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
-import io.skysail.server.db.DbClassName;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.app.timetables.TimetablesApplication;
+import io.skysail.server.app.timetables.TimetablesApplicationGen;
+import io.skysail.server.app.timetables.course.Course;
+import io.skysail.server.app.timetables.timetable.resources.TimetableResourceGen;
 import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.app.timetables.*;
-
-import io.skysail.server.app.timetables.timetable.*;
-import io.skysail.server.app.timetables.timetable.resources.*;
-import io.skysail.server.app.timetables.course.*;
-import io.skysail.server.app.timetables.course.resources.*;
 
 
 /**
@@ -22,7 +17,7 @@ import io.skysail.server.app.timetables.course.resources.*;
 public class TimetablesCoursesResource extends ListServerResource<Course> {
 
     private TimetablesApplicationGen app;
-    private CourseRepository oeRepo;
+   // private CourseRepository oeRepo;
 
     public TimetablesCoursesResource() {
         super(TimetableResourceGen.class);//, TimetablesTimetableResource.class);
@@ -32,12 +27,12 @@ public class TimetablesCoursesResource extends ListServerResource<Course> {
     @Override
     protected void doInit() {
         app = (TimetablesApplication) getApplication();
-        oeRepo = (CourseRepository) app.getRepository(Course.class);
+        //oeRepo = (CourseRepository) app.getRepository(Course.class);
     }
 
     @Override
     public List<Course> getEntity() {
-        return (List<Course>) oeRepo.execute(Course.class, "select * from " + DbClassName.of(Course.class) + " where #"+getAttribute("id")+" in IN(folders)");
+        return null;//(List<Course>) oeRepo.execute(Course.class, "select * from " + DbClassName.of(Course.class) + " where #"+getAttribute("id")+" in IN(folders)");
     }
 
     @Override

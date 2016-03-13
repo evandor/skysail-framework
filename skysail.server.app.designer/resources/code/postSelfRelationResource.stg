@@ -14,7 +14,7 @@ $entitiesPackages(application)$
 /**
  * generated from postSelfRelationResource.stg
  */
-public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.className$, $relation.targetEntityModel.className$> {
+public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$RelationResource extends PostRelationResource<$entity.id$, $relation.targetEntityModel.id$> {
 
     private $application.name$ApplicationGen app;
     private $relation.targetEntityModel.simpleName$Repository $relation.targetEntityModel.simpleName$Repo;
@@ -26,7 +26,7 @@ public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$Rela
     @Override
     protected void doInit() {
         app = ($application.name$ApplicationGen) getApplication();
-        $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.className$.class);
+        $relation.targetEntityModel.simpleName$Repo = ($relation.targetEntityModel.simpleName$Repository) app.getRepository($relation.targetEntityModel.id$.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
@@ -47,12 +47,12 @@ public class Post$entity.simpleName$s$relation.targetEntityModel.simpleName$Rela
     @Override
     public void addRelations(List<$relation.targetEntityModel.simpleName$> entities) {
         String id = getAttribute("id");
-        $entity.className$ theUser = $entity.simpleName$Repo.findOne(id);
+        $entity.id$ theUser = $entity.simpleName$Repo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
         $relation.targetEntityModel.simpleName$Repo.save(theUser, getApplication().getApplicationModel());
     }
 
-    private void addIfNotPresentYet($entity.className$ theUser, $relation.targetEntityModel.simpleName$ e) {
+    private void addIfNotPresentYet($entity.id$ theUser, $relation.targetEntityModel.simpleName$ e) {
         if (!theUser.get$relation.targetEntityModel.simpleName$s().stream().filter(oe -> oe.getId().equals(oe.getId())).findFirst().isPresent()) {
             theUser.get$relation.targetEntityModel.simpleName$s().add(e);
         }

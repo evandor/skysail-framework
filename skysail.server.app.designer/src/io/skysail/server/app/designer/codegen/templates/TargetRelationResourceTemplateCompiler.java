@@ -16,14 +16,14 @@ public class TargetRelationResourceTemplateCompiler extends AbstractTemplateComp
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         return "targetRelationResource";
     }            @Override
     public CompiledCode apply(ST template) {
         return setupTargetRelationResourceForCompilation(template, getEntityModel(), getRelation());
     }
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/{id}/"+getRelation().getTargetEntityModel().getSimpleName()+"s/{targetId}";
     }
     

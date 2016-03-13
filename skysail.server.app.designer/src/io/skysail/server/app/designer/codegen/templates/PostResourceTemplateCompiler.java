@@ -21,7 +21,7 @@ public class PostResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         if (getEntityModel().isAggregate()) {
             return "postResource";
         } else {
@@ -35,7 +35,7 @@ public class PostResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/";
     }
     

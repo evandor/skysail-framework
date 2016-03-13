@@ -5,9 +5,14 @@ import java.util.Map;
 import org.stringtemplate.v4.ST;
 
 import io.skysail.domain.core.EntityRelation;
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.CompiledCode;
+import io.skysail.server.app.designer.codegen.SkysailCompiler;
+import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
+import io.skysail.server.app.designer.codegen.TemplateCompiler;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
+import io.skysail.server.app.designer.model.RouteModel;
 import lombok.Getter;
+import lombok.NonNull;
 
 @Getter
 public abstract class AbstractTemplateCompiler implements TemplateCompiler {
@@ -18,7 +23,7 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
     private SkysailCompiler skysailCompiler;
 
     public AbstractTemplateCompiler(SkysailCompiler skysailCompiler, DesignerEntityModel entityModel,
-            EntityRelation relation, Map<String, CompiledCode> codes) {
+            EntityRelation relation, @NonNull Map<String, CompiledCode> codes) {
         this.skysailCompiler = skysailCompiler;
         this.entityModel = entityModel;
         this.relation = relation;
@@ -27,7 +32,24 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
     
     @Override
     public void addAdditionalAttributes(ST template) {
-        
+        // default behavior, do nothing
     }
 
+    public final String process() {
+        String templateName = getTemplateName();
+        if (templateName == null) {
+            return null;
+        }
+        SkysailEntityCompiler sec = (SkysailEntityCompiler) getSkysailCompiler();
+        ST template = sec.getTemplateProvider().templateFor(templateName);
+        addAdditionalAttributes(template);
+        CompiledCode compiledCode = apply(template);
+        String name = compiledCode.getClassName();
+        String routePath = getRoutePath();
+        if (routePath != null) {
+            sec.getRoutes().add(new RouteModel(getRoutePath(), name));
+        }
+        getCodes().put(name, compiledCode);
+        return name;
+    }
 }

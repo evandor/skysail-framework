@@ -53,13 +53,13 @@ public class SkysailRepositoryCompiler extends SkysailCompiler {
         StringBuilder activationCode = new StringBuilder();
 
         List<String> entityNames = applicationModel.getEntityValues().stream().map(DesignerEntityModel.class::cast)
-                .map(DesignerEntityModel::getClassName).collect(Collectors.toList());
+                .map(DesignerEntityModel::getId).collect(Collectors.toList());
         activationCode.append("        dbService.createWithSuperClass(\"V\", ").append(entityNames.stream().map(n -> {
             return "\"".concat(n).concat("\"");
         }).collect(Collectors.joining(","))).append(");\n"); //
 
         List<String> entityClassNames = applicationModel.getEntityValues().stream().map(DesignerEntityModel.class::cast)
-                .map(DesignerEntityModel::getClassName).collect(Collectors.toList());
+                .map(DesignerEntityModel::getId).collect(Collectors.toList());
         activationCode.append("        dbService.register(").append(entityClassNames.stream().map(n -> {
             return n.concat(".class");
         }).collect(Collectors.joining(","))).append(");\n");

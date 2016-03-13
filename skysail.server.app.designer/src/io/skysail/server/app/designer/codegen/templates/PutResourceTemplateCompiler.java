@@ -17,7 +17,7 @@ public class PutResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         return "putResource";
     }
 
@@ -27,7 +27,7 @@ public class PutResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/{id}/";
     }
     

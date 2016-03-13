@@ -65,6 +65,30 @@ public class Timetable implements Identifiable, Serializable {
         return this.description;
     }
 
+    @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = EntrysResourceGen.class)
+    private Date start;
+
+    public void setStart(Date value) {
+        this.start = value;
+    }
+
+    public Date getStart() {
+        return this.start;
+    }
+
+    @Field(inputType = InputType.DATE, htmlPolicy = HtmlPolicy.NO_HTML)
+    @ListView(link = EntrysResourceGen.class)
+    private Date end;
+
+    public void setEnd(Date value) {
+        this.end = value;
+    }
+
+    public Date getEnd() {
+        return this.end;
+    }
+
 
     // --- relations ---
 

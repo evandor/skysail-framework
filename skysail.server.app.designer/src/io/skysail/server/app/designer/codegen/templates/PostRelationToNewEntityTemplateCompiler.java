@@ -16,14 +16,14 @@ public class PostRelationToNewEntityTemplateCompiler extends AbstractTemplateCom
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         return "postRelationToNewEntityResource";
     }            @Override
     public CompiledCode apply(ST template) {
         return setupPostRelationToNewEntityesourceForCompilation(template, getEntityModel(), getRelation());
     }
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/{id}/"+getRelation().getTargetEntityModel().getSimpleName()+"s/";
     }
     

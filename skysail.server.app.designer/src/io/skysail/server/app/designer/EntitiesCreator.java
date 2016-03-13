@@ -1,9 +1,7 @@
 package io.skysail.server.app.designer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.skysail.server.app.designer.codegen.CompiledCode;
 import io.skysail.server.app.designer.codegen.JavaCompiler;
@@ -24,7 +22,7 @@ public class EntitiesCreator {
     private JavaCompiler compiler;
 
     @Getter
-    private Map<String, CompiledCode> code = new HashMap<>();
+    private List<CompiledCode> code = new ArrayList<>();
 
     private TemplateProvider templateProvider;
 
@@ -46,8 +44,8 @@ public class EntitiesCreator {
     private List<RouteModel> compileEntity(DesignerEntityModel entityModel, STGroupBundleDir stGroup, JavaCompiler compiler) {
         SkysailEntityCompiler entityCompiler = new SkysailEntityCompiler(applicationModel, stGroup, compiler, templateProvider);
         CompiledCode compiledCode = entityCompiler.createEntity(entityModel);
-        code.put(compiledCode.getClassName(), compiledCode);
-        code.putAll(entityCompiler.createResources(entityModel));
+        code.add(compiledCode);
+        code.addAll(entityCompiler.createResources(entityModel).values());
         return entityCompiler.getRouteModels();
     }
 

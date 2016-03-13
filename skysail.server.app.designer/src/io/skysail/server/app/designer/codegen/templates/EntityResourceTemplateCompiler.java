@@ -17,7 +17,7 @@ public class EntityResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         if (getEntityModel().isAggregate()) {
             return "entityResource";
         } 
@@ -30,7 +30,7 @@ public class EntityResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/{id}";
     }
     

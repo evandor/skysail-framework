@@ -66,9 +66,11 @@ public class ApplicationCreator {
     private EntitiesCreator entitiesCreator;
     private List<CompiledCode> compiledApplicationCode;
     private List<CompiledCode> repositoriesCode;
+    private List<CompiledCode> entitiesCode;
     
     @Reference
     private TemplateProvider templateProvider;
+
 
     @Activate
     public void activate(ComponentContext componentContext) {
@@ -112,6 +114,7 @@ public class ApplicationCreator {
 
         entitiesCreator = new EntitiesCreator(applicationModel, javaCompiler, templateProvider);
         List<RouteModel> routeModels = entitiesCreator.create(null);
+        entitiesCode = entitiesCreator.getCode();//.stream().collect(Collectors.toMap(CompiledCode::getName, Function.identity()));
 
         repositoriesCode = new RepositoryCreator(applicationModel, javaCompiler, bundle, templateProvider).create(null);
         
@@ -144,7 +147,9 @@ public class ApplicationCreator {
     private void saveClassFiles() {
         compiledApplicationCode.stream().filter(c -> c != null).forEach(code -> 
             ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));
-        entitiesCreator.getCode().values().stream().forEach(code -> 
+//        entitiesCreator.getCode().values().stream().forEach(code -> 
+//            ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));
+        entitiesCode.stream().forEach(code ->
             ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));
         repositoriesCode.stream().forEach(code -> 
             ProjectFileWriter.save(applicationModel, BUNLDE_DIR_NAME, classNameToPath(code.getClassName()), code.getByteCode()));

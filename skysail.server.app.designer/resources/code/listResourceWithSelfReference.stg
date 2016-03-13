@@ -39,7 +39,7 @@ public class $entity.simpleName$sResourceGen extends ListServerResource<$entity.
     
     @Override
     public List<$entity.id$> getEntity() {
-        return (List<$entity.className$>) repository.execute($entity.className$.class, "select * from " + DbClassName.of($entity.className$.class) + " where IN($entity.simpleName$s).size() = 0");
+        return (List<$entity.id$>) repository.execute($entity.id$.class, "select * from " + DbClassName.of($entity.id$.class) + " where IN($entity.simpleName$s).size() = 0");
     \}
 
     public List<Link> getLinks() {

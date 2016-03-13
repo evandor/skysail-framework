@@ -16,7 +16,7 @@ public class RelationResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         if (getEntityModel().isAggregate()) {
             return "relationResource";
         } else {
@@ -31,7 +31,7 @@ public class RelationResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s/{id}/" + getRelation().getTargetEntityModel().getSimpleName() + "s";
     }
     

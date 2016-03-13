@@ -16,7 +16,7 @@ public class PostRelationTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         if (!getEntityModel().hasSelfReference()) {
             return "postRelationResource";
         } else {
@@ -28,7 +28,7 @@ public class PostRelationTemplateCompiler extends AbstractTemplateCompiler {
         return setupPostRelationResourceForCompilation(template, getEntityModel(), getRelation());
     }
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return null;
     }
 

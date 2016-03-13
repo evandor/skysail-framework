@@ -26,7 +26,7 @@ public class DesignerEntityModel extends EntityModel {
     private Optional<DesignerEntityModel> referencedBy;
 
     // TODO needed?
-    private String className;
+    //private String className;
 
     public DesignerEntityModel(DbEntity entityFromDb, String packageName) {
         super(packageName + "." + entityFromDb.getName().toLowerCase() + "." + entityFromDb.getName());
@@ -42,9 +42,9 @@ public class DesignerEntityModel extends EntityModel {
         }
     }
 
-    public void setClassName(String entityClassName) {
-        this.className = entityClassName;
-    }
+//    public void setClassName(String entityClassName) {
+//        this.className = entityClassName;
+//    }
 
     public void setReferencedBy(@NonNull DesignerEntityModel entityModel) {
         if (referencedBy != null && referencedBy.get() != null) {

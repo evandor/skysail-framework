@@ -20,7 +20,7 @@ public class ListResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String getTemplate() {
+    public String getTemplateName() {
         if (getEntityModel().isAggregate() && !getEntityModel().hasSelfReference()) {
             return "listResource";
         } else if (getEntityModel().isAggregate() && getEntityModel().hasSelfReference()) {
@@ -36,7 +36,7 @@ public class ListResourceTemplateCompiler extends AbstractTemplateCompiler {
     }
 
     @Override
-    public String routePath() {
+    public String getRoutePath() {
         return "/" + getEntityModel().getSimpleName() + "s";
     }
 

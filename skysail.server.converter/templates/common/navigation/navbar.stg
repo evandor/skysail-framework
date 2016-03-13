@@ -44,7 +44,7 @@ navbar(user, messages, converter, model) ::= <<
           <li><a href='#' data-toggle="modal" data-target="#templateModal">Templates</a></li>
           <li><a href='#' data-toggle="modal" data-target="#routesModal">Application Routes</a></li>
           <li><a href='#' data-toggle="modal" data-target="#appModelModal">Application Model</a></li>
-          <li><a href='#' data-toggle="modal" data-target="#resourceModelModal">Resource Model ($model.resourceSimpleName$)</a></li>
+          <li><a href='#' data-toggle="modal" data-target="#resourceModelModal">Resource Model ($model.classname$)</a></li>
           <li><a href='#' data-toggle="modal" data-target="#messagesModal">Messages</a></li>
           <li class="divider"></li>
           <li><a href='#'>$messages.("productName").value$ [$messages.("productVersion").value$]</a>

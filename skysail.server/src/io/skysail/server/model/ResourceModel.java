@@ -213,7 +213,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         } else { // deprecated old style
             //FormField formField = fields.get(columnName);
             //newRow.put(columnName, calc(formField, dataRow, columnName, id));
-            throw new UnsupportedOperationException();
+            //throw new UnsupportedOperationException("field '" + columnName + "' is defined in old style, not supported any more");
         }
     }
 
@@ -346,7 +346,7 @@ public class ResourceModel<R extends SkysailServerResource<T>, T> {
         return resource.getClass().getSimpleName();
     }
 
-    public String getResourceClassName() {
+    public String getTest() {
         return resource.getClass().getName();
     }
 

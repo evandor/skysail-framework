@@ -64,12 +64,12 @@ skysail.api.text.version                           '[2.0.0,2.0.1)'
 skysail.api.um.version                             '[0.2.2,0.2.3)'
 
 # wip
-skysail.server.version                             '[14.0.0,14.0.1)'
+skysail.server.version                             '[15.0.0,15.0.1)'
 skysail.server.codegen.version                     '[1.0.0,1.0.1)'
 # wip
 skysail.server.converter.version                   '[5.0.2,5.0.3)'
 #wip
-skysail.server.db.version                          '[6.0.0,6.0.1)'
+skysail.server.db.version                          '[6.0.1,6.0.2)'
 # wip
 skysail.server.http.version                        '[6.0.0,6.0.1)'
 skysail.server.osgi.version                        '[0.0.22,0.0.23)'
@@ -78,18 +78,18 @@ skysail.server.performance.etm.version             '[0.1.1,0.1.2)'
 skysail.server.plugins.version                     '[0.1.1, 0.1.2)'
 skysail.server.polymer.version                     '[1.0.0,1.0.1)'
 #wip
-skysail.server.queryfilter.version                 '[0.5.1,0.5.2)'
+skysail.server.queryfilter.version                 '[0.5.2,0.5.3)'
 skysail.server.static.version                      '[1.0.7,1.0.8)'
 #wip
 skysail.server.testsupport.version                 '[2.0.0,2.0.1)'
 skysail.server.text.markdown.version               '[0.1.1,0.1.2)'
-skysail.server.text.store.bundleresource.version   '[0.1.4,0.1.5)'
+skysail.server.text.store.bundleresource.version   '[0.1.5,0.1.6)'
 skysail.server.text.store.db.version               '[0.1.2,0.1.3)'
 skysail.server.text.store.git.version              '[0.1.4,0.1.5)'
 #wip
-skysail.server.um.version                          '[1.0.0,1.0.1)'
+skysail.server.um.version                          '[1.0.1,1.0.2)'
 #wip
-skysail.server.um.simple.version                   '[0.1.7,0.1.8)'
+skysail.server.um.simple.version                   '[0.1.8,0.1.9)'
 
 skysail.server.app.svgedit.version                 '[0.1.0,0.1.1)'
 

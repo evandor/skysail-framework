@@ -6,6 +6,8 @@ import java.util.*;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.skysail.domain.Nameable;
@@ -33,8 +35,8 @@ public class DbApplication implements Nameable, Serializable {
     private ApplicationStatus status = ApplicationStatus.UNDEFINED;
     
     @Field
-    @NotNull
-    @Size(min = 1)
+    @NotBlank
+    @Size(max = 50)
     @Pattern(regexp = "[a-zA-Z_]([a-zA-Z0-9_])*", message = "please choose a simpler Identifier. Some of the characters are not allowed.")
     @ListView(link = EntitiesResource.class, truncate = 40)
     @PostView(tab = "newApp")

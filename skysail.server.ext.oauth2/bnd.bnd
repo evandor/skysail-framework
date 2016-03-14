@@ -12,8 +12,6 @@ Import-Package: org.osgi.framework,\
     javassist.util.proxy,\
     *
 
-Service-Component: *
-
 Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 -buildpath:  \

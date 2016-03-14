@@ -45,6 +45,8 @@ import io.skysail.server.app.designer.relations.resources.PostRelationResource;
 import io.skysail.server.app.designer.relations.resources.RelationResource;
 import io.skysail.server.app.designer.relations.resources.RelationsResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
+import io.skysail.server.app.designer.valueobjects.PostValueObjectsResource;
+import io.skysail.server.app.designer.valueobjects.ValueObjectsResource;
 import io.skysail.server.db.DbService;
 import io.skysail.server.menus.MenuItem;
 import io.skysail.server.menus.MenuItemProvider;
@@ -107,6 +109,9 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
         router.attach(new RouteBuilder("/applications/{id}/entities/", PostEntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}", EntityResource.class));
         router.attach(new RouteBuilder("/applications/{id}/entities/{eid}/", PutEntityResource.class));
+
+        router.attach(new RouteBuilder("/applications/{id}/valueobjects", ValueObjectsResource.class));
+        router.attach(new RouteBuilder("/applications/{id}/valueobjects/", PostValueObjectsResource.class));
         
         router.attach(new RouteBuilder("/applications/{id}/designer", DesignerResource.class));
 

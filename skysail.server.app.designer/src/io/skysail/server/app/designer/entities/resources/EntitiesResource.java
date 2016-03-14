@@ -8,6 +8,8 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.layout.DesignerResource;
+import io.skysail.server.app.designer.valueobjects.PostValueObjectsResource;
+import io.skysail.server.app.designer.valueobjects.ValueObjectsResource;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.model.TreeStructure;
 import io.skysail.server.restlet.resources.ListServerResource;
@@ -41,7 +43,7 @@ public class EntitiesResource extends ListServerResource<DbEntity> {
 
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(PostEntityResource.class, DesignerResource.class);
+        return super.getLinks(PostEntityResource.class, DesignerResource.class, ValueObjectsResource.class, PostValueObjectsResource.class);
     }
 
     @Override

@@ -1,21 +1,27 @@
 package io.skysail.server.app.designer.application;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.skysail.domain.Nameable;
-import io.skysail.domain.html.*;
+import io.skysail.domain.html.Field;
+import io.skysail.domain.html.InputType;
+import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
+import io.skysail.server.app.designer.valueobjects.ValueObject;
 import io.skysail.server.db.validators.UniqueName;
-import io.skysail.server.forms.*;
+import io.skysail.server.forms.ListView;
+import io.skysail.server.forms.PostView;
 import lombok.*;
 
 @NoArgsConstructor
@@ -66,6 +72,10 @@ public class DbApplication implements Nameable, Serializable {
     @Relation
     @JsonManagedReference
     private List<DbEntity> entities = new ArrayList<>();
+
+    @Relation
+    @JsonManagedReference
+    private List<ValueObject> valueObjects = new ArrayList<>();
 
     /**
      * A builder which sets the mandatory attributes

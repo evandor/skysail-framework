@@ -6,14 +6,15 @@ import com.rometools.rome.feed.synd.SyndEntry;
 
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.html.Field;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
 public class FeedEntry implements Identifiable {
 
     private String id;
-    
+
     @Field
     private String title;
 
@@ -21,13 +22,13 @@ public class FeedEntry implements Identifiable {
     private Date publishedDate;
 
     @Field
-    private String value;
+    private String value, link;
 
     public FeedEntry(SyndEntry e) {
         title = e.getTitle();
         publishedDate = e.getPublishedDate();
         value = e.getDescription().getValue();
+        link = e.getLink();
     }
-
 
 }

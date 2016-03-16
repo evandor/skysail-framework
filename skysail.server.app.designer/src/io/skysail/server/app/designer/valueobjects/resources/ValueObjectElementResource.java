@@ -4,10 +4,10 @@ import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.app.designer.valueobjects.DbValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObjectElement;
 import io.skysail.server.restlet.resources.EntityServerResource;
 
-public class ValueObjectResource extends EntityServerResource<DbValueObject> {
+public class ValueObjectElementResource extends EntityServerResource<DbValueObjectElement> {
 
     @Override
     public SkysailResponse<?> eraseEntity() {
@@ -15,13 +15,13 @@ public class ValueObjectResource extends EntityServerResource<DbValueObject> {
     }
 
     @Override
-    public DbValueObject getEntity() {
+    public DbValueObjectElement getEntity() {
         return null;
     }
     
     @Override
     public List<Link> getLinks() {
-        return super.getLinks(ValueObjectElementsResource.class, PostValueObjectElementResource.class, PutValueObjectResource.class);
+        return super.getLinks(PutValueObjectElementResource.class);
     }
 
 }

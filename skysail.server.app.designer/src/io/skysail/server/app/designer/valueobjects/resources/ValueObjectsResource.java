@@ -7,11 +7,11 @@ import io.skysail.server.ResourceContextId;
 import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
-import io.skysail.server.app.designer.valueobjects.ValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObject;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-public class ValueObjectsResource extends ListServerResource<ValueObject> {
+public class ValueObjectsResource extends ListServerResource<DbValueObject> {
 
     private DesignerApplication app;
     private String id;
@@ -33,8 +33,8 @@ public class ValueObjectsResource extends ListServerResource<ValueObject> {
     }
 
     @Override
-    public List<ValueObject> getEntity() {
-        String sql = "SELECT from " + DbClassName.of(ValueObject.class) + " WHERE #" + id + " IN in('valueobjects')";
+    public List<DbValueObject> getEntity() {
+        String sql = "SELECT from " + DbClassName.of(DbValueObject.class) + " WHERE #" + id + " IN in('valueobjects')";
         return app.getRepository().findValueObjects(sql);
     }
     

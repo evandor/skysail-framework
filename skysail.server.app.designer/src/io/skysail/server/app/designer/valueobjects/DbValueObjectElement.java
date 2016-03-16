@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ValueObjectElement implements Identifiable {
+public class DbValueObjectElement implements Identifiable {
 
     private String id;
     

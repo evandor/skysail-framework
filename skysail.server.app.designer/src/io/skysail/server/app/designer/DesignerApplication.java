@@ -111,11 +111,15 @@ public class DesignerApplication extends SkysailApplication implements MenuItemP
 
         router.attach(new RouteBuilder("/applications/{id}/valueobjects", ValueObjectsResource.class));
         router.attach(new RouteBuilder("/applications/{id}/valueobjects/", PostValueObjectsResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/valueobjects/{id}", ValueObjectResource.class));
-        router.attach(new RouteBuilder("/applications/{id}/valueobjects/{id}/", PutValueObjectResource.class));
+        // valueobjects do know their parents...
+        router.attach(new RouteBuilder("/valueobjects/{id}", ValueObjectResource.class));
+        router.attach(new RouteBuilder("/valueobjects/{id}/", PutValueObjectResource.class));
 
         router.attach(new RouteBuilder("/valueobjects/{id}/elements", ValueObjectElementsResource.class));
         router.attach(new RouteBuilder("/valueobjects/{id}/elements/", PostValueObjectElementResource.class));
+        // elements do not know their parents...
+        router.attach(new RouteBuilder("/valueobjects/{id}/elements/{eid}", ValueObjectElementResource.class));
+        router.attach(new RouteBuilder("/valueobjects/{id}/elements/{eid}/", PutValueObjectElementResource.class));
 
         router.attach(new RouteBuilder("/applications/{id}/designer", DesignerResource.class));
 

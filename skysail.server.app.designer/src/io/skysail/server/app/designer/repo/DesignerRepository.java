@@ -16,8 +16,8 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.*;
 import io.skysail.server.app.designer.relations.DbRelation;
-import io.skysail.server.app.designer.valueobjects.ValueObject;
-import io.skysail.server.app.designer.valueobjects.ValueObjectElement;
+import io.skysail.server.app.designer.valueobjects.DbValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObjectElement;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.db.DbService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +32,8 @@ public class DesignerRepository implements DbRepository {
     public void activate() {
         dbService.createWithSuperClass("V", 
                 DbClassName.of(DbApplication.class), 
-                DbClassName.of(ValueObject.class), 
-                DbClassName.of(ValueObjectElement.class), 
+                DbClassName.of(DbValueObject.class), 
+                DbClassName.of(DbValueObjectElement.class), 
                 DbClassName.of(DbRelation.class),
                 DbClassName.of(DbEntity.class),
                 DbClassName.of(DbEntityDateField.class), 
@@ -46,8 +46,8 @@ public class DesignerRepository implements DbRepository {
 
         dbService.register(
                 DbApplication.class, 
-                ValueObject.class,
-                ValueObjectElement.class,
+                DbValueObject.class,
+                DbValueObjectElement.class,
                 DbRelation.class,
                 DbEntity.class, 
                 DbEntityDateField.class, 
@@ -58,7 +58,7 @@ public class DesignerRepository implements DbRepository {
                 DbEntityTrixeditorField.class, 
                 DbEntityUrlField.class);
         
-        dbService.createEdges("entities", "fields", "oneToManyRelations", "valueObjects");
+        dbService.createEdges("entities", "fields", "oneToManyRelations", "dbValueObjects");
     }
 
     @Reference
@@ -88,12 +88,12 @@ public class DesignerRepository implements DbRepository {
         return dbService.findGraphs(DbEntity.class, sql);
     }
 
-    public List<ValueObject> findValueObjects(String sql) {
-        return dbService.findGraphs(ValueObject.class, sql);
+    public List<DbValueObject> findValueObjects(String sql) {
+        return dbService.findGraphs(DbValueObject.class, sql);
     }
 
-    public List<ValueObjectElement> findValueObjectElements(String sql) {
-        return dbService.findGraphs(ValueObjectElement.class, sql);
+    public List<DbValueObjectElement> findValueObjectElements(String sql) {
+        return dbService.findGraphs(DbValueObjectElement.class, sql);
     }
 
     public static OrientVertex add(Identifiable entity, ApplicationModel applicationModel) {
@@ -141,6 +141,10 @@ public class DesignerRepository implements DbRepository {
 
     public DbEntity findEntity(String id) {
         return dbService.findById2(DbEntity.class, id);
+    }
+
+    public DbValueObject findValueObject(String id) {
+        return dbService.findById2(DbValueObject.class, id);
     }
 
     @Override

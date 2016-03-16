@@ -8,19 +8,19 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.entities.resources.PostEntityResource;
 import io.skysail.server.app.designer.layout.DesignerResource;
-import io.skysail.server.app.designer.valueobjects.ValueObjectElement;
+import io.skysail.server.app.designer.valueobjects.DbValueObjectElement;
 import io.skysail.server.db.DbClassName;
 import io.skysail.server.model.TreeStructure;
 import io.skysail.server.restlet.resources.ListServerResource;
 
-public class ValueObjectElementsResource extends ListServerResource<ValueObjectElement> {
+public class ValueObjectElementsResource extends ListServerResource<DbValueObjectElement> {
 
     private DesignerApplication app;
     private String id;
     private DbApplication dbApplication;
 
     public ValueObjectElementsResource() {
-//        super(ValueObjectElementResource.class);
+        super(ValueObjectElementResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "list ValueObjects");
         addToContext(ResourceContextId.LINK_GLYPH, "chevron-down");
     }
@@ -35,8 +35,8 @@ public class ValueObjectElementsResource extends ListServerResource<ValueObjectE
     }
 
     @Override
-    public List<ValueObjectElement> getEntity() {
-        String sql = "SELECT from " + DbClassName.of(ValueObjectElement.class) + " WHERE #" + id + " IN in('elements')";
+    public List<DbValueObjectElement> getEntity() {
+        String sql = "SELECT from " + DbClassName.of(DbValueObjectElement.class) + " WHERE #" + id + " IN in('elements')";
         return app.getRepository().findValueObjectElements(sql);
     }
 

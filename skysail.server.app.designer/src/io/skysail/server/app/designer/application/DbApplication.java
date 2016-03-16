@@ -18,7 +18,7 @@ import io.skysail.domain.html.InputType;
 import io.skysail.domain.html.Relation;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.entities.resources.EntitiesResource;
-import io.skysail.server.app.designer.valueobjects.ValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObject;
 import io.skysail.server.db.validators.UniqueName;
 import io.skysail.server.forms.ListView;
 import io.skysail.server.forms.PostView;
@@ -48,6 +48,12 @@ public class DbApplication implements Nameable, Serializable {
     @PostView(tab = "newApp")
     private String name;
 
+    @Field(inputType = InputType.TEXTAREA)
+    @Size(max = 1000)
+    @ListView(hide=true)
+    @PostView(tab = "newApp")
+    private String description;
+
     @Field
     //@Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
     @ListView(hide = true)
@@ -56,7 +62,7 @@ public class DbApplication implements Nameable, Serializable {
 
     @Field
     @Pattern(regexp = "[a-z_.]*", message = "packages should be lowercase with dots and underscores only")
-    @ListView(hide = true)
+    //@ListView(hide = true)
     @PostView(tab = "details")
     private String packageName;
 
@@ -75,7 +81,7 @@ public class DbApplication implements Nameable, Serializable {
 
     @Relation
     @JsonManagedReference
-    private List<ValueObject> valueObjects = new ArrayList<>();
+    private List<DbValueObject> valueObjects = new ArrayList<>();
 
     /**
      * A builder which sets the mandatory attributes

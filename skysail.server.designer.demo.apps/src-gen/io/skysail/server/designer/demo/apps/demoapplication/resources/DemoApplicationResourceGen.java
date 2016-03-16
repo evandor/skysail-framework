@@ -10,6 +10,8 @@ import io.skysail.server.designer.demo.apps.*;
 
 import io.skysail.server.designer.demo.apps.demoapplication.*;
 import io.skysail.server.designer.demo.apps.demoapplication.resources.*;
+import io.skysail.server.designer.demo.apps.demovalueobject.*;
+import io.skysail.server.designer.demo.apps.demovalueobject.resources.*;
 
 
 /**
@@ -47,7 +49,7 @@ public class DemoApplicationResourceGen extends EntityServerResource<io.skysail.
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutDemoApplicationResourceGen.class);
+        return super.getLinks(PutDemoApplicationResourceGen.class,PostDemoValueObjectResourceGen.class,DemoValueObjectsResourceGen.class);
     }
 
     @Override

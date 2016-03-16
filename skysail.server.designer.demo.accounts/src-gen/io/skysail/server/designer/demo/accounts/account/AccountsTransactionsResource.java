@@ -1,19 +1,15 @@
 package io.skysail.server.designer.demo.accounts.account;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
-import io.skysail.server.db.DbClassName;
-import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
+import io.skysail.server.designer.demo.accounts.AccountsApplication;
+import io.skysail.server.designer.demo.accounts.AccountsApplicationGen;
+import io.skysail.server.designer.demo.accounts.account.resources.AccountResourceGen;
+import io.skysail.server.designer.demo.accounts.transaction.Transaction;
 import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.server.designer.demo.accounts.*;
-
-import io.skysail.server.designer.demo.accounts.account.*;
-import io.skysail.server.designer.demo.accounts.account.resources.*;
-import io.skysail.server.designer.demo.accounts.transaction.*;
-import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 
 
 /**
@@ -22,7 +18,7 @@ import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 public class AccountsTransactionsResource extends ListServerResource<Transaction> {
 
     private AccountsApplicationGen app;
-    private TransactionRepository oeRepo;
+   // private TransactionRepository oeRepo;
 
     public AccountsTransactionsResource() {
         super(AccountResourceGen.class);//, AccountsAccountResource.class);
@@ -32,12 +28,12 @@ public class AccountsTransactionsResource extends ListServerResource<Transaction
     @Override
     protected void doInit() {
         app = (AccountsApplication) getApplication();
-        oeRepo = (TransactionRepository) app.getRepository(Transaction.class);
+        //oeRepo = (TransactionRepository) app.getRepository(Transaction.class);
     }
 
     @Override
     public List<Transaction> getEntity() {
-        return (List<Transaction>) oeRepo.execute(Transaction.class, "select * from " + DbClassName.of(Transaction.class) + " where #"+getAttribute("id")+" in IN(folders)");
+        return Collections.emptyList();//(List<Transaction>) oeRepo.execute(Transaction.class, "select * from " + DbClassName.of(Transaction.class) + " where #"+getAttribute("id")+" in IN(folders)");
     }
 
     @Override

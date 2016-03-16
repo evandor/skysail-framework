@@ -19,7 +19,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ValueObject implements Identifiable {
+public class DbValueObject implements Identifiable {
 
     private String id;
     
@@ -34,6 +34,6 @@ public class ValueObject implements Identifiable {
 
     @Relation
     @JsonManagedReference
-    private List<ValueObjectElement> elements = new ArrayList<>();
+    private List<DbValueObjectElement> elements = new ArrayList<>();
     
 }

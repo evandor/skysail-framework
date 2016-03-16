@@ -13,6 +13,9 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
+/**
+ * generated from application.stg
+ */
 public class $application.name$ApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";

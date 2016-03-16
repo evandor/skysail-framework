@@ -7,36 +7,36 @@ import io.skysail.server.app.designer.DesignerApplication;
 import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.application.resources.ApplicationsResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.app.designer.valueobjects.ValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObject;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
-public class PostValueObjectsResource extends PostEntityServerResource<ValueObject> {
+public class PostValueObjectsResource extends PostEntityServerResource<DbValueObject> {
 
     private DesignerApplication app;
     private DesignerRepository repo;
 
     public PostValueObjectsResource() {
-        addToContext(ResourceContextId.LINK_TITLE, "Create new ValueObject");
+        addToContext(ResourceContextId.LINK_TITLE, "Create new DbValueObject");
     }
 
     @Override
     protected void doInit() {
         super.doInit();
         app = (DesignerApplication) getApplication();
-        repo = (DesignerRepository) app.getRepository(ValueObject.class);
+        repo = (DesignerRepository) app.getRepository(DbValueObject.class);
     }
 
     @Override
-    public ValueObject createEntityTemplate() {
-        return new ValueObject();
+    public DbValueObject createEntityTemplate() {
+        return new DbValueObject();
     }
 
     @Override
-    public void addEntity(ValueObject valueObject) {
+    public void addEntity(DbValueObject valueObject) {
         DbApplication dbApplication = (DbApplication) repo.findOne(getAttribute("id"));
         valueObject.setDbApplication(dbApplication);
 
-        Optional<ValueObject> existingValueObjectWithSameName = dbApplication.getValueObjects().stream()
+        Optional<DbValueObject> existingValueObjectWithSameName = dbApplication.getValueObjects().stream()
                 .filter(e -> e.getName().equals(valueObject.getName())).findFirst();
         if (existingValueObjectWithSameName.isPresent()) {
             throw new IllegalStateException("entity with same name already exists");

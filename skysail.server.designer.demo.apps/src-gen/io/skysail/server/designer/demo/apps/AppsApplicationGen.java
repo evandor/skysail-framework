@@ -44,6 +44,13 @@ public class AppsApplicationGen extends SkysailApplication implements Applicatio
         router.attach(new RouteBuilder("/DemoApplications/{id}/", io.skysail.server.designer.demo.apps.demoapplication.resources.PutDemoApplicationResourceGen.class));
         router.attach(new RouteBuilder("/DemoApplications", io.skysail.server.designer.demo.apps.demoapplication.resources.DemoApplicationsResourceGen.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.demo.apps.demoapplication.resources.DemoApplicationsResourceGen.class));
+        router.attach(new RouteBuilder("/DemoApplications/{id}/DemoValueObjects", io.skysail.server.designer.demo.apps.demoapplication.DemoApplicationsDemoValueObjectsResource.class));
+        router.attach(new RouteBuilder("/DemoApplications/{id}/DemoValueObjects/", io.skysail.server.designer.demo.apps.demoapplication.PostDemoApplicationToNewDemoValueObjectRelationResource.class));
+        router.attach(new RouteBuilder("/DemoApplications/{id}/DemoValueObjects/{targetId}", io.skysail.server.designer.demo.apps.demoapplication.DemoApplicationsDemoValueObjectResource.class));
+        router.attach(new RouteBuilder("/DemoValueObjects/{id}", io.skysail.server.designer.demo.apps.demovalueobject.resources.DemoValueObjectResourceGen.class));
+        router.attach(new RouteBuilder("/DemoValueObjects/", io.skysail.server.designer.demo.apps.demovalueobject.resources.PostDemoValueObjectResourceGen.class));
+        router.attach(new RouteBuilder("/DemoValueObjects/{id}/", io.skysail.server.designer.demo.apps.demovalueobject.resources.PutDemoValueObjectResourceGen.class));
+        router.attach(new RouteBuilder("/DemoValueObjects", io.skysail.server.designer.demo.apps.demovalueobject.resources.DemoValueObjectsResourceGen.class));
 
     }
 

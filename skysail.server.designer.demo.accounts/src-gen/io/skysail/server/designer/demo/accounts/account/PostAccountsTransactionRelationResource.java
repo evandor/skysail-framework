@@ -1,17 +1,13 @@
 package io.skysail.server.designer.demo.accounts.account;
 
+import java.util.Collections;
 import java.util.List;
 
+import io.skysail.server.designer.demo.accounts.AccountRepository;
+import io.skysail.server.designer.demo.accounts.AccountsApplicationGen;
+import io.skysail.server.designer.demo.accounts.transaction.Transaction;
 import io.skysail.server.queryfilter.Filter;
-import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.PostRelationResource;
-
-import io.skysail.server.designer.demo.accounts.*;
-
-import io.skysail.server.designer.demo.accounts.account.*;
-import io.skysail.server.designer.demo.accounts.account.resources.*;
-import io.skysail.server.designer.demo.accounts.transaction.*;
-import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 
 
 /**
@@ -20,7 +16,7 @@ import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 public class PostAccountsTransactionRelationResource extends PostRelationResource<io.skysail.server.designer.demo.accounts.account.Account, io.skysail.server.designer.demo.accounts.transaction.Transaction> {
 
     private AccountsApplicationGen app;
-    private TransactionRepository TransactionRepo;
+    //private TransactionRepository TransactionRepo;
     private AccountRepository AccountRepo;
 
     public PostAccountsTransactionRelationResource() {
@@ -30,22 +26,22 @@ public class PostAccountsTransactionRelationResource extends PostRelationResourc
     @Override
     protected void doInit() {
         app = (AccountsApplicationGen) getApplication();
-        TransactionRepo = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class);
+        //TransactionRepo = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class);
         //userRepo = (UserRepository) app.getRepository(io.skysail.server.app.oEService.User.class);
     }
 
     @Override
     public List<Transaction> getEntity() {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), TransactionRepo.count(filter));
-        return TransactionRepo.find(filter, pagination);
+        //Pagination pagination = new Pagination(getRequest(), getResponse(), TransactionRepo.count(filter));
+        return Collections.emptyList();//TransactionRepo.find(filter, pagination);
     }
 
     @Override
     protected List<Transaction> getRelationTargets(String selectedValues) {
         Filter filter = new Filter(getRequest());
-        Pagination pagination = new Pagination(getRequest(), getResponse(), TransactionRepo.count(filter));
-        return TransactionRepo.find(filter, pagination);//.stream().filter(predicate);
+        //Pagination pagination = new Pagination(getRequest(), getResponse(), TransactionRepo.count(filter));
+        return Collections.emptyList();//TransactionRepo.find(filter, pagination);//.stream().filter(predicate);
     }
 
     @Override
@@ -53,7 +49,7 @@ public class PostAccountsTransactionRelationResource extends PostRelationResourc
         String id = getAttribute("id");
         io.skysail.server.designer.demo.accounts.account.Account theUser = AccountRepo.findOne(id);
         entities.stream().forEach(e -> addIfNotPresentYet(theUser, e));
-        TransactionRepo.save(theUser, getApplication().getApplicationModel());
+       // TransactionRepo.save(theUser, getApplication().getApplicationModel());
     }
 
     private void addIfNotPresentYet(io.skysail.server.designer.demo.accounts.account.Account theUser, Transaction e) {

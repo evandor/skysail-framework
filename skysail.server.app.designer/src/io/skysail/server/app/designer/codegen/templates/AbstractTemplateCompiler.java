@@ -47,7 +47,7 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
         String name = compiledCode.getClassName();
         String routePath = getRoutePath();
         if (routePath != null) {
-            sec.getRoutes().add(new RouteModel(getRoutePath(), name));
+            sec.getRoutes().add(new RouteModel(getRoutePath(), compiledCode.getSimpleName()));
         }
         getCodes().put(name, compiledCode);
         return name;

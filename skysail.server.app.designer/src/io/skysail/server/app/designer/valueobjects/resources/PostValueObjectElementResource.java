@@ -9,12 +9,12 @@ import io.skysail.server.app.designer.application.DbApplication;
 import io.skysail.server.app.designer.fields.FieldRole;
 import io.skysail.server.app.designer.fields.resources.PostFieldResource;
 import io.skysail.server.app.designer.repo.DesignerRepository;
-import io.skysail.server.app.designer.valueobjects.ValueObject;
-import io.skysail.server.app.designer.valueobjects.ValueObjectElement;
+import io.skysail.server.app.designer.valueobjects.DbValueObject;
+import io.skysail.server.app.designer.valueobjects.DbValueObjectElement;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 import lombok.Getter;
 
-public class PostValueObjectElementResource extends PostEntityServerResource<ValueObjectElement> {
+public class PostValueObjectElementResource extends PostEntityServerResource<DbValueObjectElement> {
 
     
     private DesignerApplication app;
@@ -34,13 +34,13 @@ public class PostValueObjectElementResource extends PostEntityServerResource<Val
     }
 
     @Override
-    public ValueObjectElement createEntityTemplate() {
-        return new ValueObjectElement();
+    public DbValueObjectElement createEntityTemplate() {
+        return new DbValueObjectElement();
     }
     
     @Override
-    public void addEntity(ValueObjectElement element) {
-        ValueObject valueObject = repo.getById(ValueObject.class, getAttribute("id"));
+    public void addEntity(DbValueObjectElement element) {
+        DbValueObject valueObject = repo.getById(DbValueObject.class, getAttribute("id"));
         valueObject.getElements().add(element);
         app.getRepository().update(valueObject, app.getApplicationModel());
     }

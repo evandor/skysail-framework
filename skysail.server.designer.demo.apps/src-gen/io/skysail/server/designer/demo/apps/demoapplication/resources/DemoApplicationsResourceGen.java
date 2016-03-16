@@ -12,6 +12,8 @@ import io.skysail.server.designer.demo.apps.*;
 
 import io.skysail.server.designer.demo.apps.demoapplication.*;
 import io.skysail.server.designer.demo.apps.demoapplication.resources.*;
+import io.skysail.server.designer.demo.apps.demovalueobject.*;
+import io.skysail.server.designer.demo.apps.demovalueobject.resources.*;
 
 
 /**

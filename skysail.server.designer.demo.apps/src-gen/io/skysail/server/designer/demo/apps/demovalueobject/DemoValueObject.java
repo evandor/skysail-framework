@@ -1,4 +1,4 @@
-package io.skysail.server.designer.demo.apps.demoapplication;
+package io.skysail.server.designer.demo.apps.demovalueobject;
 
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings("serial")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
-public class DemoApplication implements Identifiable, Serializable {
+public class DemoValueObject implements Identifiable, Serializable {
 
     @Id
     private String id;
@@ -42,7 +42,6 @@ public class DemoApplication implements Identifiable, Serializable {
     // --- fields ---
 
     @Field(inputType = InputType.TEXT, htmlPolicy = HtmlPolicy.NO_HTML)
-    @ListView(link = DemoValueObjectsResourceGen.class)
     private String name;
 
     public void setName(String value) {
@@ -55,19 +54,6 @@ public class DemoApplication implements Identifiable, Serializable {
 
 
     // --- relations ---
-
-    @Relation
-    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
-    private List<io.skysail.server.designer.demo.apps.demovalueobject.DemoValueObject> demoValueObjects = new ArrayList<>();
-
-    public void setDemoValueObjects(List<io.skysail.server.designer.demo.apps.demovalueobject.DemoValueObject> value) {
-        this.demoValueObjects = value;
-    }
-
-    public List<io.skysail.server.designer.demo.apps.demovalueobject.DemoValueObject> getDemoValueObjects() {
-        return demoValueObjects;
-    }
-
 
 
 

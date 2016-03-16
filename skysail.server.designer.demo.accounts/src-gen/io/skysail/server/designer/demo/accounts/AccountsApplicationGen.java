@@ -51,7 +51,6 @@ public class AccountsApplicationGen extends SkysailApplication implements Applic
         router.attach(new RouteBuilder("/Transactions/", io.skysail.server.designer.demo.accounts.transaction.resources.PostTransactionResourceGen.class));
         router.attach(new RouteBuilder("/Transactions/{id}/", io.skysail.server.designer.demo.accounts.transaction.resources.PutTransactionResourceGen.class));
         router.attach(new RouteBuilder("/Transactions", io.skysail.server.designer.demo.accounts.transaction.resources.TransactionsResourceGen.class));
-        router.attach(new RouteBuilder("", io.skysail.server.designer.demo.accounts.transaction.resources.TransactionsResourceGen.class));
 
     }
 

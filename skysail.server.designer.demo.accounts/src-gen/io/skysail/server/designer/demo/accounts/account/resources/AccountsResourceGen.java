@@ -49,6 +49,6 @@ public class AccountsResourceGen extends ListServerResource<io.skysail.server.de
 
     @Override
     public List<Link> getLinks() {
-              return super.getLinks(PostAccountResourceGen.class,AccountsResourceGen.class,TransactionsResourceGen.class);
+              return super.getLinks(PostAccountResourceGen.class,AccountsResourceGen.class);
     }
 }

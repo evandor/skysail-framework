@@ -5,11 +5,15 @@ import java.util.List;
 import io.skysail.api.links.Link;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.db.DbClassName;
-import io.skysail.server.designer.demo.organization.OrganizationApplication;
-import io.skysail.server.designer.demo.organization.OrganizationApplicationGen;
-import io.skysail.server.designer.demo.organization.UserRepository;
-import io.skysail.server.designer.demo.organization.user.User;
+import io.skysail.server.queryfilter.Filter;
+import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
+import io.skysail.server.designer.demo.organization.*;
+
+import io.skysail.server.designer.demo.organization.department.*;
+import io.skysail.server.designer.demo.organization.department.resources.*;
+import io.skysail.server.designer.demo.organization.user.*;
+import io.skysail.server.designer.demo.organization.user.resources.*;
 
 
 /**
@@ -21,7 +25,7 @@ public class DepartmentsUsersResource extends ListServerResource<User> {
     private UserRepository oeRepo;
 
     public DepartmentsUsersResource() {
-        super(DepartmentsUserResource.class);//, DepartmentsDepartmentResource.class);
+        super(DepartmentResourceGen.class);//, DepartmentsDepartmentResource.class);
         addToContext(ResourceContextId.LINK_TITLE, "["+this.getClass().getSimpleName()+"]");
     }
 

@@ -26,6 +26,7 @@ import io.skysail.server.designer.demo.organization.user.resources.UserResourceG
 import io.skysail.server.designer.demo.organization.user.resources.UsersResourceGen;
 import io.skysail.server.menus.MenuItemProvider;
 
+
 /**
  * generated from application.stg
  */

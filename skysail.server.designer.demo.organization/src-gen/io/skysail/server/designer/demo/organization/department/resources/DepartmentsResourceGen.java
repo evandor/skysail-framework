@@ -1,19 +1,15 @@
 package io.skysail.server.designer.demo.organization.department.resources;
 
+import java.util.List;
+
+import io.skysail.api.links.Link;
+import io.skysail.server.ResourceContextId;
+import io.skysail.server.designer.demo.organization.DepartmentRepository;
+import io.skysail.server.designer.demo.organization.OrganizationApplication;
+import io.skysail.server.designer.demo.organization.user.resources.UsersResourceGen;
 import io.skysail.server.queryfilter.Filter;
 import io.skysail.server.queryfilter.pagination.Pagination;
 import io.skysail.server.restlet.resources.ListServerResource;
-import io.skysail.api.links.Link;
-
-import java.util.*;
-
-import io.skysail.server.ResourceContextId;
-import io.skysail.server.designer.demo.organization.*;
-
-import io.skysail.server.designer.demo.organization.department.*;
-import io.skysail.server.designer.demo.organization.department.resources.*;
-import io.skysail.server.designer.demo.organization.user.*;
-import io.skysail.server.designer.demo.organization.user.resources.*;
 
 
 /**

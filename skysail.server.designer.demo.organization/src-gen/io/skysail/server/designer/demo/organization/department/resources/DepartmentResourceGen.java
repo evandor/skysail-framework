@@ -5,13 +5,11 @@ import java.util.List;
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
 import io.skysail.server.ResourceContextId;
+import io.skysail.server.designer.demo.organization.DepartmentRepository;
+import io.skysail.server.designer.demo.organization.OrganizationApplication;
+import io.skysail.server.designer.demo.organization.department.DepartmentsUsersResource;
+import io.skysail.server.designer.demo.organization.department.PostDepartmentToNewUserRelationResource;
 import io.skysail.server.restlet.resources.EntityServerResource;
-import io.skysail.server.designer.demo.organization.*;
-
-import io.skysail.server.designer.demo.organization.department.*;
-import io.skysail.server.designer.demo.organization.department.resources.*;
-import io.skysail.server.designer.demo.organization.user.*;
-import io.skysail.server.designer.demo.organization.user.resources.*;
 
 
 /**
@@ -49,7 +47,7 @@ public class DepartmentResourceGen extends EntityServerResource<io.skysail.serve
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutDepartmentResourceGen.class,PostUserResourceGen.class,UsersResourceGen.class);
+        return super.getLinks(PutDepartmentResourceGen.class,PostDepartmentToNewUserRelationResource.class,DepartmentsUsersResource.class);
     }
 
     @Override

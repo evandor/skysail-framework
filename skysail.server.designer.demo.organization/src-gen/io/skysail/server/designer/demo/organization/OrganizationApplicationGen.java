@@ -1,30 +1,23 @@
 package io.skysail.server.designer.demo.organization;
 
-import java.util.List;
+import java.util.*;
 
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.*;
 import org.osgi.service.event.EventAdmin;
 
-import de.twenty11.skysail.server.core.restlet.RouteBuilder;
+import io.skysail.server.app.*;
+import de.twenty11.skysail.server.core.restlet.*;
 import io.skysail.domain.Identifiable;
 import io.skysail.domain.core.Repositories;
-import io.skysail.server.app.ApiVersion;
-import io.skysail.server.app.ApplicationProvider;
-import io.skysail.server.app.SkysailApplication;
-import io.skysail.server.designer.demo.organization.department.DepartmentsUserResource;
-import io.skysail.server.designer.demo.organization.department.DepartmentsUsersResource;
-import io.skysail.server.designer.demo.organization.department.PostDepartmentToNewUserRelationResource;
-import io.skysail.server.designer.demo.organization.department.resources.DepartmentResourceGen;
-import io.skysail.server.designer.demo.organization.department.resources.DepartmentsResourceGen;
-import io.skysail.server.designer.demo.organization.department.resources.PostDepartmentResourceGen;
-import io.skysail.server.designer.demo.organization.department.resources.PutDepartmentResourceGen;
-import io.skysail.server.designer.demo.organization.user.resources.PostUserResourceGen;
-import io.skysail.server.designer.demo.organization.user.resources.PutUserResourceGen;
-import io.skysail.server.designer.demo.organization.user.resources.UserResourceGen;
-import io.skysail.server.designer.demo.organization.user.resources.UsersResourceGen;
+import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
+
+import io.skysail.server.designer.demo.organization.*;
+
+import io.skysail.server.designer.demo.organization.department.*;
+import io.skysail.server.designer.demo.organization.department.resources.*;
+import io.skysail.server.designer.demo.organization.user.*;
+import io.skysail.server.designer.demo.organization.user.resources.*;
 
 
 /**

@@ -43,8 +43,8 @@ public class UserResourceGen extends EntityServerResource<io.skysail.server.desi
     }
 
     @Override
-    public io.skysail.server.designer.demo.organization.user.User getEntity() {
-        return (io.skysail.server.designer.demo.organization.user.User)app.getRepository().findOne(id);
+    public User getEntity() {
+        return (User)app.getRepository().findOne(id);
     }
 
 	@Override

@@ -7,7 +7,9 @@ import java.util.Set;
 import io.skysail.domain.core.EntityModel;
 import io.skysail.server.app.designer.entities.DbEntity;
 import io.skysail.server.app.designer.fields.DbEntityField;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Getter
 @Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DesignerEntityModel extends EntityModel {
 
     // links to other entities

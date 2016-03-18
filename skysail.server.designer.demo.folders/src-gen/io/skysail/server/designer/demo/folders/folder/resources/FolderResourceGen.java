@@ -41,13 +41,13 @@ public class FolderResourceGen extends EntityServerResource<io.skysail.server.de
     }
 
     @Override
-    public io.skysail.server.designer.demo.folders.folder.Folder getEntity() {
-        return (io.skysail.server.designer.demo.folders.folder.Folder)app.getRepository().findOne(id);
+    public Folder getEntity() {
+        return (Folder)app.getRepository().findOne(id);
     }
 
 	@Override
     public List<Link> getLinks() {
-        return super.getLinks(PutFolderResourceGen.class,PostFolderResourceGen.class,FoldersResourceGen.class);
+        return super.getLinks(PutFolderResourceGen.class,PostFolderToNewFolderRelationResource.class,FoldersFoldersResource.class);
     }
 
     @Override

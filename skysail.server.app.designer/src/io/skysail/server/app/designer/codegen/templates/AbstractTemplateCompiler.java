@@ -35,6 +35,7 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
         // default behavior, do nothing
     }
 
+    @Override
     public final String process() {
         String templateName = getTemplateName();
         if (templateName == null) {
@@ -49,7 +50,7 @@ public abstract class AbstractTemplateCompiler implements TemplateCompiler {
         if (routePath != null) {
             sec.getRoutes().add(new RouteModel(getRoutePath(), compiledCode.getSimpleName()));
         }
-        getCodes().put(name, compiledCode);
+        codes.put(name, compiledCode);
         return name;
     }
 }

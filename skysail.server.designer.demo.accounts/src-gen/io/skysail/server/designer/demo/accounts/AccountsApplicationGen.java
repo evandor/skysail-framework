@@ -12,6 +12,17 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
+import io.skysail.server.designer.demo.accounts.*;
+
+import io.skysail.server.designer.demo.accounts.account.*;
+import io.skysail.server.designer.demo.accounts.account.resources.*;
+import io.skysail.server.designer.demo.accounts.transaction.*;
+import io.skysail.server.designer.demo.accounts.transaction.resources.*;
+
+
+/**
+ * generated from application.stg
+ */
 public class AccountsApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
@@ -39,18 +50,18 @@ public class AccountsApplicationGen extends SkysailApplication implements Applic
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/Accounts/{id}", io.skysail.server.designer.demo.accounts.account.resources.AccountResourceGen.class));
-        router.attach(new RouteBuilder("/Accounts/", io.skysail.server.designer.demo.accounts.account.resources.PostAccountResourceGen.class));
-        router.attach(new RouteBuilder("/Accounts/{id}/", io.skysail.server.designer.demo.accounts.account.resources.PutAccountResourceGen.class));
-        router.attach(new RouteBuilder("/Accounts", io.skysail.server.designer.demo.accounts.account.resources.AccountsResourceGen.class));
+        router.attach(new RouteBuilder("/Accounts/{id}", AccountResourceGen.class));
+        router.attach(new RouteBuilder("/Accounts/", PostAccountResourceGen.class));
+        router.attach(new RouteBuilder("/Accounts/{id}/", PutAccountResourceGen.class));
+        router.attach(new RouteBuilder("/Accounts", AccountsResourceGen.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.demo.accounts.account.resources.AccountsResourceGen.class));
-        router.attach(new RouteBuilder("/Accounts/{id}/Transactions", io.skysail.server.designer.demo.accounts.account.AccountsTransactionsResource.class));
-        router.attach(new RouteBuilder("/Accounts/{id}/Transactions/", io.skysail.server.designer.demo.accounts.account.PostAccountToNewTransactionRelationResource.class));
-        router.attach(new RouteBuilder("/Accounts/{id}/Transactions/{targetId}", io.skysail.server.designer.demo.accounts.account.AccountsTransactionResource.class));
-        router.attach(new RouteBuilder("/Transactions/{id}", io.skysail.server.designer.demo.accounts.transaction.resources.TransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions/", io.skysail.server.designer.demo.accounts.transaction.resources.PostTransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions/{id}/", io.skysail.server.designer.demo.accounts.transaction.resources.PutTransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions", io.skysail.server.designer.demo.accounts.transaction.resources.TransactionsResourceGen.class));
+        router.attach(new RouteBuilder("/Accounts/{id}/Transactions", AccountsTransactionsResource.class));
+        router.attach(new RouteBuilder("/Accounts/{id}/Transactions/", PostAccountToNewTransactionRelationResource.class));
+        router.attach(new RouteBuilder("/Accounts/{id}/Transactions/{targetId}", AccountsTransactionResource.class));
+        router.attach(new RouteBuilder("/Transactions/{id}", TransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/", PostTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/{id}/", PutTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions", TransactionsResourceGen.class));
 
     }
 

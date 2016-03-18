@@ -41,8 +41,8 @@ public class TransactionResourceGen extends EntityServerResource<io.skysail.serv
     }
 
     @Override
-    public io.skysail.server.designer.demo.transactions.transaction.Transaction getEntity() {
-        return (io.skysail.server.designer.demo.transactions.transaction.Transaction)app.getRepository().findOne(id);
+    public Transaction getEntity() {
+        return (Transaction)app.getRepository().findOne(id);
     }
 
 	@Override

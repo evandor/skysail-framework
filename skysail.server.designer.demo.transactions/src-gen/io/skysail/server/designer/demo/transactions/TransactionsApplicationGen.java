@@ -12,6 +12,15 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.*;
 import io.skysail.server.menus.MenuItemProvider;
 
+import io.skysail.server.designer.demo.transactions.*;
+
+import io.skysail.server.designer.demo.transactions.transaction.*;
+import io.skysail.server.designer.demo.transactions.transaction.resources.*;
+
+
+/**
+ * generated from application.stg
+ */
 public class TransactionsApplicationGen extends SkysailApplication implements ApplicationProvider, MenuItemProvider {
 
     public static final String LIST_ID = "lid";
@@ -39,10 +48,10 @@ public class TransactionsApplicationGen extends SkysailApplication implements Ap
     @Override
     protected void attach() {
         super.attach();
-        router.attach(new RouteBuilder("/Transactions/{id}", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions/", io.skysail.server.designer.demo.transactions.transaction.resources.PostTransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions/{id}/", io.skysail.server.designer.demo.transactions.transaction.resources.PutTransactionResourceGen.class));
-        router.attach(new RouteBuilder("/Transactions", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/{id}", TransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/", PostTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions/{id}/", PutTransactionResourceGen.class));
+        router.attach(new RouteBuilder("/Transactions", TransactionsResourceGen.class));
         router.attach(new RouteBuilder("", io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen.class));
 
     }

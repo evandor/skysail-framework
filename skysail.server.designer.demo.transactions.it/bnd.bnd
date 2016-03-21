@@ -1,3 +1,6 @@
+
+Test-Cases: io.skysail.server.designer.demo.transactions.it.TransactionsCrudIntegrationTests
+
 -buildpath:  \
     osgi.core;version=5.0,\
     skysail.api;version=${skysail.api.version},\
@@ -8,6 +11,7 @@
     org.restlet;version=${restlet.version},\
     org.restlet.ext.raml;version=${restlet.version},\
     com.springsource.org.junit;version=4.11,\
+    skysail.server;version=${skysail.server.version},\
     skysail.server.designer.demo.transactions;version=latest
     
 Private-Package: io.skysail.server.designer.demo.transactions.it

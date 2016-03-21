@@ -1,8 +1,7 @@
 package io.skysail.server.designer.demo.transactions.it;
 
-import java.awt.PageAttributes.MediaType;
-
 import org.restlet.data.Form;
+import org.restlet.data.MediaType;
 import org.restlet.data.Method;
 import org.restlet.representation.Representation;
 
@@ -13,9 +12,9 @@ import io.skysail.server.designer.demo.transactions.transaction.Transaction;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ApplicationsBrowser extends ApplicationBrowser<ApplicationsBrowser, Transaction> {
+public class TransactionsBrowser extends ApplicationBrowser<TransactionsBrowser, Transaction> {
 
-    public ApplicationsBrowser(MediaType mediaType, int port) {
+    public TransactionsBrowser(MediaType mediaType, int port) {
         super(TransactionsApplication.APP_NAME, mediaType, port);
     }
 

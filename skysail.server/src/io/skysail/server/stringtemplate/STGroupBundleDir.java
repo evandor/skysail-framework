@@ -1,10 +1,15 @@
 package io.skysail.server.stringtemplate;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.SequenceInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Validate;
@@ -72,6 +77,10 @@ public class STGroupBundleDir extends STGroupDir {
         return loadFromUrl(prefix, fileName, getUrl(fileName));
     }
 
+    public CompiledST loadHtmlTemplateFile(String prefix, String fileName) {
+        return loadHtmlFromUrl(prefix, fileName, getUrl(fileName));
+    }
+
     public static void clearUsedTemplates() {
         usedTemplates.clear();
     }
@@ -106,6 +115,10 @@ public class STGroupBundleDir extends STGroupDir {
             } catch (Exception e) { // NOSONAR
             }
         } else {
+            CompiledST loadHtmlTemplateFile = loadHtmlTemplateFile("/", name + ".shtml");
+            if (loadHtmlTemplateFile != null) {
+                return loadHtmlTemplateFile;
+            }
             return loadTemplateFile("/", name + ".st"); // load t.st file // NOSONAR
         }
         if (root != null && "/".trim().length() != 0) {
@@ -122,6 +135,26 @@ public class STGroupBundleDir extends STGroupDir {
             log.info("found resource in {}: {}", bundleName, f.toString());
             usedTemplates.add(bundleName + ": " + f.toString());
         } catch (IOException ioe) {
+            log.trace("resource does not exist in {}: {}", bundleName, f.toString());
+            return null;
+        }
+        return loadTemplateFile(prefix, fileName, fs);
+    }
+    
+    private CompiledST loadHtmlFromUrl(String prefix, String fileName, URL f) {
+        ANTLRInputStream fs;
+        try {
+            Set<InputStream> streamSet = new LinkedHashSet<>();
+            streamSet.add(new ByteArrayInputStream("index(user, messages, converter, model) ::= <<".getBytes(StandardCharsets.UTF_8)));
+            streamSet.add(f.openStream());
+            streamSet.add(new ByteArrayInputStream(">>".getBytes(StandardCharsets.UTF_8)));
+            SequenceInputStream sequenceInputStream = new SequenceInputStream(new Vector(streamSet).elements());
+            
+            fs = new ANTLRInputStream(sequenceInputStream, encoding);
+            fs.name = fileName;
+            log.info("found resource in {}: {}", bundleName, f.toString());
+            usedTemplates.add(bundleName + ": " + f.toString());
+        } catch (IOException ioe) { 
             log.trace("resource does not exist in {}: {}", bundleName, f.toString());
             return null;
         }

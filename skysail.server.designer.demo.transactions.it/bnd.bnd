@@ -15,3 +15,22 @@ Test-Cases: io.skysail.server.designer.demo.transactions.it.TransactionsCrudInte
     skysail.server.designer.demo.transactions;version=latest
     
 Private-Package: io.skysail.server.designer.demo.transactions.it
+
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability}
+
+-resolve.effective: active;skip:="osgi.service"
+-runee: JavaSE-1.8
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runproperties: ${runproperties}
+-runrepos: ${runrepos}
+-runsystemcapabilities: ${native_capability}
+-runsystempackages: ${runsystempackages}
+-runtrace: false
+-runvm: -ea
+
+
+
+-runbundles: \
+    ${serverbundles-1.0.0}

@@ -29,4 +29,5 @@ skysail.server.polymer/_polymer/.bowerrc
 /skysail.server.app.folders/
 /skysail.server.app.statusMessages/
 bin/
-bin_test/
+bin_test//com.acme.prime.upper.application/
+/com.acme.prime.upper.application/

@@ -1,6 +1,7 @@
 package io.skysail.server.designer.demo.transactions.it;
 
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
@@ -20,14 +21,21 @@ public class TransactionsCrudIntegrationTests extends BrowserTests<TransactionsB
     public void setUp() {
         browser = new TransactionsBrowser(MediaType.APPLICATION_JSON, determinePort());
         browser.setUser("admin");
-        entity = browser.createRandomApplication();
+        entity = browser.createRandomTransaction();
     }
 
     @Test  // create and read
     public void creating_new_application_will_persist_it() throws IOException {
         browser.create(entity);
-        String html = browser.getApplications().getText();
-        assertThat(html, containsString(entity.getId()));
+        String html = browser.getTransactions().getText();
+        assertThat(html, containsString(entity.getDescription()));
+    }
+
+    @Test // delete
+    public void new_application_can_be_deleted() throws IOException {
+        browser.create(entity);
+        browser.deleteTransaction(browser.getId());
+        assertThat(browser.getTransactions().getText(), not(containsString(entity.getDescription())));
     }
 
 }

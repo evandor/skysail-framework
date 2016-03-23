@@ -1,0 +1,1 @@
+//tasks.build.dependsOn(':skysail.server.queryfilter:build')

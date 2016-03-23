@@ -1,0 +1,756 @@
+:skysail.api:clean
+:skysail.api.features:clean
+:skysail.api.search:clean
+:skysail.api.text:clean
+:skysail.api.um:clean
+:skysail.client.testsupport:clean
+:skysail.domain:clean
+:skysail.ms.um.simple:clean
+:skysail.product.designer:clean
+:skysail.product.todos:clearReports
+:skysail.product.todos:clean
+:skysail.product.website:clean
+:skysail.server:clean
+:skysail.server.app.bookmarks:clean
+:skysail.server.app.bookmarks.it:clean
+:skysail.server.app.bpmnmodeler:clean
+:skysail.server.app.dbviewer:clean
+:skysail.server.app.designer:clean
+:skysail.server.app.designer.it:clean
+:skysail.server.app.grapesjs:clean
+:skysail.server.app.loop:clean
+:skysail.server.app.notes:clean
+:skysail.server.app.oEService:clean
+:skysail.server.app.rss:clean
+:skysail.server.app.snap:clean
+:skysail.server.app.svgedit:clean
+:skysail.server.app.timetables:clean
+:skysail.server.app.todos:clearReports
+:skysail.server.app.todos:clean
+:skysail.server.app.todos.it:clean
+:skysail.server.app.tutorial.model2rest:clean
+:skysail.server.app.twitter4j:clean
+:skysail.server.app.um.db:clean
+:skysail.server.app.whatAbout:clean
+:skysail.server.app.wiki:clean
+:skysail.server.codegen:clean
+:skysail.server.codegen.test:clean
+:skysail.server.converter:clean
+:skysail.server.db:clean
+:skysail.server.designer.demo.accounts:clean
+:skysail.server.designer.demo.folders:clean
+:skysail.server.designer.demo.organization:clean
+:skysail.server.designer.demo.transactions:clean
+:skysail.server.designer.demo.transactions.it:clean
+:skysail.server.ext.apollo:clean
+:skysail.server.ext.browser:clean
+:skysail.server.ext.initconfig:clean
+:skysail.server.ext.oauth2:clean
+:skysail.server.ext.rome:clean
+:skysail.server.ext.sse:clean
+:skysail.server.http:clean
+:skysail.server.http.javamelody:clean
+:skysail.server.mgt:clean
+:skysail.server.osgi:clean
+:skysail.server.performance.etm:clean
+:skysail.server.plugins:clean
+:skysail.server.polymer:clean
+:skysail.server.purecss.webresource:clean
+:skysail.server.queryfilter:clean
+:skysail.server.static:clean
+:skysail.server.testsupport:clean
+:skysail.server.text.asciidoc:clean
+:skysail.server.text.markdown:clean
+:skysail.server.text.store.bundleresource:clean
+:skysail.server.text.store.db:clean
+:skysail.server.text.store.git:clean
+:skysail.server.uikit.webresource:clean
+:skysail.server.um:clean
+:skysail.server.um.simple:clean
+:skysail.server.um.simple.it:clean
+:skysail.server.w2ui.webresource:clean
+:skysail.api:compileJava
+:skysail.api:processResources
+:skysail.api:classes
+:skysail.api:jar
+:skysail.api:assemble
+:skysail.api:compileTestJava
+:skysail.api:processTestResources
+:skysail.api:testClasses
+:skysail.api:test
+:skysail.api:check SKIPPED
+:skysail.api:build
+:skysail.api.features:compileJava
+:skysail.api.features:processResources
+:skysail.api.features:classes
+:skysail.api.features:jar
+:skysail.api.features:assemble
+:skysail.api.features:compileTestJava
+:skysail.api.features:processTestResources UP-TO-DATE
+:skysail.api.features:testClasses
+:skysail.api.features:test
+:skysail.api.features:check SKIPPED
+:skysail.api.features:build
+:skysail.api.search:compileJava
+:skysail.api.search:processResources UP-TO-DATE
+:skysail.api.search:classes
+:skysail.api.search:jar
+:skysail.api.search:assemble
+:skysail.api.search:compileTestJava UP-TO-DATE
+:skysail.api.search:processTestResources UP-TO-DATE
+:skysail.api.search:testClasses UP-TO-DATE
+:skysail.api.search:test UP-TO-DATE
+:skysail.api.search:check SKIPPED
+:skysail.api.search:build
+:skysail.api.text:compileJava
+:skysail.api.text:processResources
+:skysail.api.text:classes
+:skysail.api.text:jar
+:skysail.api.text:assemble
+:skysail.api.text:compileTestJava
+:skysail.api.text:processTestResources UP-TO-DATE
+:skysail.api.text:testClasses
+:skysail.api.text:test
+:skysail.api.text:check SKIPPED
+:skysail.api.text:build
+:skysail.api.um:compileJava
+:skysail.api.um:processResources
+:skysail.api.um:classes
+:skysail.api.um:jar
+:skysail.api.um:assemble
+:skysail.api.um:compileTestJava UP-TO-DATE
+:skysail.api.um:processTestResources UP-TO-DATE
+:skysail.api.um:testClasses UP-TO-DATE
+:skysail.api.um:test UP-TO-DATE
+:skysail.api.um:check SKIPPED
+:skysail.api.um:build
+:skysail.domain:compileJava
+:skysail.domain:processResources
+:skysail.domain:classes
+:skysail.domain:jar
+:skysail.domain:assemble
+:skysail.server:compileJava
+:skysail.server:processResources
+:skysail.server:classes
+:skysail.server:jar
+:skysail.server:assemble
+:skysail.client.testsupport:compileJava
+:skysail.client.testsupport:processResources
+:skysail.client.testsupport:classes
+:skysail.client.testsupport:jar
+:skysail.client.testsupport:assemble
+:skysail.client.testsupport:compileTestJava
+:skysail.client.testsupport:processTestResources UP-TO-DATE
+:skysail.client.testsupport:testClasses
+:skysail.client.testsupport:test
+:skysail.client.testsupport:check SKIPPED
+:skysail.client.testsupport:build
+:skysail.domain:compileTestJava
+:skysail.domain:processTestResources UP-TO-DATE
+:skysail.domain:testClasses
+:skysail.domain:test
+:skysail.domain:check SKIPPED
+:skysail.domain:build
+:skysail.ms.um.simple:compileJava UP-TO-DATE
+:skysail.ms.um.simple:processResources UP-TO-DATE
+:skysail.ms.um.simple:classes UP-TO-DATE
+:skysail.ms.um.simple:jar
+Warning: The JAR is empty: The instructions for the JAR named skysail.ms.um.simple did not cause any content to be included, this is likely wrong
+:skysail.ms.um.simple:assemble
+:skysail.ms.um.simple:compileTestJava UP-TO-DATE
+:skysail.ms.um.simple:processTestResources UP-TO-DATE
+:skysail.ms.um.simple:testClasses UP-TO-DATE
+:skysail.ms.um.simple:test UP-TO-DATE
+:skysail.ms.um.simple:check SKIPPED
+:skysail.ms.um.simple:build
+:skysail.server.app.bookmarks:compileJava
+:skysail.server.app.bookmarks:processResources
+:skysail.server.app.bookmarks:classes
+:skysail.server.app.bookmarks:jar
+Warning: Unused Private-Package instructions, no such package(s) on the class path: [io.skysail.server.app.bookmarks.app]
+:skysail.server.app.bookmarks:assemble
+:skysail.server.codegen:compileJava
+:skysail.server.codegen:processResources
+:skysail.server.codegen:classes
+:skysail.server.codegen:jar
+Warning: Unused Private-Package instructions, no such package(s) on the class path: [io.skysail.server.ext.apt.model.entities, io.skysail.server.ext.apt.model.types]
+Warning: Unused Import-Package instructions: [com.sun.tools.javac.code.*] 
+:skysail.server.codegen:assemble
+:skysail.server.codegen:compileTestJava
+:skysail.server.codegen:processTestResources UP-TO-DATE
+:skysail.server.codegen:testClasses
+:skysail.server.codegen:test
+:skysail.server.codegen:check SKIPPED
+:skysail.server.codegen:build
+:skysail.server.app.dbviewer:runApt
+08:12:53.924 [Daemon worker Thread 13] INFO  i.s.domain.core.ApplicationModel - adding entity model with id 'io.skysail.server.app.dbviewer.Connection'
+STGroupFile(repository/Repository.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg
+Repository.getInstanceOf(template)
+Repository.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg = [/template]
+Repository.lookupTemplate(/template) found
+entity: null
+STGroupFile(listResource/ListResource.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg
+ListResource.getInstanceOf(template)
+ListResource.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg = [/template]
+ListResource.lookupTemplate(/template) found
+entity: null
+STGroupFile(postResource/PostResource2.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/postResource/PostResource2.stg
+PostResource2.getInstanceOf(template)
+PostResource2.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/postResource/PostResource2.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/postResource/PostResource2.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/postResource/PostResource2.stg = [/template]
+PostResource2.lookupTemplate(/template) found
+addEntity: null
+package: null
+imports: null
+appName: null
+name: null
+entity: null
+appPkg: null
+STGroupFile(putResource/PutResource.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg
+PutResource.getInstanceOf(template)
+PutResource.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg = [/template]
+PutResource.lookupTemplate(/template) found
+entity: null
+:skysail.server.app.dbviewer:compileJava
+:skysail.server.app.dbviewer:processResources UP-TO-DATE
+:skysail.server.app.dbviewer:classes
+:skysail.server.app.dbviewer:jar
+:skysail.server.app.dbviewer:assemble
+:skysail.server.testsupport:compileJava
+:skysail.server.testsupport:processResources
+:skysail.server.testsupport:classes
+:skysail.server.testsupport:jar
+:skysail.server.testsupport:assemble
+:skysail.server.app.designer:compileJava
+:skysail.server.app.designer:processResources
+:skysail.server.app.designer:classes
+:skysail.server.app.designer:jar
+Warning: Unused Private-Package instructions, no such package(s) on the class path: [io.skysail.server.app.designer.application.validation]
+Warning: Export io.skysail.server.app.designer.fields.resources.url,  has 1,  private references [io.skysail.server.app.designer.fields.resources], 
+Warning: Export io.skysail.server.app.designer.repo,  has 1,  private references [io.skysail.server.app.designer.valueobjects], 
+Warning: Export io.skysail.server.app.designer.application,  has 1,  private references [io.skysail.server.app.designer.valueobjects], 
+Warning: Export io.skysail.server.app.designer.fields,  has 2,  private references [io.skysail.server.app.designer.fields.roles, io.skysail.server.app.designer.fields.provider], 
+Warning: Export io.skysail.server.app.designer,  has 2,  private references [io.skysail.server.app.designer.codegen.templates, io.skysail.server.app.designer.codegen], 
+:skysail.server.app.designer:assemble
+:skysail.server.app.svgedit:compileJava
+:skysail.server.app.svgedit:processResources
+:skysail.server.app.svgedit:classes
+:skysail.server.app.svgedit:jar
+:skysail.server.app.svgedit:assemble
+:skysail.server.ext.initconfig:compileJava
+:skysail.server.ext.initconfig:processResources UP-TO-DATE
+:skysail.server.ext.initconfig:classes
+:skysail.server.ext.initconfig:jar
+:skysail.server.ext.initconfig:assemble
+:skysail.server.ext.sse:compileJava
+:skysail.server.ext.sse:processResources UP-TO-DATE
+:skysail.server.ext.sse:classes
+:skysail.server.ext.sse:jar
+:skysail.server.ext.sse:assemble
+:skysail.server.osgi:compileJava
+:skysail.server.osgi:processResources
+:skysail.server.osgi:classes
+:skysail.server.osgi:jar
+:skysail.server.osgi:assemble
+:skysail.server.performance.etm:compileJava
+:skysail.server.performance.etm:processResources
+:skysail.server.performance.etm:classes
+:skysail.server.performance.etm:jar
+:skysail.server.performance.etm:assemble
+:skysail.server.plugins:compileJava
+:skysail.server.plugins:processResources UP-TO-DATE
+:skysail.server.plugins:classes
+:skysail.server.plugins:jar
+:skysail.server.plugins:assemble
+:skysail.server.polymer:compileJava
+:skysail.server.polymer:processResources UP-TO-DATE
+:skysail.server.polymer:classes
+:skysail.server.polymer:jar
+:skysail.server.polymer:assemble
+:skysail.server.purecss.webresource:compileJava
+:skysail.server.purecss.webresource:processResources UP-TO-DATE
+:skysail.server.purecss.webresource:classes
+:skysail.server.purecss.webresource:jar
+:skysail.server.purecss.webresource:assemble
+:skysail.server.text.store.git:compileJava
+:skysail.server.text.store.git:processResources UP-TO-DATE
+:skysail.server.text.store.git:classes
+:skysail.server.text.store.git:jar
+:skysail.server.text.store.git:assemble
+:skysail.server.uikit.webresource:compileJava
+:skysail.server.uikit.webresource:processResources UP-TO-DATE
+:skysail.server.uikit.webresource:classes
+:skysail.server.uikit.webresource:jar
+:skysail.server.uikit.webresource:assemble
+:skysail.server.w2ui.webresource:compileJava
+:skysail.server.w2ui.webresource:processResources UP-TO-DATE
+:skysail.server.w2ui.webresource:classes
+:skysail.server.w2ui.webresource:jar
+:skysail.server.w2ui.webresource:assemble
+:skysail.product.designer:compileJava
+:skysail.product.designer:processResources
+:skysail.product.designer:classes
+:skysail.product.designer:jar
+:skysail.product.designer:assemble
+:skysail.product.designer:compileTestJava UP-TO-DATE
+:skysail.product.designer:processTestResources UP-TO-DATE
+:skysail.product.designer:testClasses UP-TO-DATE
+:skysail.product.designer:test UP-TO-DATE
+:skysail.product.designer:check SKIPPED
+:skysail.server.http:compileJava
+:skysail.server.http:processResources
+:skysail.server.http:classes
+:skysail.server.http:jar
+:skysail.server.http:assemble
+:skysail.server.http:compileTestJava
+:skysail.server.http:processTestResources UP-TO-DATE
+:skysail.server.http:testClasses
+:skysail.server.http:test
+:skysail.server.http:check SKIPPED
+:skysail.server.http:build
+:skysail.server.static:compileJava
+:skysail.server.static:processResources
+:skysail.server.static:classes
+:skysail.server.static:jar
+:skysail.server.static:assemble
+:skysail.server.static:compileTestJava UP-TO-DATE
+:skysail.server.static:processTestResources UP-TO-DATE
+:skysail.server.static:testClasses UP-TO-DATE
+:skysail.server.static:test UP-TO-DATE
+:skysail.server.static:check SKIPPED
+:skysail.server.static:build
+:skysail.server.um.simple:compileJava
+:skysail.server.um.simple:processResources
+:skysail.server.um.simple:classes
+:skysail.server.um.simple:jar
+:skysail.server.um.simple:assemble
+:skysail.server.um.simple:compileTestJava
+:skysail.server.um.simple:processTestResources UP-TO-DATE
+:skysail.server.um.simple:testClasses
+:skysail.server.um.simple:test
+:skysail.server.um.simple:check SKIPPED
+:skysail.server.um.simple:build
+:skysail.product.designer:build
+:skysail.server.app.todos:compileJava
+:skysail.server.app.todos:processResources
+:skysail.server.app.todos:classes
+:skysail.server.app.todos:jar
+Warning: Export io.skysail.server.app.todos,  has 2,  private references [io.skysail.server.app.todos.repo, io.skysail.server.app.todos.lists], 
+Warning: Export io.skysail.server.app.todos.todos,  has 1,  private references [io.skysail.server.app.todos.todos.status], 
+:skysail.server.app.todos:assemble
+:skysail.product.todos:compileJava
+:skysail.product.todos:processResources UP-TO-DATE
+:skysail.product.todos:classes
+:skysail.product.todos:jar
+:skysail.product.todos:assemble
+:skysail.product.todos:checkOutcomes
+Checking serenity results for null in directory /Users/carsten/git/skysail-framework/skysail.product.todos/target/site/serenity
+:skysail.product.todos:compileTestJava
+:skysail.product.todos:processTestResources UP-TO-DATE
+:skysail.product.todos:testClasses
+:skysail.product.todos:test
+:skysail.product.todos:check SKIPPED
+:skysail.product.todos:build
+:skysail.server.app.tutorial.model2rest:compileJava
+:skysail.server.app.tutorial.model2rest:processResources
+:skysail.server.app.tutorial.model2rest:classes
+:skysail.server.app.tutorial.model2rest:jar
+:skysail.server.app.tutorial.model2rest:assemble
+:skysail.product.website:compileJava
+:skysail.product.website:processResources
+:skysail.product.website:classes
+:skysail.product.website:jar
+:skysail.product.website:assemble
+:skysail.product.website:compileTestJava UP-TO-DATE
+:skysail.product.website:processTestResources UP-TO-DATE
+:skysail.product.website:testClasses UP-TO-DATE
+:skysail.product.website:test UP-TO-DATE
+:skysail.product.website:check SKIPPED
+:skysail.product.website:build
+:skysail.server:compileTestJava
+:skysail.server:processTestResources
+:skysail.server:testClasses
+:skysail.server:test
+:skysail.server:check SKIPPED
+:skysail.server:build
+:skysail.server.app.bookmarks:compileTestJava UP-TO-DATE
+:skysail.server.app.bookmarks:processTestResources UP-TO-DATE
+:skysail.server.app.bookmarks:testClasses UP-TO-DATE
+:skysail.server.app.bookmarks:test UP-TO-DATE
+:skysail.server.app.bookmarks:check SKIPPED
+:skysail.server.app.bookmarks:build
+:skysail.server.app.bookmarks.it:compileJava
+:skysail.server.app.bookmarks.it:processResources UP-TO-DATE
+:skysail.server.app.bookmarks.it:classes
+:skysail.server.app.bookmarks.it:jar
+:skysail.server.app.bookmarks.it:assemble
+:skysail.server.app.bookmarks.it:compileTestJava UP-TO-DATE
+:skysail.server.app.bookmarks.it:processTestResources UP-TO-DATE
+:skysail.server.app.bookmarks.it:testClasses UP-TO-DATE
+:skysail.server.app.bookmarks.it:test UP-TO-DATE
+:skysail.server.app.bookmarks.it:check SKIPPED
+:skysail.server.app.bookmarks.it:build
+:skysail.server.app.bpmnmodeler:compileJava
+:skysail.server.app.bpmnmodeler:processResources
+:skysail.server.app.bpmnmodeler:classes
+:skysail.server.app.bpmnmodeler:jar
+:skysail.server.app.bpmnmodeler:assemble
+:skysail.server.app.bpmnmodeler:compileTestJava UP-TO-DATE
+:skysail.server.app.bpmnmodeler:processTestResources UP-TO-DATE
+:skysail.server.app.bpmnmodeler:testClasses UP-TO-DATE
+:skysail.server.app.bpmnmodeler:test UP-TO-DATE
+:skysail.server.app.bpmnmodeler:check SKIPPED
+:skysail.server.app.bpmnmodeler:build
+:skysail.server.app.dbviewer:compileTestJava
+:skysail.server.app.dbviewer:processTestResources UP-TO-DATE
+:skysail.server.app.dbviewer:testClasses
+:skysail.server.app.dbviewer:test
+:skysail.server.app.dbviewer:check SKIPPED
+:skysail.server.app.dbviewer:build
+:skysail.server.app.designer:compileTestJava
+:skysail.server.app.designer:processTestResources UP-TO-DATE
+:skysail.server.app.designer:testClasses
+:skysail.server.app.designer:test
+:skysail.server.app.designer:check SKIPPED
+:skysail.server.app.designer:build
+:skysail.server.app.designer.it:compileJava
+:skysail.server.app.designer.it:processResources UP-TO-DATE
+:skysail.server.app.designer.it:classes
+:skysail.server.app.designer.it:jar
+:skysail.server.app.designer.it:assemble
+:skysail.server.app.designer.it:compileTestJava UP-TO-DATE
+:skysail.server.app.designer.it:processTestResources UP-TO-DATE
+:skysail.server.app.designer.it:testClasses UP-TO-DATE
+:skysail.server.app.designer.it:test UP-TO-DATE
+:skysail.server.app.designer.it:check SKIPPED
+:skysail.server.app.designer.it:build
+:skysail.server.app.grapesjs:compileJava
+:skysail.server.app.grapesjs:processResources
+:skysail.server.app.grapesjs:classes
+:skysail.server.app.grapesjs:jar
+:skysail.server.app.grapesjs:assemble
+:skysail.server.app.grapesjs:compileTestJava UP-TO-DATE
+:skysail.server.app.grapesjs:processTestResources UP-TO-DATE
+:skysail.server.app.grapesjs:testClasses UP-TO-DATE
+:skysail.server.app.grapesjs:test UP-TO-DATE
+:skysail.server.app.grapesjs:check SKIPPED
+:skysail.server.app.grapesjs:build
+:skysail.server.app.loop:compileJava
+:skysail.server.app.loop:processResources
+:skysail.server.app.loop:classes
+:skysail.server.app.loop:jar
+:skysail.server.app.loop:assemble
+:skysail.server.app.loop:compileTestJava UP-TO-DATE
+:skysail.server.app.loop:processTestResources UP-TO-DATE
+:skysail.server.app.loop:testClasses UP-TO-DATE
+:skysail.server.app.loop:test UP-TO-DATE
+:skysail.server.app.loop:check SKIPPED
+:skysail.server.app.loop:build
+:skysail.server.app.notes:compileJava
+:skysail.server.app.notes:processResources UP-TO-DATE
+:skysail.server.app.notes:classes
+:skysail.server.app.notes:jar
+:skysail.server.app.notes:assemble
+:skysail.server.app.notes:compileTestJava UP-TO-DATE
+:skysail.server.app.notes:processTestResources UP-TO-DATE
+:skysail.server.app.notes:testClasses UP-TO-DATE
+:skysail.server.app.notes:test UP-TO-DATE
+:skysail.server.app.notes:check SKIPPED
+:skysail.server.app.notes:build
+:skysail.server.app.oEService:compileJava
+:skysail.server.app.oEService:processResources UP-TO-DATE
+:skysail.server.app.oEService:classes
+:skysail.server.app.oEService:jar
+:skysail.server.app.oEService:assemble
+:skysail.server.app.oEService:compileTestJava UP-TO-DATE
+:skysail.server.app.oEService:processTestResources UP-TO-DATE
+:skysail.server.app.oEService:testClasses UP-TO-DATE
+:skysail.server.app.oEService:test UP-TO-DATE
+:skysail.server.app.oEService:check SKIPPED
+:skysail.server.app.oEService:build
+:skysail.server.ext.rome:compileJava
+:skysail.server.ext.rome:processResources
+:skysail.server.ext.rome:classes
+:skysail.server.ext.rome:jar
+Warning: No sub JAR or directory libs/rome-1.5.1.jar
+Warning: No sub JAR or directory libs/jdom2-2.0.6.jar
+Warning: No sub JAR or directory libs/rome-utils-1.5.1.jar
+:skysail.server.ext.rome:assemble
+:skysail.server.app.rss:compileJava
+:skysail.server.app.rss:processResources UP-TO-DATE
+:skysail.server.app.rss:classes
+:skysail.server.app.rss:jar
+:skysail.server.app.rss:assemble
+:skysail.server.app.rss:compileTestJava UP-TO-DATE
+:skysail.server.app.rss:processTestResources UP-TO-DATE
+:skysail.server.app.rss:testClasses UP-TO-DATE
+:skysail.server.app.rss:test UP-TO-DATE
+:skysail.server.app.rss:check SKIPPED
+:skysail.server.app.rss:build
+:skysail.server.app.snap:compileJava
+:skysail.server.app.snap:processResources
+:skysail.server.app.snap:classes
+:skysail.server.app.snap:jar
+:skysail.server.app.snap:assemble
+:skysail.server.app.snap:compileTestJava UP-TO-DATE
+:skysail.server.app.snap:processTestResources UP-TO-DATE
+:skysail.server.app.snap:testClasses UP-TO-DATE
+:skysail.server.app.snap:test UP-TO-DATE
+:skysail.server.app.snap:check SKIPPED
+:skysail.server.app.snap:build
+:skysail.server.app.svgedit:compileTestJava UP-TO-DATE
+:skysail.server.app.svgedit:processTestResources UP-TO-DATE
+:skysail.server.app.svgedit:testClasses UP-TO-DATE
+:skysail.server.app.svgedit:test UP-TO-DATE
+:skysail.server.app.svgedit:check SKIPPED
+:skysail.server.app.svgedit:build
+:skysail.server.app.timetables:compileJava
+:skysail.server.app.timetables:processResources UP-TO-DATE
+:skysail.server.app.timetables:classes
+:skysail.server.app.timetables:jar
+:skysail.server.app.timetables:assemble
+:skysail.server.app.timetables:compileTestJava UP-TO-DATE
+:skysail.server.app.timetables:processTestResources UP-TO-DATE
+:skysail.server.app.timetables:testClasses UP-TO-DATE
+:skysail.server.app.timetables:test UP-TO-DATE
+:skysail.server.app.timetables:check SKIPPED
+:skysail.server.app.timetables:build
+:skysail.server.app.todos:checkOutcomes
+Checking serenity results for null in directory /Users/carsten/git/skysail-framework/skysail.server.app.todos/target/site/serenity
+:skysail.server.app.todos:compileTestJava
+:skysail.server.app.todos:processTestResources
+:skysail.server.app.todos:testClasses
+:skysail.server.app.todos:test
+:skysail.server.app.todos:check SKIPPED
+:skysail.server.app.todos:build
+:skysail.server.app.todos.it:compileJava
+:skysail.server.app.todos.it:processResources UP-TO-DATE
+:skysail.server.app.todos.it:classes
+:skysail.server.app.todos.it:jar
+:skysail.server.app.todos.it:assemble
+:skysail.server.app.todos.it:compileTestJava UP-TO-DATE
+:skysail.server.app.todos.it:processTestResources
+:skysail.server.app.todos.it:testClasses
+:skysail.server.app.todos.it:test
+:skysail.server.app.todos.it:check SKIPPED
+:skysail.server.app.todos.it:build
+:skysail.server.app.tutorial.model2rest:compileTestJava UP-TO-DATE
+:skysail.server.app.tutorial.model2rest:processTestResources UP-TO-DATE
+:skysail.server.app.tutorial.model2rest:testClasses UP-TO-DATE
+:skysail.server.app.tutorial.model2rest:test UP-TO-DATE
+:skysail.server.app.tutorial.model2rest:check SKIPPED
+:skysail.server.app.tutorial.model2rest:build
+:skysail.server.ext.oauth2:compileJava
+:skysail.server.ext.oauth2:processResources
+:skysail.server.ext.oauth2:classes
+:skysail.server.ext.oauth2:jar
+:skysail.server.ext.oauth2:assemble
+:skysail.server.app.twitter4j:compileJava
+:skysail.server.app.twitter4j:processResources UP-TO-DATE
+:skysail.server.app.twitter4j:classes
+:skysail.server.app.twitter4j:jar
+:skysail.server.app.twitter4j:assemble
+:skysail.server.app.twitter4j:compileTestJava UP-TO-DATE
+:skysail.server.app.twitter4j:processTestResources UP-TO-DATE
+:skysail.server.app.twitter4j:testClasses UP-TO-DATE
+:skysail.server.app.twitter4j:test UP-TO-DATE
+:skysail.server.app.twitter4j:check SKIPPED
+:skysail.server.app.twitter4j:build
+:skysail.server.app.um.db:compileJava
+:skysail.server.app.um.db:processResources
+:skysail.server.app.um.db:classes
+:skysail.server.app.um.db:jar
+Warning: Unused Private-Package instructions, no such package(s) on the class path: [io.skysail.server.app.um.db.groups.resources]
+:skysail.server.app.um.db:assemble
+:skysail.server.app.um.db:compileTestJava UP-TO-DATE
+:skysail.server.app.um.db:processTestResources UP-TO-DATE
+:skysail.server.app.um.db:testClasses UP-TO-DATE
+:skysail.server.app.um.db:test UP-TO-DATE
+:skysail.server.app.um.db:check SKIPPED
+:skysail.server.app.um.db:build
+:skysail.server.app.whatAbout:compileJava
+:skysail.server.app.whatAbout:processResources UP-TO-DATE
+:skysail.server.app.whatAbout:classes
+:skysail.server.app.whatAbout:jar
+:skysail.server.app.whatAbout:assemble
+:skysail.server.app.whatAbout:compileTestJava UP-TO-DATE
+:skysail.server.app.whatAbout:processTestResources UP-TO-DATE
+:skysail.server.app.whatAbout:testClasses UP-TO-DATE
+:skysail.server.app.whatAbout:test UP-TO-DATE
+:skysail.server.app.whatAbout:check SKIPPED
+:skysail.server.app.whatAbout:build
+:skysail.server.app.wiki:compileJava
+:skysail.server.app.wiki:processResources
+:skysail.server.app.wiki:classes
+:skysail.server.app.wiki:jar
+:skysail.server.app.wiki:assemble
+:skysail.server.app.wiki:compileTestJava UP-TO-DATE
+:skysail.server.app.wiki:processTestResources
+:skysail.server.app.wiki:testClasses
+:skysail.server.app.wiki:test
+:skysail.server.app.wiki:check SKIPPED
+:skysail.server.app.wiki:build
+:skysail.server.codegen.test:runApt
+08:14:51.118 [Daemon worker Thread 13] INFO  i.s.domain.core.ApplicationModel - adding entity model with id 'io.skysail.server.codegen.test.simple.todos.Todo'
+STGroupFile(repository/Repository.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg
+Repository.getInstanceOf(template)
+Repository.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/repository/Repository.stg = [/template]
+Repository.lookupTemplate(/template) found
+entity: null
+STGroupFile(entityResource/EntityResource.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/entityResource/EntityResource.stg
+EntityResource.getInstanceOf(template)
+EntityResource.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/entityResource/EntityResource.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/entityResource/EntityResource.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/entityResource/EntityResource.stg = [/template]
+EntityResource.lookupTemplate(/template) found
+entity: null
+STGroupFile(listResource/ListResource.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg
+ListResource.getInstanceOf(template)
+ListResource.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/listResource/ListResource.stg = [/template]
+ListResource.lookupTemplate(/template) found
+entity: null
+STGroupFile(putResource/PutResource.stg) == url jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg
+PutResource.getInstanceOf(template)
+PutResource.lookupTemplate(/template)
+loading group file jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg
+************************
+MySTGroupFile.loadGroupFile(group-file-prefix=/, fileName=jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg)
+Encoding: UTF-8
+defineTemplate(/template)
+found 1 templates in jar:file:/Users/carsten/git/skysail-framework/skysail.server.codegen/generated/skysail.server.codegen.jar!/putResource/PutResource.stg = [/template]
+PutResource.lookupTemplate(/template) found
+entity: null
+:skysail.server.codegen.test:compileJava
+:skysail.server.codegen.test:processResources
+:skysail.server.codegen.test:classes
+:skysail.server.codegen.test:jar
+:skysail.server.codegen.test:assemble
+:skysail.server.codegen.test:compileTestJava
+:skysail.server.codegen.test:processTestResources UP-TO-DATE
+:skysail.server.codegen.test:testClasses
+:skysail.server.codegen.test:test
+:skysail.server.codegen.test:check SKIPPED
+:skysail.server.codegen.test:build
+:skysail.server.converter:compileJava
+:skysail.server.converter:processResources
+:skysail.server.converter:classes
+:skysail.server.converter:jar
+Warning: Unused Private-Package instructions, no such package(s) on the class path: [io.skysail.server.converter.stringtemplate]
+Warning: Export io.skysail.server.converter,  has 1,  private references [io.skysail.server.converter.impl], 
+:skysail.server.converter:assemble
+:skysail.server.converter:compileTestJava
+:skysail.server.converter:processTestResources UP-TO-DATE
+:skysail.server.converter:testClasses
+:skysail.server.converter:test
+:skysail.server.converter:check SKIPPED
+:skysail.server.converter:build
+:skysail.server.db:compileJava
+:skysail.server.db:processResources
+:skysail.server.db:classes
+:skysail.server.db:jar
+Warning: Unused Import-Package instructions: [org.codehaus.jettison.*] 
+Warning: Export io.skysail.server.db,  has 1,  private references [io.skysail.server.db.impl], 
+:skysail.server.db:assemble
+:skysail.server.db:compileTestJava
+:skysail.server.db:processTestResources
+:skysail.server.db:testClasses
+:skysail.server.db:test
+:skysail.server.db:check SKIPPED
+:skysail.server.db:build
+:skysail.server.designer.demo.accounts:compileJava
+:skysail.server.designer.demo.accounts:processResources UP-TO-DATE
+:skysail.server.designer.demo.accounts:classes
+:skysail.server.designer.demo.accounts:jar
+:skysail.server.designer.demo.accounts:assemble
+:skysail.server.designer.demo.accounts:compileTestJava UP-TO-DATE
+:skysail.server.designer.demo.accounts:processTestResources UP-TO-DATE
+:skysail.server.designer.demo.accounts:testClasses UP-TO-DATE
+:skysail.server.designer.demo.accounts:test UP-TO-DATE
+:skysail.server.designer.demo.accounts:check SKIPPED
+:skysail.server.designer.demo.accounts:build
+:skysail.server.designer.demo.folders:compileJava
+:skysail.server.designer.demo.folders:processResources UP-TO-DATE
+:skysail.server.designer.demo.folders:classes
+:skysail.server.designer.demo.folders:jar
+:skysail.server.designer.demo.folders:assemble
+:skysail.server.designer.demo.folders:compileTestJava UP-TO-DATE
+:skysail.server.designer.demo.folders:processTestResources UP-TO-DATE
+:skysail.server.designer.demo.folders:testClasses UP-TO-DATE
+:skysail.server.designer.demo.folders:test UP-TO-DATE
+:skysail.server.designer.demo.folders:check SKIPPED
+:skysail.server.designer.demo.folders:build
+:skysail.server.designer.demo.organization:compileJava
+:skysail.server.designer.demo.organization:processResources UP-TO-DATE
+:skysail.server.designer.demo.organization:classes
+:skysail.server.designer.demo.organization:jar
+:skysail.server.designer.demo.organization:assemble
+:skysail.server.designer.demo.organization:compileTestJava UP-TO-DATE
+:skysail.server.designer.demo.organization:processTestResources UP-TO-DATE
+:skysail.server.designer.demo.organization:testClasses UP-TO-DATE
+:skysail.server.designer.demo.organization:test UP-TO-DATE
+:skysail.server.designer.demo.organization:check SKIPPED
+:skysail.server.designer.demo.organization:build
+:skysail.server.designer.demo.transactions:compileJava
+:skysail.server.designer.demo.transactions:processResources
+:skysail.server.designer.demo.transactions:classes
+:skysail.server.designer.demo.transactions:jar
+:skysail.server.designer.demo.transactions:assemble
+:skysail.server.designer.demo.transactions:compileTestJava UP-TO-DATE
+:skysail.server.designer.demo.transactions:processTestResources UP-TO-DATE
+:skysail.server.designer.demo.transactions:testClasses UP-TO-DATE
+:skysail.server.designer.demo.transactions:test UP-TO-DATE
+:skysail.server.designer.demo.transactions:check SKIPPED
+:skysail.server.designer.demo.transactions:build
+:skysail.server.designer.demo.transactions.it:compileJava
+:skysail.server.designer.demo.transactions.it:processResources UP-TO-DATE
+:skysail.server.designer.demo.transactions.it:classes
+:skysail.server.designer.demo.transactions.it:jar
+:skysail.server.designer.demo.transactions.it:assemble
+:skysail.server.designer.demo.transactions.it:compileTestJava UP-TO-DATE
+:skysail.server.designer.demo.transactions.it:processTestResources UP-TO-DATE
+:skysail.server.designer.demo.transactions.it:testClasses UP-TO-DATE
+:skysail.server.designer.demo.transactions.it:test UP-TO-DATE
+:skysail.server.designer.demo.transactions.it:check FAILED
+
+BUILD FAILED
+
+Total time: 3 mins 10.031 secs

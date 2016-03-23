@@ -1,0 +1,145 @@
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.converter.WebappApplication
+INFO  [io.skysail.server.http.HttpServer            ] - 
+INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+INFO  [io.skysail.server.http.HttpServer            ] - Starting skysail server on port 2015
+INFO  [io.skysail.server.http.HttpServer            ] - ====================================
+INFO  [io.skysail.server.http.HttpServer            ] - 
+INFO  [org.restlet                                  ] - Starting the Jetty [HTTP/1.1] server on port 2015
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.performance.etm.impl.PerformanceApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel de.twenty11.skysail.server.webapp.internal.WebappApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.text.store.bundleresource.impl.I18nApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.um.simple.app.SimpleUserManagementApplication
+INFO  [s.server.ext.initconfig.ConfigMover          ] - setting logging level to INFO, no initial logback confi file was provided yet.
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.polymer.PolymerStaticWebapp
+INFO  [io.skysail.server.app.SkysailApplication     ] - Activating ApplicationModel io.skysail.server.designer.demo.transactions.TransactionsApplication
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] -  > TEST: running test 'new_application_can_be_deleted'
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - --------------------------------------------
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - 
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - setting up test case...
+INFO  [i.s.c.testsupport.TestsupportTestBase        ] - setting test port to 2015
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: creating new browser client with url 'http://localhost:2015' for Application 'Transactions' and mediaType 'text/html'
+INFO  [i.s.s.d.d.t.it.TransactionsBrowser           ] -  > TEST: creating new Transaction io.skysail.server.designer.demo.transactions.transaction.Transaction@6d7b2319
+INFO  [i.s.c.testsupport.ApplicationBrowser         ] -  > TEST: logging in as user 'admin'
+INFO  [org.restlet                                  ] - Starting a Jetty HTTP/HTTPS client
+INFO  [o.r.S.I.SkysailRootApplication               ] - Starting io.skysail.server.app.SkysailRootApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.app.SkysailRootApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/' -> 'de.twenty11.skysail.server.resources.DefaultResource'
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DefaultResource
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_login' -> 'de.twenty11.skysail.server.resources.LoginResource'
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.LoginResource
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_demologin' -> 'de.twenty11.skysail.server.resources.DemoLoginResource'
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.DemoLoginResource
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/_remotelogin' -> 'de.twenty11.skysail.server.resources.RemoteLoginResource'
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class de.twenty11.skysail.server.resources.RemoteLoginResource
+INFO  [o.r.S.InternalRouter.WebappApplication       ] - Starting io.skysail.server.converter.WebappApplication application
+INFO  [o.r.S.I.OsgiMonitorViewerApplication         ] - Starting de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in de.twenty11.skysail.server.osgi.OsgiMonitorViewerApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: OSGi
+Repositories: 
+Repositories(repositories={})
+
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.domain.Identifiable'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.OsgiMonitorRootResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'de.twenty11.skysail.server.osgi.osgimonitor.domain.BundleDescriptor'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundlesgraph!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundlesgraph' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundlesGraphResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles/details/{bundleId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'de.twenty11.skysail.server.osgi.osgimonitor.domain.BundleDetails'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/bundles/details/{bundleId}/action' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.BundleResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServicesResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'de.twenty11.skysail.server.osgi.osgimonitor.domain.ServiceDescriptor'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/services/{serviceId}' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.ServiceResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/requirements!meta' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/requirements' -> 'RolesPredicateAuthorizer' -> 'de.twenty11.skysail.server.osgi.osgimonitor.resources.RequirementsResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'de.twenty11.skysail.server.osgi.osgimonitor.domain.Requirement'
+INFO  [o.r.S.I.PerformanceApplication               ] - Starting io.skysail.server.performance.etm.impl.PerformanceApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.performance.etm.impl.PerformanceApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Performance
+Repositories: 
+Repositories(repositories={})
+
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.performance.etm.impl.PerformanceResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.domain.Identifiable'
+INFO  [o.r.S.InternalRouter.WebappApplication       ] - Starting de.twenty11.skysail.server.webapp.internal.WebappApplication application
+INFO  [o.r.S.InternalRouter.I18nApplication         ] - Starting io.skysail.server.text.store.bundleresource.impl.I18nApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.text.store.bundleresource.impl.I18nApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.I18nRootResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.domain.Identifiable'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessagesResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.server.text.store.bundleresource.impl.BundleMessages'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/{key}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.MessageResource'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.server.text.store.bundleresource.impl.Message'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/{key}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.PutMessageResource'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/messages/{key}/{fieldname}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.text.store.bundleresource.impl.PatchMessageResource'
+INFO  [o.r.S.I.SimpleUserManagementApplication      ] - Starting io.skysail.server.um.simple.app.SimpleUserManagementApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.um.simple.app.SimpleUserManagementApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: usermanagement
+Repositories: 
+Repositories(repositories={})
+
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/currentUser' -> 'io.skysail.server.um.simple.app.users.resources.CurrentUserResource'
+WARN  [d.t.s.server.core.restlet.SkysailRouter      ] - please use a RouteBuilder to attach this resource: class io.skysail.server.um.simple.app.users.resources.CurrentUserResource
+INFO  [o.r.S.InternalRouter.PolymerStaticWebapp     ] - Starting io.skysail.server.polymer.PolymerStaticWebapp application
+INFO  [o.r.S.I.TransactionsApplication              ] - Starting io.skysail.server.designer.demo.transactions.TransactionsApplication application
+INFO  [io.skysail.server.app.SkysailApplication     ] - creating new Router in io.skysail.server.designer.demo.transactions.TransactionsApplication
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding extensions to metadata service
+INFO  [io.skysail.server.app.SkysailApplication     ] - adding protocols
+WARN  [io.skysail.server.app.SkysailApplication     ] - there are no entities defined for the applicationModel ApplicationModel: Transactions
+Repositories: 
+Repositories(repositories={io.skysail.server.db.versions.impl.ComponentDbVersion=io.skysail.server.db.versions.impl.VersionsRepository@6dfc5bb7, io.skysail.server.designer.demo.transactions.transaction.Transaction=io.skysail.server.designer.demo.transactions.TransactionRepository@74050f87})
+
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Transactions/{id}' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.TransactionResourceGen'
+INFO  [io.skysail.domain.core.ApplicationModel      ] - adding entity model with id 'io.skysail.server.designer.demo.transactions.transaction.Transaction'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Transactions/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.PostTransactionResourceGen'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Transactions/{id}/' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.PutTransactionResourceGen'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Transactions!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1/Transactions' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1!meta' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen'
+INFO  [d.t.s.server.core.restlet.SkysailRouter      ] - routing path '/v1' -> 'RolesPredicateAuthorizer' -> 'io.skysail.server.designer.demo.transactions.transaction.resources.TransactionsResourceGen'
+INFO  [LogService                                   ] - 2016-03-22	17:52:41	127.0.0.1	-	127.0.0.1	2015	GET	/_logout	targetUri=/	303	0	0	53	http://localhost:2015	Restlet-Framework/2.3.4	-
+INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get([application/json])
+INFO  [LogService                                   ] - 2016-03-22	17:52:41	127.0.0.1	-	127.0.0.1	2015	GET	/	-	200	-	0	587	http://localhost:2015	Jetty/9.2.11.v20150529,Restlet-Framework/2.3.4	-
+INFO  [org.restlet                                  ] - Starting a Jetty HTTP/HTTPS client
+INFO  [i.s.s.r.r.PostEntityServerResource           ] - Request entry point: LoginResource @Post('x-www-form-urlencoded:html|json|xml')
+INFO  [i.s.s.r.r.PostEntityServerResource           ] - calling post(Form), media types '[text/html:1.0]'
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server.converter: bundle://100.0:1/templates/bootstrap/index.st
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server.converter: bundle://100.0:1/templates/bootstrap/contentHeader.st
+INFO  [LogService                                   ] - 2016-03-22	17:52:43	127.0.0.1	admin	127.0.0.1	2015	POST	/_login	-	303	-	31	1567	http://localhost:2015	Restlet-Framework/2.3.4	-
+INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get([text/html])
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server: bundle://99.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/index.st
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server.converter: bundle://100.0:1/templates/bootstrap/contentHeader.st
+INFO  [LogService                                   ] - 2016-03-22	17:52:44	127.0.0.1	admin	127.0.0.1	2015	GET	/	msgIds=0	200	-	0	791	http://localhost:2015	Jetty/9.2.11.v20150529,Restlet-Framework/2.3.4	-
+INFO  [org.restlet                                  ] - Starting a Jetty HTTP/HTTPS client
+INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get([text/html])
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server: bundle://99.0:1/templates/de/twenty11/skysail/server/resources/DefaultResourceStg/index.st
+INFO  [org.restlet                                  ] - Stopping a Jetty HTTP/HTTPS client
+INFO  [i.s.s.stringtemplate.STGroupBundleDir        ] - found resource in skysail.server.converter: bundle://100.0:1/templates/bootstrap/contentHeader.st
+INFO  [LogService                                   ] - 2016-03-22	17:52:44	127.0.0.1	admin	127.0.0.1	2015	GET	/	-	200	-	0	797	http://localhost:2015	Restlet-Framework/2.3.4	-
+INFO  [i.s.client.testsupport.ApplicationClient     ] -  > TEST: issuing GET on 'http://localhost:2015/', providing credentials nfosjsVw7MwK2whrqYUdLIgYUkXdY+cZ3Grd5q1E7bCOtW6fnmWqIbaChPIEV7eX
+INFO  [org.restlet                                  ] - Starting a Jetty HTTP/HTTPS client
+INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: DefaultResource @Get([application/json])
+INFO  [LogService                                   ] - 2016-03-22	17:52:45	127.0.0.1	admin	127.0.0.1	2015	GET	/	-	200	-	0	461	http://localhost:2015	Restlet-Framework/2.3.4	-
+INFO  [org.restlet                                  ] - Starting a Jetty HTTP/HTTPS client
+INFO  [i.s.s.r.resources.ListServerResource         ] - Request entry point: TransactionsResourceGen @Get([application/json])

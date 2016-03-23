@@ -16,6 +16,10 @@
 	org.apache.servicemix.bundles.spring-context;version='[4.2.4,4.2.5)',\
 	org.apache.servicemix.bundles.spring-core;version='[4.2.4,4.2.5)'
 	
--buildpath: org.apache.servicemix.bundles.spring-context-support;version=4.2
+-buildpath: \
+    org.apache.servicemix.bundles.spring-core;version=4.2,\
+    org.apache.servicemix.bundles.spring-beans;version=4.2,\
+    org.apache.servicemix.bundles.spring-context;version=4.2,\
+    org.apache.servicemix.bundles.spring-context-support;version=4.2
 
 Private-Package: io.skysail.server.ext.spring.test

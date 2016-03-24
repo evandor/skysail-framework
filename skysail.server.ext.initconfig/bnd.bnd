@@ -1,4 +1,4 @@
-Bundle-Version: 0.1.7.${tstamp}
+Bundle-Version: 0.1.8.${tstamp}
 
 Private-Package:  \
 	skysail.server.ext.initconfig

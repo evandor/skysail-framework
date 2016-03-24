@@ -3,6 +3,7 @@ package io.skysail.server.designer.demo.accounts.transaction.resources;
 import java.util.Date;
 
 import io.skysail.api.responses.SkysailResponse;
+import io.skysail.domain.core.repos.Repository;
 import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.PostEntityServerResource;
 
@@ -10,14 +11,21 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.restlet.resource.ResourceException;
 import io.skysail.server.designer.demo.accounts.*;
+
+import io.skysail.server.designer.demo.accounts.account.*;
+import io.skysail.server.designer.demo.accounts.account.resources.*;
 import io.skysail.server.designer.demo.accounts.transaction.*;
+import io.skysail.server.designer.demo.accounts.transaction.resources.*;
+
+
 
 /**
- * generated from postResource.stg
+ * generated from postResourceNonAggregate.stg
  */
 public class PostTransactionResourceGen extends PostEntityServerResource<io.skysail.server.designer.demo.accounts.transaction.Transaction> {
 
-	protected AccountsApplication app;
+	private AccountsApplication app;
+    private Repository repository;
 
     public PostTransactionResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "Create new ");
@@ -26,6 +34,7 @@ public class PostTransactionResourceGen extends PostEntityServerResource<io.skys
     @Override
     protected void doInit() throws ResourceException {
         app = (AccountsApplication) getApplication();
+        repository = null;//app.getRepository(Space.class);
     }
 
     @Override
@@ -36,9 +45,10 @@ public class PostTransactionResourceGen extends PostEntityServerResource<io.skys
     @Override
     public void addEntity(io.skysail.server.designer.demo.accounts.transaction.Transaction entity) {
         Subject subject = SecurityUtils.getSubject();
-        String id = app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class).save(entity, app.getApplicationModel()).toString();
-        entity.setId(id);
 
+        io.skysail.server.designer.demo.accounts.account.Account entityRoot = (io.skysail.server.designer.demo.accounts.account.Account) repository.findOne(getAttribute("id"));
+        entityRoot.getTransactions().add(entity);
+        repository.update(entityRoot, app.getApplicationModel());
     }
 
     @Override

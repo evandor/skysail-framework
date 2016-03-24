@@ -1,0 +1,40 @@
+
+Test-Cases: io.skysail.server.designer.demo.transactions.it.TransactionsCrudIntegrationTests
+
+-buildpath:  \
+    osgi.core;version=5.0,\
+    skysail.domain;version=${skysail.domain.version},\
+    skysail.api;version=${skysail.api.version},\
+    skysail.api.um;version=${skysail.api.um.version},\
+    skysail.client.testsupport;version=latest,\
+    lombok;version=1.16,\
+    slf4j.api;version=1.7,\
+    org.restlet;version=${restlet.version},\
+    org.restlet.ext.raml;version=${restlet.version},\
+    com.springsource.org.junit;version=4.11,\
+    skysail.server;version=${skysail.server.version},\
+    skysail.server.queryfilter;version=${skysail.server.queryfilter.version},\
+    skysail.server.designer.demo.transactions;version=latest
+    
+Private-Package: io.skysail.server.designer.demo.transactions.it
+
+-resolve.effective: active;skip:="osgi.service"
+-runee: JavaSE-1.8
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runproperties: ${runproperties}
+-runrepos: ${runrepos}
+-runsystemcapabilities: ${native_capability}
+-runsystempackages: ${runsystempackages}
+-runtrace: false
+-runvm: -ea
+
+skysail.config.path = config/test
+logback.configurationFile.path = config/test
+
+-runbundles: \
+    ${serverbundles-1.0.0},\
+    skysail.server.polymer;version=latest,\
+    skysail.server.designer.demo.transactions;version=latest,\
+    skysail.client.testsupport;version=latest,\
+    com.springsource.org.junit;version=4.11
+    

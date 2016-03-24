@@ -40,8 +40,8 @@ public class $entity.simpleName$ResourceGen extends EntityServerResource<$entity
     \}
 
     @Override
-    public $entity.id$ getEntity() {
-        return ($entity.id$)app.getRepository().findOne(id);
+    public $entity.simpleName$ getEntity() {
+        return ($entity.simpleName$)app.getRepository().findOne(id);
     \}
 
 	@Override

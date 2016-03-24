@@ -13,12 +13,18 @@ import lombok.Getter;
 public class CompiledCode extends SimpleJavaFileObject {
     
     private ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    
     @Getter
     private String className;
+
+    @Getter
+    private String simpleName;
 
     public CompiledCode(String className) throws URISyntaxException {
         super(new URI(className), Kind.CLASS);
         this.className = className;
+        String[] split = className.split("\\.");
+        this.simpleName = split[split.length-1];
     }
 
     @Override

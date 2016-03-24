@@ -1,12 +1,16 @@
 package io.skysail.server.app.designer.codegen.templates;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.stringtemplate.v4.ST;
 
 import io.skysail.domain.core.EntityRelation;
-import io.skysail.server.app.designer.codegen.*;
+import io.skysail.server.app.designer.codegen.CompiledCode;
+import io.skysail.server.app.designer.codegen.SkysailCompiler;
+import io.skysail.server.app.designer.codegen.SkysailEntityCompiler;
 import io.skysail.server.app.designer.model.DesignerEntityModel;
 
 public class EntityResourceTemplateCompiler extends AbstractTemplateCompiler {
@@ -41,8 +45,8 @@ public class EntityResourceTemplateCompiler extends AbstractTemplateCompiler {
         linkedClasses.add("Put" + entityModel.getSimpleName() + "ResourceGen.class");
         entityModel.getRelations().stream().forEach(relation -> {
             String targetName = relation.getTargetEntityModel().getSimpleName();
-            linkedClasses.add("Post" + targetName + "ResourceGen.class");
-            linkedClasses.add(targetName + "sResourceGen.class");
+            linkedClasses.add("Post" + entityModel.getSimpleName() + "ToNew"+targetName+"RelationResource.class");
+            linkedClasses.add(entityModel.getSimpleName() + "s" + targetName + "sResource.class"); // DepartmentsUsersResource
         });
 
         entityModel.getReferences()

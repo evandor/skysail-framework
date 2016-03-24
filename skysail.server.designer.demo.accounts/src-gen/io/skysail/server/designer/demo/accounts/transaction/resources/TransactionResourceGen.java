@@ -4,8 +4,8 @@ import java.util.List;
 
 import io.skysail.api.links.Link;
 import io.skysail.api.responses.SkysailResponse;
-import io.skysail.server.ResourceContextId;
 import io.skysail.server.restlet.resources.EntityServerResource;
+import io.skysail.server.ResourceContextId;
 import io.skysail.server.designer.demo.accounts.*;
 
 import io.skysail.server.designer.demo.accounts.account.*;
@@ -15,13 +15,13 @@ import io.skysail.server.designer.demo.accounts.transaction.resources.*;
 
 
 /**
- * generated from entityResource.stg
+ * generated from entityResourceNonAggregate.stg
  */
 public class TransactionResourceGen extends EntityServerResource<io.skysail.server.designer.demo.accounts.transaction.Transaction> {
 
     private String id;
     private AccountsApplication app;
-    private TransactionRepository repository;
+    //private TransactionRepository repository;
 
     public TransactionResourceGen() {
         addToContext(ResourceContextId.LINK_TITLE, "details");
@@ -32,13 +32,13 @@ public class TransactionResourceGen extends EntityServerResource<io.skysail.serv
     protected void doInit() {
         id = getAttribute("id");
         app = (AccountsApplication) getApplication();
-        repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class);
+       // repository = (TransactionRepository) app.getRepository(io.skysail.server.designer.demo.accounts.transaction.Transaction.class);
     }
 
 
     @Override
     public SkysailResponse<?> eraseEntity() {
-        repository.delete(id);
+        //repository.delete(id);
         return new SkysailResponse<>();
     }
 
@@ -51,11 +51,5 @@ public class TransactionResourceGen extends EntityServerResource<io.skysail.serv
     public List<Link> getLinks() {
         return super.getLinks(PutTransactionResourceGen.class);
     }
-
-    @Override
-    public String redirectTo() {
-        return super.redirectTo(TransactionsResourceGen.class);
-    }
-
 
 }

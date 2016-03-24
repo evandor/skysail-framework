@@ -93,9 +93,9 @@ public class SkysailApplicationCompiler extends SkysailCompiler {
 
     private String routerCode(List<RouteModel> routeModels) {
         StringBuilder routerCode = new StringBuilder();
-        routeModels.stream().forEach(model -> {
-            routerCode.append("        router.attach(new RouteBuilder(\"").append(model.getPath()).append("\", ")
-                    .append(model.getClassName()).append(".class));\n");
+        routeModels.stream().forEach(routeModel -> {
+            routerCode.append("        router.attach(new RouteBuilder(\"").append(routeModel.getPath()).append("\", ")
+                    .append(routeModel.getClassName()).append(".class));\n");
         });
         return routerCode.toString();
     }

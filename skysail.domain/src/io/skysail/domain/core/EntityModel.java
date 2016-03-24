@@ -4,9 +4,7 @@ import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * A central class of skysail's core domain: An entity belongs to exactly one application
@@ -15,10 +13,11 @@ import lombok.Setter;
  *
  */
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EntityModel {
 
     /** ID should be the full qualified java class name, i.e. io.skysail.entity.Customer */
-    private final String id;
+    private String id;
 
     @Setter
     /** the entities fields in a map with their id as key. */

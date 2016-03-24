@@ -44,3 +44,4 @@ Include-Resource: resources, templates=src;recursive:=true;filter:=*.st|*.stg
 
 Private-Package: \
     io.skysail.server.designer.demo.transactions.*
+Export-Package: io.skysail.server.designer.demo.transactions.transaction

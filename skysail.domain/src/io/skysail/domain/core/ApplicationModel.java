@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the root class of skysail's core domain, describing an application,
- * which aggregates entities and keeps track of repositories to persist those
- * entities.
+ * which aggregates valueobjects and entities keeping track of repositories 
+ * to persist those entities.
  *
  * According to specific needs, the core domain can be adapted by extending the
  * corresponding classes. For example, there's a domain extension dealing with
@@ -28,7 +28,10 @@ public class ApplicationModel {
     private final String name;
 
     /** the applications entities in a map with their name as key. */
-    private Map<String, EntityModel> entities = new LinkedHashMap<>();
+    private final Map<String, EntityModel> entities = new LinkedHashMap<>();
+
+    /** the applications entities in a map with their name as key. */
+    private final Map<String, ValueObjectModel> valueobjects = new LinkedHashMap<>();
 
     /** the applications aggregate repositories. */
     @Setter

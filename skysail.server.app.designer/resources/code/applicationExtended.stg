@@ -13,6 +13,13 @@ import io.skysail.domain.core.Repositories;
 import io.skysail.server.app.ApiVersion;
 import io.skysail.server.menus.MenuItemProvider;
 
+import $application.packageName$.*;
+
+$entitiesPackages(application)$
+
+/**
+ * generated from applicationExtended.stg
+ */
 @Component(immediate = true)
 public class $application.name$Application extends $application.name$ApplicationGen implements ApplicationProvider, MenuItemProvider {
 

@@ -8,3 +8,5 @@ runproperties:\
     logback.configurationFile=${logback.configurationFile.path}/logback.xml,\
     obr.repository.url=${obrRepositories},\
     product.bundle=${p}
+
+#    java.net.preferIPv4Stack=true,\

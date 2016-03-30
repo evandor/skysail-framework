@@ -1,4 +1,5 @@
 skysail-framework
 =================
 
-[skysail business framework](http://www.skysail.io), work in progress...
+repository frozen, work continued in skysail repository.
+

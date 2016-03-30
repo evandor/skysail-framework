@@ -43,7 +43,6 @@ logback.configurationFile.path = ${basedir}/config/local
 	skysail.server.uikit.webresource;version=latest,\
 	skysail.server.purecss.webresource;version=latest,\
     skysail.server.w2ui.webresource;version=latest,\
-	skysail.server.app.twitter4j;version=latest,\
 	skysail.server.ext.oauth2;version=latest,\
     org.apache.oltu.oauth2.client;version=1.0,\
     org.fusesource.stompjms.stompjms-client,\

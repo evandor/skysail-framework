@@ -1,0 +1,147 @@
+Bundle-Name: SKYSAIL :: server :: app :: todos :: integrationtests
+Bundle-Version: 0.1.0.${tstamp}
+
+Private-Package:  \
+	io.skysail.server.app.todos.test,\
+	io.skysail.server.app.todos.test.browser
+
+#Test-Cases: \
+#    io.skysail.server.app.todos.test.TodoListsCrudIntegrationTests
+#
+    #,\
+    #io.skysail.server.app.todos.test.PostListHtmlLargeTest,\
+    #io.skysail.server.app.todos.test.TodoListsHtmlLargeTests
+
+-buildpath:  \
+	skysail.api;version=${skysail.api.version},\
+	skysail.api.text;version=${skysail.api.text.version},\
+	skysail.api.um;version=${skysail.api.um.version},\
+	skysail.client.testsupport;version=latest,\
+    skysail.domain;version=${skysail.domain.version},\
+	skysail.server;version=${skysail.server.version},\
+	skysail.server.app.todos;version=latest,\
+	skysail.server.db;version=${skysail.server.db.version},\
+	skysail.server.testsupport;version=${skysail.server.testsupport.version},\
+	skysail.server.um.internal;version=0.0,\
+	osgi.core;version=${osgi.version},\
+	com.springsource.org.junit;version=4.11,\
+	org.restlet;version=${restlet.version},\
+	de.twentyeleven.skysail.org.json-osgi;version=latest,\
+	org.codehaus.jettison.jettison;version=1.3,\
+	org.apache.felix.configadmin;version=1.8,\
+	org.apache.commons.exec;version=1.3.0,\
+	lombok;version=1.16,\
+	slf4j.api;version=1.7,\
+	io.skysail.bundled.serenity-junit;version=1.0,\
+	io.skysail.bundled.serenity-core;version=1.1,\
+	com.typesafe.config;version=1.3,\
+	com.google.inject;version=4.0,\
+	javax.inject;version=1.0,\
+	org.apache.servicemix.bundles.aopalliance;version=1.0,\
+	joda-time;version=2.7,\
+	org.freemarker.freemarker;version=2.3,\
+	io.skysail.bundled.selenium;version=2.47,\
+	com.google.gson;version=2.2,\
+	com.google.guava;version=16.0,\
+	com.sun.jna;version=4.2
+
+-runfw: org.apache.felix.framework;version=${org.apache.felix.framework.version}
+-runee: JavaSE-1.8
+-runsystemcapabilities: ${native_capability}
+
+-runvm: -ea
+#, -XX:+UnlockCommercialFeatures,-XX:+FlightRecorder,-XX:StartFlightRecording="duration=120m,filename=flightrecorder.jfr"
+
+-runrepos:  \
+	Workspace,\
+	Release,\
+	Local,\
+	Skysail Repository,\
+	Bndtools Hub
+
+-runsystempackages: sun.reflect, sun.misc, com.sun.net.httpserver, javax.imageio.spi, javax.crypto, javax.crypto.spec, javax.script, javax.net,\
+    javax.net.ssl,javax.sql,javax.security.auth.x500,org.ietf.jgss,javax.naming,javax.naming.directory,javax.naming.ldap,\
+    javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.activation,javax.security.auth.callback,\
+    javax.naming.spi,javax.management,javax.management.openmbean,javax.swing.tree,javax.transaction,javax.transaction.xa,\
+    javax.xml.transform.stax,javafx.application,javafx.scene,javafx.scene.control,javafx.scene.layout,javafx.stage,\
+    javafx.beans.property,javafx.collections,javafx.beans.value,javafx.concurrent,javafx.event,javafx.geometry,\
+    javafx.scene.image,javafx.scene.web,javafx.util,netscape.javascript,javafx.scene.paint,sun.io,org.w3c.dom.css,\
+    org.w3c.dom.stylesheets,org.w3c.dom.html,org.w3c.dom.ranges,org.w3c.dom.traversal,org.w3c.dom.views,org.w3c.dom.xpath,\
+    com.sun.jna.platform.win32
+
+
+-resolve.effective: active;skip:="osgi.service"
+
+-runproperties: felix.fileinstall.dir=config/test,\
+    felix.fileinstall.filter=.*\\.jar|.*\\.cfg,\
+    felix.fileinstall.noInitialDelay=true,\
+    felix.fileinstall.poll=1000,\
+    org.apache.felix.log.storeDebug=true,\
+    felix.fileinstall.log.level=4,\
+    org.apache.felix.log.storeDebug=true,\
+    logback.configurationFile=config/test/logback.xml,\
+    obr.repository.url=https://raw.githubusercontent.com/evandor/skysail-repository/master/index.xml https://raw.githubusercontent.com/evandor/skysail/master/cnf/releaserepo/index.xml http://felix.apache.org/obr/releases.xml,\
+    gosh.args=--nointeractive
+
+
+#  gosh.args=--nointeractive : otherwise I get a "gosh: stopping framework" message when running the integration tests...
+#-runproperties: \
+#    gosh.args=--nointeractive
+
+-runbundles:  \
+	${aQute},\
+	${logging},\
+	${fasterxml},\
+	com.google.guava;version='[16.0,16.1)',\
+	com.googlecode.concurrentlinkedhashmap.lru;version='[1.4.0,1.4.1)',\
+	${orientdb},\
+	com.sun.el;version='[2.2.0,2.2.1)',\
+	de.twenty11.owasp-java-html-sanitizer;version='[239.0.0,239.0.1)',\
+	de.twentyeleven.skysail.org.antlr.stringtemplate-osgi;version=4.0.8,\
+	de.twentyeleven.skysail.org.json-osgi;version=latest,\
+	${etm},\
+	javassist;version='[3.18.1,3.18.2)',\
+	${javax},\
+	${commons},\
+	${felix},\
+    org.apache.felix.shell.remote;version=1.1.2,\
+	org.apache.servicemix.bundles.c3p0;version=0.9.1,\
+	org.apache.servicemix.bundles.jakarta-regexp,\
+	${lucene},\
+	${shiro},\
+	org.codehaus.jettison.jettison;version=1.3.7,\
+	org.hibernate.validator;version='[5.1.2,5.1.3)',\
+	org.jboss.logging.jboss-logging;version='[3.1.4,3.1.5)',\
+	org.quartz-scheduler.quartz;version=2.2.1,\
+	${restlet},\
+	${osgi},\
+	${skysail.api},\
+	skysail.client.todos.angularjs;version=latest,\
+	skysail.product.todos;version=latest,\
+	${skysail.server},\
+    skysail.domain;version=${skysail.domain.version},\
+	skysail.server.peers.adminconfig;version=${skysail.server.peers.adminconfig.version},\
+	skysail.server.plugins;version=${skysail.server.plugins.version},\
+	skysail.server.app.bookmarks;version=latest,\
+	skysail.server.app.crm;version=latest,\
+	skysail.server.app.designer;version=latest,\
+	skysail.server.app.fileserver;version=latest,\
+	skysail.server.app.svgedit;version=latest,\
+	skysail.server.app.todos;version=latest,\
+	skysail.server.app.twitter4j;version=latest,\
+	skysail.server.app.wiki;version=latest,\
+	skysail.server.ext.mail;version=latest,\
+	skysail.server.ext.initconfig;version=latest,\
+	org.jsoup;version=1.8.1,\
+	com.sun.mail.javax.mail;version=1.5.1,\
+	${jetty},\
+	org.yaml.snakeyaml;version=1.15.0,\
+	skysail.client.testsupport;version=latest
+
+
+Export-Package:  \
+	!org.hamcrest.*
+
+Import-Package: \
+    !net.thucydides.core.annotations.*,\
+    *
